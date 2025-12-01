@@ -1,0 +1,23 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "navn": "Firkant ved Steinkjer"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [10.0005, 64.015],
+            [10.0095, 64.015],
+            [10.0095, 64.006],
+            [10.0005, 64.006],
+            [10.0005, 64.015]
+          ]
+        ]
+      }
+    }
+  ]
+}
