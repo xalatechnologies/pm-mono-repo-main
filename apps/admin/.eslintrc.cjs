@@ -1,34 +1,60 @@
 module.exports = {
-  parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint', 'prettier'],
+  root: true,
   env: {
-    es6: true,
     node: true,
+    es2022: true,
   },
-  extends: ['airbnb', 'plugin:@typescript-eslint/recommended'],
+  parser: '@typescript-eslint/parser',
   parserOptions: {
-    ecmaVersion: 2020,
+    ecmaVersion: 'latest',
     sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true,
+    },
+  },
+  plugins: [
+    '@typescript-eslint',
+    'react',
+    'react-hooks',
+  ],
+  extends: [
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
+  ],
+  settings: {
+    react: {
+      version: '18.2',
+    },
   },
   rules: {
-    indent: ['error', 2],
-    'max-len': ['error', 120],
-    'linebreak-style': ['error', 'unix'],
-    quotes: ['error', 'single'],
-    semi: ['error', 'always'],
-    'no-underscore-dangle': 'off',
-    'no-shadow': 'off',
-    '@typescript-eslint/no-shadow': 'error',
-    'import/prefer-default-export': 'off',
-    'import/no-unresolved': 'off',
-    'import/no-extraneous-dependencies': 'off',
-    'import/extensions': 'off',
-    'import/order': [
-      'error',
-      {
-        groups: ['builtin', 'external', 'parent', 'sibling', 'index'],
-        'newlines-between': 'always',
-      },
-    ],
+    // Allow JSX in .tsx files
+    'react/jsx-filename-extension': ['error', { extensions: ['.jsx', '.tsx'] }],
+    
+    // Allow React 17+ JSX transform (no need to import React)
+    'react/react-in-jsx-scope': 'off',
+    
+    // Allow default props with TypeScript
+    'react/require-default-props': 'off',
+    
+    // Allow non-null assertions in TypeScript
+    '@typescript-eslint/no-non-null-assertion': 'warn',
+    
+    // Console statements are warnings
+    'no-console': 'warn',
+    
+    // Alert is a warning
+    'no-alert': 'warn',
+    
+    // Allow any types with warning
+    '@typescript-eslint/no-explicit-any': 'warn',
+    
+    // Prop types not needed with TypeScript
+    'react/prop-types': 'off',
+    
+    // Allow unused vars starting with _
+    '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
   },
+  ignorePatterns: ['dist/', 'node_modules/'],
 };

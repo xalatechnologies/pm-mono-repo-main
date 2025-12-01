@@ -1,0 +1,35 @@
+{
+  "name": "pm-mono-repo",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/admin",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run types:build && npm run admin:build && npm run web:build",
+    "dev:web": "cd apps/web && npm run dev",
+    "dev:admin": "npm -w apps/admin run start:dev",
+    "lint": "npm run web:lint && npm run admin:lint",
+    "clean": "rm -rf node_modules .turbo apps/*/node_modules apps/*/.next packages/*/node_modules packages/*/dist",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "web:dev": "cd apps/web && npm run dev",
+    "web:build": "cd apps/web && npm run build",
+    "web:lint": "cd apps/web && npm run lint",
+    "admin:dev": "npm -w apps/admin run start:dev",
+    "admin:build": "npm -w apps/admin run build",
+    "admin:lint": "npm -w apps/admin run lint",
+    "types:build": "npm -w packages/shared-types run build",
+    "install:all": "npm install && cd apps/web && npm install",
+    "postinstall": "npm run types:build || true"
+  },
+  "devDependencies": {
+    "prettier": "^3.1.0",
+    "turbo": "^2.3.0"
+  },
+  "packageManager": "npm@10.0.0",
+  "engines": {
+    "node": ">=18"
+  }
+}
+

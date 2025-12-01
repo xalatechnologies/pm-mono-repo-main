@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Button, DropZone, Label, Input } from '@adminjs/design-system';
+import {
+  Box, Button, DropZone, Label, Input,
+} from '@adminjs/design-system';
 
 interface Paragraph {
   subtitle?: string;
@@ -10,42 +12,42 @@ interface Paragraph {
 interface ParagraphsEditorProps {
   onChange: (propertyName: string, value: Paragraph[]) => void;
   property: { name: string };
-  record: { params: { [key: string]: any } };
+  record: { params: Record<string, unknown> };
 }
 
-// Hjelpefunksjon for å rekonstruere nested paragraf-struktur
-const getParagraphsFromParams = (params: { [key: string]: any }, propertyName: string): any[] => {
-  let paragraphs: any[] = [];
+// Helper function to reconstruct nested paragraph structure
+const getParagraphsFromParams = (
+  params: Record<string, unknown>,
+  propertyName: string,
+): Paragraph[] => {
+  const paragraphs: Paragraph[] = [];
   Object.keys(params).forEach((key) => {
-    if (key.startsWith(propertyName + '.')) {
-      // Eks: key = "paragraphs.0.subtitle"
-      const parts = key.split('.'); // ["paragraphs", "0", "subtitle"]
+    if (key.startsWith(`${propertyName}.`)) {
+      const parts = key.split('.');
       const index = parseInt(parts[1], 10);
-      if (isNaN(index)) return;
+      if (Number.isNaN(index)) return;
       if (!paragraphs[index]) {
-        paragraphs[index] = {};
+        paragraphs[index] = { text: '' };
       }
-      // Bruk resten av nøkkel-delen ("subtitle" eller "text")
       const subKey = parts.slice(2).join('.');
-      paragraphs[index][subKey] = params[key];
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (paragraphs[index] as any)[subKey] = params[key];
     }
   });
   return paragraphs;
 };
 
-const ParagraphsEditor: React.FC<ParagraphsEditorProps> = (props) => {
+function ParagraphsEditor(props: ParagraphsEditorProps): React.JSX.Element {
   const { onChange, property, record } = props;
-  // Hent ut den eksisterende verdien for paragraphs. Forventer JSON-streng.
-  const initialValue = record.params[property.name] || '[]';
+  const initialValue = (record.params[property.name] as string) || '[]';
 
   let parsedParagraphs: Paragraph[];
   try {
     parsedParagraphs = JSON.parse(initialValue);
-  } catch (error) {
+  } catch {
     parsedParagraphs = [];
   }
 
-  // Hvis vi ikke får noe ut av JSON, prøv å rekonstruere fra flate nøkler
   if (!parsedParagraphs || parsedParagraphs.length === 0) {
     parsedParagraphs = getParagraphsFromParams(record.params, property.name);
   }
@@ -54,7 +56,7 @@ const ParagraphsEditor: React.FC<ParagraphsEditorProps> = (props) => {
 
   useEffect(() => {
     onChange(property.name, paragraphList);
-  }, [paragraphList]);
+  }, [paragraphList, onChange, property.name]);
 
   const handleFieldChange = (index: number, field: keyof Paragraph, value: string) => {
     const newList = [...paragraphList];
@@ -72,7 +74,6 @@ const ParagraphsEditor: React.FC<ParagraphsEditorProps> = (props) => {
     const formData = new FormData();
     formData.append('image', file);
 
-    // Bruk ditt API-endepunkt for filopplasting (f.eks. /api/upload)
     const uploadResponse = await fetch('/api/upload', {
       method: 'POST',
       body: formData,
@@ -80,9 +81,9 @@ const ParagraphsEditor: React.FC<ParagraphsEditorProps> = (props) => {
     if (uploadResponse.ok) {
       const data = await uploadResponse.json();
       const imageUrl = data.url;
-      // Oppdater den aktuelle paragrafens image-felt
       handleFieldChange(index, 'image', imageUrl);
     } else {
+      // eslint-disable-next-line no-alert
       alert('Opplastning feilet for paragraf');
     }
   };
@@ -90,14 +91,18 @@ const ParagraphsEditor: React.FC<ParagraphsEditorProps> = (props) => {
   return (
     <Box>
       {paragraphList.map((paragraph, index) => (
-        <Box key={index} variant="white" p="lg" mb="xl" border="default">
+        // eslint-disable-next-line react/no-array-index-key
+        <Box key={`paragraph-${index}`} variant="white" p="lg" mb="xl" border="default">
           <Label>Underoverskrift</Label>
           <Input
             value={paragraph.subtitle || ''}
-            onChange={(e) => handleFieldChange(index, 'subtitle', e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleFieldChange(index, 'subtitle', e.target.value)}
           />
           <Label>Tekst</Label>
-          <Input value={paragraph.text || ''} onChange={(e) => handleFieldChange(index, 'text', e.target.value)} />
+          <Input
+            value={paragraph.text || ''}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleFieldChange(index, 'text', e.target.value)}
+          />
           <Label>Bilde</Label>
           <DropZone onChange={(files) => handleImageUpload(index, files)} />
           {paragraph.image && (
@@ -108,10 +113,10 @@ const ParagraphsEditor: React.FC<ParagraphsEditorProps> = (props) => {
         </Box>
       ))}
       <Button type="button" variant="primary" onClick={handleAddParagraph}>
-        Legg til paragraf2
+        Legg til paragraf
       </Button>
     </Box>
   );
-};
+}
 
 export default ParagraphsEditor;

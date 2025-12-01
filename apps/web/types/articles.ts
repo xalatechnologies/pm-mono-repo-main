@@ -1,15 +1,2 @@
-export interface Paragraph {
-  subtitle?: string;
-  text: string;
-  image?: string;
-}
-
-export interface Article {
-  id: string;
-  title: string;
-  headline: string;
-  featuredImage?: string;
-  paragraphs: Paragraph[];
-  createdAt: string;
-  updatedAt: string;
-}
+// Re-export from shared types package for backward compatibility
+export type { Article, Paragraph } from "@pm/shared-types";

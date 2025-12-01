@@ -1,21 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Button, DropZone, Label, Input } from '@adminjs/design-system';
+import {
+  Box, DropZone, Label,
+} from '@adminjs/design-system';
 
-interface ParagraphsEditorProps {
+interface FeaturedImageEditorProps {
   onChange: (propertyName: string, value: string) => void;
   property: { name: string };
-  record: { params: { [key: string]: any } };
+  record: { params: Record<string, unknown> };
 }
 
-const FeaturedImageEditor: React.FC<ParagraphsEditorProps> = (props) => {
+function FeaturedImageEditor(props: FeaturedImageEditorProps): React.JSX.Element {
   const { onChange, property, record } = props;
-  const initialValue = record.params[property.name] || '';
+  const initialValue = (record.params[property.name] as string) || '';
 
-  const [imageUrl, setImageUrl] = useState<string>(initialValue);
+  const [currentImageUrl, setCurrentImageUrl] = useState<string>(initialValue);
 
   useEffect(() => {
-    onChange(property.name, imageUrl);
-  }, [imageUrl]);
+    onChange(property.name, currentImageUrl);
+  }, [currentImageUrl, onChange, property.name]);
 
   const handleImageUpload = async (files: File[]) => {
     if (!files || files.length === 0) return;
@@ -23,17 +25,16 @@ const FeaturedImageEditor: React.FC<ParagraphsEditorProps> = (props) => {
     const formData = new FormData();
     formData.append('image', file);
 
-    // Bruk ditt API-endepunkt for filopplasting (f.eks. /api/upload)
     const uploadResponse = await fetch('/api/upload', {
       method: 'POST',
       body: formData,
     });
     if (uploadResponse.ok) {
       const data = await uploadResponse.json();
-      const imageUrl = data.url;
-      // Oppdater den aktuelle paragrafens image-felt
-      setImageUrl(imageUrl);
+      const uploadedUrl = data.url;
+      setCurrentImageUrl(uploadedUrl);
     } else {
+      // eslint-disable-next-line no-alert
       alert('Opplastning feilet for paragraf');
     }
   };
@@ -43,14 +44,14 @@ const FeaturedImageEditor: React.FC<ParagraphsEditorProps> = (props) => {
       <Box variant="white" p="lg" mb="xl" border="default">
         <Label>Bilde</Label>
         <DropZone onChange={(files) => handleImageUpload(files)} />
-        {imageUrl && (
+        {currentImageUrl && (
           <Box mt="default">
-            <img src={imageUrl} alt="Featured image" style={{ maxWidth: '200px' }} />
+            <img src={currentImageUrl} alt="Featured" style={{ maxWidth: '200px' }} />
           </Box>
         )}
       </Box>
     </Box>
   );
-};
+}
 
 export default FeaturedImageEditor;

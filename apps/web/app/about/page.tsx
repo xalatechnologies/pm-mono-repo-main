@@ -1,4 +1,3 @@
-import StandardCard from "../components/cards/StandardCard";
 import ImageCard from "../components/cards/ImageCard";
 
 export default function AboutPage() {

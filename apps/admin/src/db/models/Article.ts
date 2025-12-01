@@ -1,6 +1,7 @@
 // packages/db/models/Article.ts
 import pkg from 'mongoose';
 import type { Model, Document } from 'mongoose';
+
 const { Schema, model, models } = pkg;
 
 export interface IParagraph {

@@ -1,7 +1,6 @@
 // packages/db/index.ts
 import mongoose from 'mongoose';
 
-// Importer modellene dine
 import Category from './models/Category.js';
 import Article from './models/Article.js';
 
@@ -11,34 +10,45 @@ if (!MONGODB_URI) {
   throw new Error('MONGODB_URI må være definert i miljøvariablene');
 }
 
-let cached = (globalThis as any).mongoose;
-if (!cached) {
-  cached = (globalThis as any).mongoose = { conn: null, promise: null };
+interface CachedConnection {
+  conn: typeof mongoose | null;
+  promise: Promise<typeof mongoose> | null;
 }
 
-export async function connectToDatabase() {
-  // Sjekk først om det finnes en cachet forbindelse og om den er aktiv
+const globalWithMongoose = globalThis as typeof globalThis & {
+  mongooseCache?: CachedConnection;
+};
+
+if (!globalWithMongoose.mongooseCache) {
+  globalWithMongoose.mongooseCache = { conn: null, promise: null };
+}
+
+const cached = globalWithMongoose.mongooseCache;
+
+export async function connectToDatabase(): Promise<typeof mongoose> {
+  // Check if cached connection exists and is active
   if (cached.conn && cached.conn.connection.readyState === 1) {
+    // eslint-disable-next-line no-console
     console.log('Using cached database connection with readyState === 1');
     return cached.conn;
   }
   if (!cached.promise && MONGODB_URI) {
+    // eslint-disable-next-line no-console
     console.log('Creating new database connection promise');
     cached.promise = mongoose
       .connect(MONGODB_URI, {
-        // Du kan legge til konfigurasjon her hvis nødvendig
         bufferCommands: false,
-        serverSelectionTimeoutMS: 30000, // øker timeout til 30 sekunder
+        serverSelectionTimeoutMS: 30000,
       })
-      .then((mongoose) => {
+      .then((mongooseInstance) => {
+        // eslint-disable-next-line no-console
         console.log('Database connection established');
-        return mongoose;
+        return mongooseInstance;
       });
   }
   cached.conn = await cached.promise;
-  return cached.conn;
+  return cached.conn!;
 }
 
-// Eksporter funksjoner og modeller slik at andre prosjekter kan bruke dem
 export { Category, Article };
 export default { connectToDatabase, Category, Article };

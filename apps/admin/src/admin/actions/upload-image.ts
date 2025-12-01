@@ -1,11 +1,5 @@
 // admin/actions/upload-image.ts
-import AdminJS from 'adminjs';
 import { ActionRequest, ActionResponse, ActionContext } from 'adminjs';
-import { ComponentLoader } from 'adminjs';
-
-// const componentLoader = new ComponentLoader();
-// Merk: Sjekk at den relative stien stemmer med ditt build-output
-// const UploadImageComponent = componentLoader.add('UploadImage', '../components/upload-image');
 
 import { Components } from '../component-loader.js';
 
@@ -16,6 +10,7 @@ const uploadImageAction = {
   isVisible: true,
   handler: async (request: ActionRequest, response: ActionResponse, context: ActionContext) => {
     const { record } = context;
+    // eslint-disable-next-line no-console
     console.log('handler');
     if (!record) {
       throw new Error('Record is required');
@@ -35,6 +30,7 @@ const uploadImageAction = {
         notice: { message: 'Bilde opplastet og lagret!', type: 'success' },
       };
     }
+    // eslint-disable-next-line no-console
     console.log('context.currentAdmin', context.currentAdmin);
     return {
       record: record.toJSON(context.currentAdmin),
