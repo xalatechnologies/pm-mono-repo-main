@@ -1,4 +1,6 @@
 import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 type ImageCardProps = {
   title: string;
@@ -8,7 +10,8 @@ type ImageCardProps = {
   readMoreLink?: string;
   imagePosition?: "top" | "left" | "right";
   halfWidth?: boolean;
-  scale?: number; // i prosent, f.eks. 90 for 90%
+  scale?: number;
+  variant?: "default" | "dark" | "overlay";
 };
 
 export default function ImageCard({
@@ -20,69 +23,157 @@ export default function ImageCard({
   imagePosition = "top",
   halfWidth = false,
   scale,
+  variant = "default",
 }: ImageCardProps) {
   const isSide = imagePosition === "left" || imagePosition === "right";
   const isImageRight = imagePosition === "right";
   const isArray = Array.isArray(content);
 
-  // Hardkodet dimensjoner for å regne ut ratio om du ikke har det dynamisk:
   const baseWidth = 800;
   const baseHeight = 600;
-  const ratio = baseHeight / baseWidth; // 0.75
+  const ratio = baseHeight / baseWidth;
+
+  const variantClasses = {
+    default: "bg-white border-[var(--stone-grey)]/10",
+    dark: "bg-[var(--primary)] border-white/10",
+    overlay: "bg-white border-[var(--stone-grey)]/10",
+  };
+
+  const titleClasses = {
+    default: "text-[var(--primary)]",
+    dark: "text-white",
+    overlay: "text-[var(--primary)]",
+  };
+
+  const textClasses = {
+    default: "text-[var(--stone-grey)]",
+    dark: "text-white/70",
+    overlay: "text-[var(--stone-grey)]",
+  };
 
   return (
     <div
-      className={`bg-white shadow-md overflow-hidden mb-6 ${isSide ? "sm:flex" : ""} ${
-        isImageRight ? "sm:flex-row-reverse" : ""
-      } ${halfWidth ? "" : "sm:col-span-2"}`}
+      className={`
+        relative overflow-hidden mb-6
+        ${isSide ? "sm:flex" : ""}
+        ${isImageRight ? "sm:flex-row-reverse" : ""}
+        ${halfWidth ? "" : "sm:col-span-2"}
+        ${variantClasses[variant]}
+        border rounded-xl
+        shadow-sm hover:shadow-xl
+        transition-all duration-500 ease-out
+        group
+      `}
     >
+      {/* Image Container */}
       <div
-        // Sørg for full bredde på mobil, og halv bredde på sm+ hvis side-by-side
-        className={`${isSide ? "sm:w-1/2 w-full" : "w-full"} flex items-center justify-center`}
+        className={`
+          ${isSide ? "sm:w-1/2 w-full" : "w-full"}
+          relative overflow-hidden
+          image-hover-zoom
+        `}
       >
         {typeof scale === "number" ? (
           <div
-            className="relative"
+            className="relative flex items-center justify-center p-4"
             style={{
-              width: `${scale}%`,
-              // To alternativer for høydegrunnlag:
-              // 1) paddingTop hack:
-              paddingTop: `${ratio * 100}%`,
-              // 2) eller (i moderne nettlesere) direkte:
-              // aspectRatio: `${baseWidth} / ${baseHeight}`,
+              width: "100%",
+              paddingTop: `${ratio * scale}%`,
             }}
           >
-            <Image src={imageUrl} alt={alt} fill style={{ objectFit: "contain" }} />
+            <div className="absolute inset-0 flex items-center justify-center p-4">
+              <div
+                className="relative h-full"
+                style={{ width: `${scale}%` }}
+              >
+                <Image
+                  src={imageUrl}
+                  alt={alt}
+                  fill
+                  className="object-contain transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
+            </div>
           </div>
         ) : (
-          <div className="w-full">
-            <Image src={imageUrl} alt={alt} width={baseWidth} height={baseHeight} layout="responsive" />
+          <div className={`relative ${isSide ? "h-full min-h-[250px]" : "aspect-video"}`}>
+            <Image
+              src={imageUrl}
+              alt={alt}
+              fill
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+            {/* Gradient overlay */}
+            <div
+              className={`
+                absolute inset-0
+                ${variant === "overlay"
+                  ? "bg-gradient-to-t from-[var(--primary)]/60 via-transparent to-transparent"
+                  : "bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100"
+                }
+                transition-opacity duration-500
+              `}
+            />
           </div>
         )}
       </div>
 
-      <div className={`p-6 ${isSide ? "sm:w-1/2" : ""}`}>
-        <h2 className="text-xl font-bold mb-2">{title}</h2>
+      {/* Content */}
+      <div className={`p-6 ${isSide ? "sm:w-1/2 flex flex-col justify-center" : ""}`}>
+        <h2
+          className={`
+            text-xl sm:text-2xl font-serif font-bold mb-3
+            ${titleClasses[variant]}
+            group-hover:text-[var(--secondary)] transition-colors duration-300
+          `}
+        >
+          {title}
+        </h2>
 
         {isArray ? (
           (content as string[]).map((p, i) => (
-            <p key={i} className="text-gray-700 mb-4 last:mb-0">
+            <p
+              key={i}
+              className={`${textClasses[variant]} mb-4 last:mb-0 leading-relaxed`}
+            >
               {p}
             </p>
           ))
         ) : (
-          <p className="text-gray-700 mb-4">{content}</p>
+          <p className={`${textClasses[variant]} mb-4 leading-relaxed`}>{content}</p>
         )}
 
         {readMoreLink && (
-          <a
+          <Link
             href={readMoreLink}
-            className="inline-block text-sm text-white bg-[var(--primary-blue)] hover:bg-[var(--dark-grey)] px-4 py-2 rounded"
+            className={`
+              inline-flex items-center gap-2 mt-2
+              text-sm font-semibold
+              ${variant === "dark" ? "text-[var(--secondary)]" : "text-[var(--primary)]"}
+              hover:text-[var(--secondary)]
+              transition-colors duration-300
+              group/link
+            `}
           >
-            Read more
-          </a>
+            <span>Read more</span>
+            <ArrowRight
+              size={16}
+              className="transform group-hover/link:translate-x-1 transition-transform duration-300"
+            />
+          </Link>
         )}
       </div>
+
+      {/* Corner accent */}
+      <div
+        className={`
+          absolute top-0 right-0 w-20 h-20
+          bg-gradient-to-bl from-[var(--secondary)]/10 to-transparent
+          opacity-0 group-hover:opacity-100
+          transition-opacity duration-500
+          pointer-events-none
+        `}
+      />
     </div>
   );
 }

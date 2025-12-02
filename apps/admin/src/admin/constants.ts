@@ -7,6 +7,14 @@ export const DEFAULT_ADMIN = {
   passwordHash: process.env.ADMIN_PASSWORD_HASH || '$2b$10$development.placeholder.hash',
 };
 
+// Debug: Log loaded credentials on startup (remove in production)
+if (process.env.NODE_ENV === 'development') {
+  // eslint-disable-next-line no-console
+  console.log('[Auth Config] Email:', DEFAULT_ADMIN.email);
+  // eslint-disable-next-line no-console
+  console.log('[Auth Config] Hash loaded:', DEFAULT_ADMIN.passwordHash?.substring(0, 20) + '...');
+}
+
 // Configuration
 export const AUTH_CONFIG = {
   // Whether to use secure password hashing (should be true in production)

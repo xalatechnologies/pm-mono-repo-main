@@ -13,14 +13,18 @@ const upload = multer({ storage: multer.memoryStorage() });
 const { AZURE_STORAGE_CONNECTION_STRING } = process.env;
 const CONTAINER_NAME = process.env.AZURE_STORAGE_CONTAINER || 'images';
 
-if (!AZURE_STORAGE_CONNECTION_STRING) {
-  throw new Error('AZURE_STORAGE_CONNECTION_STRING må være definert');
+// Azure storage is optional - uploads will fail gracefully if not configured
+let containerClient = null;
+if (AZURE_STORAGE_CONNECTION_STRING) {
+  const blobServiceClient = BlobServiceClient.fromConnectionString(AZURE_STORAGE_CONNECTION_STRING);
+  containerClient = blobServiceClient.getContainerClient(CONTAINER_NAME);
 }
 
-const blobServiceClient = BlobServiceClient.fromConnectionString(AZURE_STORAGE_CONNECTION_STRING);
-const containerClient = blobServiceClient.getContainerClient(CONTAINER_NAME);
-
 router.post('/upload', upload.single('image'), async (req, res) => {
+  if (!containerClient) {
+    return res.status(503).json({ message: 'Azure storage not configured. Set AZURE_STORAGE_CONNECTION_STRING in .env' });
+  }
+
   if (!req.file) {
     return res.status(400).json({ message: 'Ingen fil mottatt' });
   }

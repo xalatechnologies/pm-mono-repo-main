@@ -1,3 +1,6 @@
+// Load environment variables FIRST before any other imports
+import 'dotenv/config';
+
 import * as AdminJSMongoose from '@adminjs/mongoose';
 import { buildAuthenticatedRouter, buildRouter } from '@adminjs/express';
 import express from 'express';

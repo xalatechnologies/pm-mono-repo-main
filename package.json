@@ -7,9 +7,8 @@
     "packages/*"
   ],
   "scripts": {
+    "dev": "concurrently --names \"web,admin\" -c \"cyan,magenta\" \"npm run web:dev\" \"npm run admin:dev\"",
     "build": "npm run types:build && npm run admin:build && npm run web:build",
-    "dev:web": "cd apps/web && npm run dev",
-    "dev:admin": "npm -w apps/admin run start:dev",
     "lint": "npm run web:lint && npm run admin:lint",
     "clean": "rm -rf node_modules .turbo apps/*/node_modules apps/*/.next packages/*/node_modules packages/*/dist",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
@@ -24,12 +23,20 @@
     "postinstall": "npm run types:build || true"
   },
   "devDependencies": {
+    "concurrently": "^9.2.1",
     "prettier": "^3.1.0",
     "turbo": "^2.3.0"
+  },
+  "overrides": {
+    "@tiptap/core": "2.1.16",
+    "@tiptap/pm": "2.1.16",
+    "@tiptap/extension-horizontal-rule": "2.1.16",
+    "@tiptap/extension-document": "2.1.16",
+    "@tiptap/extension-paragraph": "2.1.16",
+    "@tiptap/extension-text": "2.1.16"
   },
   "packageManager": "npm@10.0.0",
   "engines": {
     "node": ">=18"
   }
 }
-

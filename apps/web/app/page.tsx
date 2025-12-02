@@ -1,38 +1,73 @@
-// app/page.tsx
-import Slogan from "./components/Slogan";
-import StandardCard from "./components/cards/StandardCard";
-import ImageCard from "./components/cards/ImageCard";
+"use client";
 
-export default async function Home() {
+import HeroSection from "./components/home/HeroSection";
+import StatsSection from "./components/home/StatsSection";
+import ProjectsShowcase from "./components/home/ProjectsShowcase";
+import NorChainSection from "./components/home/NorChainSection";
+import AnimatedSection from "./components/ui/AnimatedSection";
+import Button from "./components/ui/Button";
+import { ArrowRight, Mail } from "lucide-react";
+
+export default function Home() {
   return (
     <main className="flex flex-col min-h-screen bg-[var(--background)] text-[var(--foreground)]">
-      <Slogan />
-      <div className="max-w-4xl mx-auto p-4">
-        <ImageCard
-          title="Early-Stage Exploration in Trøndelag: From Mine Surveys to Drilling Strategy"
-          content="Early exploration in Gaulstad and Mokk laid the foundation - now Skrattåsen is at the center of our next
-  steps."
-          // imageUrl="/Norway_Counties_Trøndelag_Position.svg"
-          imageUrl="/trondelag_puls1.svg"
-          imagePosition="left"
-          alt="Trøndelag County in Norway"
-          readMoreLink="/projects"
-          scale={60}
-        />
+      {/* Hero Section */}
+      <HeroSection />
 
-        <StandardCard
-          title="Skrattåsen - A Key Locality in Central Norwegian Geology"
-          content="Detailed fieldwork in 2024 has revealed complex tectonic structures, rich mineralization, and a unique window into the Møre-Trøndelag Fault Zone."
-          readMoreLink="/projects/skrattaasen"
-          halfWidth
-        />
-        <StandardCard
-          title="Gaulstad/Mokk - A Historic Mining District with New Potential"
-          content="Covering 100 km² and 11 licenses, the Gaulstad/Mokk area hosts confirmed base and precious metal mineralization, including copper, zinc, silver, and gold. Ongoing work aims to define economically viable resources through systematic drilling and analysis."
-          readMoreLink="/projects/mokk"
-          halfWidth
-        />
-      </div>
+      {/* Stats Section */}
+      <StatsSection />
+
+      {/* Projects Showcase */}
+      <ProjectsShowcase />
+
+      {/* NorChain Section */}
+      <NorChainSection />
+
+      {/* CTA Section */}
+      <section className="py-20 bg-[var(--primary)] relative overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-5">
+          <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <pattern id="cta-grid" width="10" height="10" patternUnits="userSpaceOnUse">
+              <circle cx="1" cy="1" r="1" fill="currentColor" />
+            </pattern>
+            <rect width="100%" height="100%" fill="url(#cta-grid)" />
+          </svg>
+        </div>
+
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center relative z-10">
+          <AnimatedSection animation="fade-in-up">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-white mb-6">
+              Ready to Explore{" "}
+              <span className="text-[var(--secondary)]">Opportunities?</span>
+            </h2>
+            <p className="text-white/70 text-lg mb-10 max-w-2xl mx-auto">
+              Connect with our team to learn more about our exploration projects
+              and investment opportunities in Norwegian mineral resources.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button
+                href="/contact"
+                variant="primary"
+                size="lg"
+                icon={<Mail size={20} />}
+                iconPosition="left"
+              >
+                Get in Touch
+              </Button>
+              <Button
+                href="/projects"
+                variant="outline"
+                size="lg"
+                className="border-white/30 text-white hover:bg-white/10 hover:text-white"
+                icon={<ArrowRight size={20} />}
+              >
+                View Projects
+              </Button>
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
     </main>
   );
 }
