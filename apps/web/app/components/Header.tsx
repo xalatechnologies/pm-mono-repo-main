@@ -35,13 +35,14 @@ export default function Header() {
           href="/"
           className="flex items-center gap-3 group"
         >
-          <div className="relative overflow-hidden rounded-lg">
+          <div className="relative overflow-hidden rounded-xl shadow-lg shadow-[var(--secondary)]/20 transition-transform duration-300 group-hover:scale-105">
             <Image
-              src="/logo.png"
+              src="/logo.svg"
               alt="Pure Minerals"
-              width={44}
-              height={44}
-              className="invert transition-transform duration-300 group-hover:scale-110"
+              width={48}
+              height={48}
+              className="transition-transform duration-300"
+              priority
             />
           </div>
           <div className="flex flex-col gap-0.5">

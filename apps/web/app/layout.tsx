@@ -6,14 +6,24 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://pureminerals.no"),
   title: "Pure Minerals | Geological Exploration & Mining",
   description: "What Tomorrow Needs, We Find Today. Norwegian exploration company focused on sustainable mineral development in Trøndelag.",
   keywords: "mining, exploration, minerals, Norway, Trøndelag, copper, zinc, gold, silver, geological",
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "any" },
+    ],
+    apple: "/apple-touch-icon.svg",
+  },
   openGraph: {
     title: "Pure Minerals | Geological Exploration & Mining",
     description: "What Tomorrow Needs, We Find Today. Norwegian exploration company focused on sustainable mineral development.",
     type: "website",
+    images: [{ url: "/logo.svg", width: 120, height: 120, alt: "Pure Minerals Logo" }],
   },
+  manifest: "/site.webmanifest",
 };
 
 const playfair = Playfair_Display({

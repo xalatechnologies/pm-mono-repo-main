@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none">
+  <!-- Background Circle -->
+  <circle cx="60" cy="60" r="58" fill="url(#bgGradient)" stroke="url(#borderGradient)" stroke-width="2"/>
+  
+  <!-- Crystal/Mountain Shape -->
+  <path d="M60 18L90 75H30L60 18Z" fill="url(#crystalGradient)" opacity="0.9"/>
+  <path d="M60 18L75 52L60 42L45 52L60 18Z" fill="url(#crystalHighlight)"/>
+  
+  <!-- PM Letters -->
+  <text x="60" y="98" text-anchor="middle" font-family="serif" font-weight="700" font-size="22" fill="url(#textGradient)">PM</text>
+  
+  <!-- Subtle inner glow -->
+  <circle cx="60" cy="55" r="25" fill="url(#innerGlow)" opacity="0.3"/>
+  
+  <defs>
+    <!-- Background gradient -->
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1a1f2e"/>
+      <stop offset="100%" stop-color="#2a3142"/>
+    </linearGradient>
+    
+    <!-- Border gradient -->
+    <linearGradient id="borderGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#b87333"/>
+      <stop offset="50%" stop-color="#d4956b"/>
+      <stop offset="100%" stop-color="#b87333"/>
+    </linearGradient>
+    
+    <!-- Crystal gradient -->
+    <linearGradient id="crystalGradient" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#f0c878"/>
+      <stop offset="50%" stop-color="#b87333"/>
+      <stop offset="100%" stop-color="#8b5a2b"/>
+    </linearGradient>
+    
+    <!-- Crystal highlight -->
+    <linearGradient id="crystalHighlight" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#fff" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#f0c878" stop-opacity="0.2"/>
+    </linearGradient>
+    
+    <!-- Text gradient -->
+    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#d4956b"/>
+      <stop offset="50%" stop-color="#f0c878"/>
+      <stop offset="100%" stop-color="#d4956b"/>
+    </linearGradient>
+    
+    <!-- Inner glow -->
+    <radialGradient id="innerGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#f0c878"/>
+      <stop offset="100%" stop-color="transparent"/>
+    </radialGradient>
+  </defs>
+</svg>
+

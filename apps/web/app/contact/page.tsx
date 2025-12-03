@@ -184,7 +184,7 @@ export default function ContactPage() {
                       
                       {/* Content */}
                       <h3 className="text-xs font-bold uppercase tracking-wider text-[var(--color-earth-copper)] mb-2">
-                        {info.title}
+                       <span className="text-[var(--color-earth-copper)]">{info.title}</span>
                       </h3>
                       {info.href ? (
                         <a
@@ -480,7 +480,7 @@ export default function ContactPage() {
                 delay={index * 100}
               >
                 <div className="p-6 rounded-xl bg-white/[0.05] border border-white/10 hover:border-[var(--color-earth-gold-bright)]/30 transition-all h-full">
-                  <h3 className="text-white font-semibold text-lg mb-3">{faq.q}</h3>
+                  <h3 className="text-white font-semibold text-lg mb-3"><span className="text-[var(--color-earth-gold-bright)]">{faq.q}</span></h3>
                   <p className="text-white/70 text-sm leading-relaxed">{faq.a}</p>
                 </div>
               </AnimatedSection>

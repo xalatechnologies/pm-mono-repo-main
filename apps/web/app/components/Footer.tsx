@@ -33,9 +33,18 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
           {/* Brand Column */}
           <div className="lg:col-span-1">
-            <Link href="/" className="inline-block mb-6">
-              <div className="flex flex-col gap-1">
-                <span className="brand-name text-2xl text-white">
+            <Link href="/" className="inline-flex items-center gap-3 mb-6 group">
+              <div className="w-12 h-12 rounded-xl overflow-hidden shadow-lg shadow-[var(--secondary)]/20 transition-transform duration-300 group-hover:scale-105">
+                <Image
+                  src="/logo.svg"
+                  alt="Pure Minerals"
+                  width={48}
+                  height={48}
+                  className="w-full h-full"
+                />
+              </div>
+              <div className="flex flex-col gap-0.5">
+                <span className="brand-name text-xl text-white">
                   PURE MINERALS
                 </span>
                 <span className="tagline">
@@ -147,12 +156,12 @@ export default function Footer() {
             className="flex items-center justify-center sm:justify-between flex-wrap gap-4 group"
           >
             <div className="flex items-center gap-4">
-              <div className="w-24 h-24 rounded-full overflow-hidden flex-shrink-0 shadow-lg">
+              <div className="w-18 h-18 rounded-full overflow-hidden flex-shrink-0 shadow-lg">
                 <Image
                   src="/norchain-logo.png"
                   alt="NorChain"
-                  width={68}
-                  height={68}
+                  width={48}
+                  height={48}
                   className="w-full h-full object-cover"
                 />
               </div>
