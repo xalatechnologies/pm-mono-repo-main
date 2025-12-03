@@ -65,7 +65,6 @@ export default function ContactSection() {
 
     try {
       // Option 1: Send via Web3Forms (free form submission service)
-      // Replace YOUR_ACCESS_KEY with actual key from https://web3forms.com
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: {
@@ -73,7 +72,7 @@ export default function ContactSection() {
           Accept: "application/json",
         },
         body: JSON.stringify({
-          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY || "YOUR_ACCESS_KEY",
+          access_key: "a95eaf84-d632-4091-b34e-fc067083df6d",
           name: formData.name,
           email: formData.email,
           company: formData.company || "Not specified",

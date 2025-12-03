@@ -268,23 +268,25 @@ export default function ProjectsPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20">
-        <div className="site-container-narrow text-center">
+      <section className="py-16 md:py-20">
+        <div className="site-container">
           <AnimatedSection animation="fade-in-up">
-            <h2 className="text-3xl sm:text-4xl font-serif font-bold text-[var(--primary)] mb-6">
-              Want to Learn More About Our Exploration?
-            </h2>
-            <p className="text-[var(--stone-grey)] text-lg mb-8">
-              Contact our team to discuss project details, investment opportunities,
-              and partnership possibilities.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button href="/contact" variant="primary" size="lg" icon={<ArrowRight size={20} />}>
-                Contact Us
-              </Button>
-              <Button href="/about" variant="outline" size="lg">
-                About Pure Minerals
-              </Button>
+            <div className="max-w-3xl mx-auto text-center">
+              <h2 className="display-3 text-[var(--color-brand-primary)] mb-4">
+                Want to Learn More About Our Exploration?
+              </h2>
+              <p className="lead text-[var(--color-neutral-600)] mb-8">
+                Contact our team to discuss project details, investment opportunities,
+                and partnership possibilities.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button href="/contact" variant="primary" size="lg" icon={<ArrowRight size={20} />}>
+                  Contact Us
+                </Button>
+                <Button href="/about" variant="outline" size="lg">
+                  About Pure Minerals
+                </Button>
+              </div>
             </div>
           </AnimatedSection>
         </div>

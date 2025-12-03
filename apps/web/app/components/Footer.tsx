@@ -7,7 +7,8 @@ const footerLinks = {
   company: [
     { label: "About Us", href: "/about" },
     { label: "Our Team", href: "/about#team" },
-    { label: "Careers", href: "/contact" },
+    { label: "Privacy Policy", href: "/privacy" },
+    { label: "Terms of Service", href: "/terms" },
   ],
   projects: [
     { label: "Overview", href: "/projects" },
@@ -198,14 +199,16 @@ export default function Footer() {
         <div className="site-container py-6">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4 body-small text-on-dark-subtle">
             <p>© {currentYear} Pure Minerals AS. All rights reserved.</p>
-            <div className="flex gap-6">
-              <Link href="/privacy" className="hover:text-white transition-colors">
-                Privacy Policy
-              </Link>
-              <Link href="/terms" className="hover:text-white transition-colors">
-                Terms of Service
-              </Link>
-            </div>
+            <a 
+              href="https://xala.no" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 hover:text-[var(--secondary)] transition-colors"
+            >
+              <span>Developed by</span>
+              <span className="font-semibold text-white">Xala Technologies</span>
+              <ExternalLink size={14} />
+            </a>
           </div>
         </div>
       </div>
