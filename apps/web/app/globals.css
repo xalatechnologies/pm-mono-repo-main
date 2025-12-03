@@ -1008,3 +1008,12 @@ p {
     scroll-behavior: auto;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   LAMP EFFECT UTILITIES
+   Conic gradient support for Aceternity UI components
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.bg-gradient-conic {
+  background-image: conic-gradient(var(--conic-position, from 0deg), var(--tw-gradient-stops));
+}

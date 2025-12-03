@@ -11,13 +11,16 @@
   },
   "dependencies": {
     "@pm/shared-types": "file:../../packages/shared-types",
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.23.25",
     "lucide-react": "0.488.0",
     "mapbox-gl": "3.11.1",
     "next": "^15.2.4",
     "postcss": "8.5.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "styled-components": "6.1.16"
+    "styled-components": "6.1.16",
+    "tailwind-merge": "^3.4.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

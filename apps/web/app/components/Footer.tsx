@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Mail, MapPin, ExternalLink, Linkedin, Twitter } from "lucide-react";
+import GoldDivider from "./ui/GoldDivider";
 
 const footerLinks = {
   company: [
@@ -141,6 +142,11 @@ export default function Footer() {
         </div>
       </div>
 
+      <GoldDivider />
+
+      {/* Thin Gold Divider */}
+      <div className="h-[1px] bg-gradient-to-r from-transparent via-[var(--secondary)]/50 to-transparent" />
+
       {/* NorChain Partnership Banner */}
       <div className="relative overflow-hidden">
         {/* Background matching NorChain section */}
@@ -181,6 +187,11 @@ export default function Footer() {
           </a>
         </div>
       </div>
+
+
+      <GoldDivider />
+      {/* Thin Gold Divider */}
+      <div className="h-[1px] bg-gradient-to-r from-transparent via-[var(--secondary)]/50 to-transparent" />
 
       {/* Bottom Bar */}
       <div className="border-t border-white/10">

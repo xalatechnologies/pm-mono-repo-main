@@ -5,6 +5,7 @@ import StatsSection from "./components/home/StatsSection";
 import ProjectsShowcase from "./components/home/ProjectsShowcase";
 import NorChainSection from "./components/home/NorChainSection";
 import ContactSection from "./components/home/ContactSection";
+import GoldDivider from "./components/ui/GoldDivider";
 
 export default function Home() {
   return (
@@ -15,11 +16,17 @@ export default function Home() {
       {/* Stats Section */}
       <StatsSection />
 
+      <GoldDivider />
+
       {/* Projects Showcase */}
       <ProjectsShowcase />
 
+      <GoldDivider />
+
       {/* NorChain Section */}
       <NorChainSection />
+
+      <GoldDivider />
 
       {/* Contact Section */}
       <ContactSection />
