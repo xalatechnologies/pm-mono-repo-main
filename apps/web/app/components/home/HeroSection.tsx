@@ -37,8 +37,8 @@ export default function HeroSection() {
         style={{ transform: `translateY(${offsetY * 0.4}px) scale(1.1)` }}
       >
         <Image
-          src="/minerals.jpg"
-          alt="Geological formations"
+          src="/skrattas-overview.jpg"
+          alt="Skrattåsen exploration site overview"
           fill
           className="object-cover object-center"
           priority

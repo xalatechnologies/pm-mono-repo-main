@@ -9,29 +9,31 @@ import { ArrowRight, MapPin } from "lucide-react";
 const projects = [
   {
     id: "skrattaasen",
-    title: "Skrattåsen",
+    title: "Skrattås-Byafossen",
     subtitle: "Primary Focus Area",
     description:
-      "High-potential exploration site with exceptional zinc, lead, and silver concentrations. Currently our primary focus for deep drilling strategy.",
-    image: "/fieldwork1.png",
+      "Exceptional grades: 28.8% Zn, 539 ppm Ag, 10 ppm Au. Historic production of 34% Zn ore. Mineralization continues below 80m depth.",
+    image: "/skrattas-mine-1.jpg",
     href: "/projects/skrattaasen",
-    licenses: 5,
-    area: "38 km²",
+    licenses: 7,
+    area: "~30 km²",
     minerals: ["Zinc", "Lead", "Silver", "Gold"],
     status: "Active Exploration",
+    highlight: "28.8% Zinc",
   },
   {
     id: "mokk",
     title: "Gaulstad/Mokk",
     subtitle: "Historic Mining District",
     description:
-      "Covering 100 km² with 11 licenses, this historic area hosts confirmed copper, zinc, silver, and gold mineralization with significant commercial potential.",
-    image: "/mokk1.png",
+      "Mining history from 1760. Over 50 documented mines with confirmed 7.95% Cu. Covers the Gruvfjellet mountain plateau with proven mineralization.",
+    image: "/mokk-mine-entrance.jpg",
     href: "/projects/mokk",
     licenses: 11,
-    area: "100 km²",
+    area: "~110 km²",
     minerals: ["Copper", "Zinc", "Silver", "Gold"],
     status: "Resource Definition",
+    highlight: "7.95% Copper",
   },
 ];
 

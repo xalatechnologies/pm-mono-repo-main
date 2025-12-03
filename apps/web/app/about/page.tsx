@@ -24,28 +24,28 @@ import {
 
 const investmentHighlights = [
   {
-    value: "138",
+    value: "110+",
     unit: "km²",
     label: "Exploration Area",
     description: "Strategic license holdings in proven mineral districts",
   },
   {
-    value: "16",
+    value: "18",
     unit: "",
     label: "Mining Licenses",
-    description: "Secured exploration rights in Trøndelag region",
+    description: "11 in Gaulstad-Mokk + 7 in Skrattås-Byafossen",
   },
   {
-    value: "4",
+    value: "70+",
     unit: "",
-    label: "Key Minerals",
-    description: "Copper, Zinc, Gold & Silver deposits identified",
+    label: "Elements Analyzed",
+    description: "Including Cu, Zn, Au, Ag, REE & precious metals",
   },
   {
-    value: "100%",
+    value: "50+",
     unit: "",
-    label: "Ownership",
-    description: "Full control of all license areas",
+    label: "Historic Mines",
+    description: "Documented workings dating back to 1760",
   },
 ];
 
@@ -72,29 +72,46 @@ const values = [
   },
 ];
 
+// Mineral occurrence data from geological surveys
+const mineralData = [
+  { element: "Copper (Cu)", mokk: "7.95%", skrattas: "7.01%", unit: "%", highlight: true },
+  { element: "Zinc (Zn)", mokk: "1.24%", skrattas: "28.8%", unit: "%", highlight: true },
+  { element: "Lead (Pb)", mokk: "0.005%", skrattas: "9%", unit: "%", highlight: false },
+  { element: "Silver (Ag)", mokk: "12.45", skrattas: "539", unit: "ppm", highlight: true },
+  { element: "Gold (Au)", mokk: "0.05", skrattas: "10.01", unit: "ppm", highlight: true },
+  { element: "Nickel (Ni)", mokk: "225", skrattas: "49.5", unit: "ppm", highlight: false },
+  { element: "Cobalt (Co)", mokk: "840", skrattas: "29", unit: "ppm", highlight: false },
+];
+
 const timeline = [
   {
+    year: "1760",
+    title: "First Discovery",
+    description: "Major copper ore discovered at Gruvfjellet plateau. Gaulstad No. 1 mine operational by 1764.",
+    highlight: true,
+  },
+  {
     year: "2021",
-    title: "Company Founded",
-    description: "Pure Minerals AS established to explore mineral deposits in Trøndelag County.",
+    title: "Pure Minerals Founded",
+    description: "Company established to explore and develop mineral deposits in Trøndelag County.",
     highlight: false,
   },
   {
     year: "2022",
     title: "License Acquisition",
-    description: "Secured 16 mining licenses covering key areas in Gaulstad, Mokk, and Skrattåsen.",
+    description: "Secured 18 mining licenses: 11 in Gaulstad-Mokk (~110 km²) and 7 in Skrattås-Byafossen.",
     highlight: true,
   },
   {
     year: "2023",
-    title: "Geological Surveys",
-    description: "Comprehensive XRF measurements and geochemical analysis across license areas.",
+    title: "Geological Mapping",
+    description: "Engaged Sunnfjord Geo Center AS and GeoVista AB for high-performance geological surveys.",
     highlight: false,
   },
   {
     year: "2024",
     title: "Advanced Exploration",
-    description: "High-resolution investigations and TEM surveys at Skrattåsen site.",
+    description: "XRF measurements, sampling, and geochemical analysis. Over 70 elements analyzed.",
     highlight: true,
   },
   {
@@ -157,10 +174,12 @@ const strategicAdvantages = [
 ];
 
 const minerals = [
-  { name: "Copper", symbol: "Cu", color: "bg-[#b87333]" },
-  { name: "Zinc", symbol: "Zn", color: "bg-[#7c8b99]" },
-  { name: "Gold", symbol: "Au", color: "bg-[#f0c878]" },
-  { name: "Silver", symbol: "Ag", color: "bg-[#c4cdd5]" },
+  { name: "Copper", symbol: "Cu", color: "bg-[#b87333]", grade: "Up to 7.95%" },
+  { name: "Zinc", symbol: "Zn", color: "bg-[#7c8b99]", grade: "Up to 28.8%" },
+  { name: "Gold", symbol: "Au", color: "bg-[#f0c878]", grade: "Up to 10 ppm" },
+  { name: "Silver", symbol: "Ag", color: "bg-[#c4cdd5]", grade: "Up to 539 ppm" },
+  { name: "Lead", symbol: "Pb", color: "bg-[#5a6169]", grade: "Up to 9%" },
+  { name: "REE", symbol: "La+", color: "bg-[#8b5cf6]", grade: "Trace amounts" },
 ];
 
 export default function AboutPage() {
@@ -169,10 +188,10 @@ export default function AboutPage() {
       {/* Hero Section - Investor Focused */}
       <section className="relative py-24 md:py-36 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-brand-primary)] via-[var(--color-earth-slate)] to-[var(--color-earth-obsidian)]" />
-        <div className="absolute inset-0 opacity-15">
+        <div className="absolute inset-0 opacity-20">
           <Image
-            src="/minerals.jpg"
-            alt="Geological background"
+            src="/mokk-gruvfjellet.jpg"
+            alt="Gruvfjellet mountain plateau - historic mining district"
             fill
             className="object-cover"
             priority
@@ -313,8 +332,8 @@ export default function AboutPage() {
               <div className="relative">
                 <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
                   <Image
-                    src="/mokk2.png"
-                    alt="Pure Minerals exploration site"
+                    src="/copper-minerals.jpg"
+                    alt="Copper mineral samples from exploration sites"
                     fill
                     className="object-cover"
                   />
@@ -328,7 +347,7 @@ export default function AboutPage() {
                     </div>
                     <div>
                       <div className="text-2xl font-display font-bold text-[var(--color-brand-primary)]">
-                        138 km²
+                        110+ km²
                       </div>
                       <div className="text-xs text-[var(--color-neutral-500)] uppercase tracking-wider">
                         Exploration Area
@@ -340,7 +359,7 @@ export default function AboutPage() {
                 <div className="absolute -top-4 -right-4 bg-[var(--color-brand-primary)] p-4 rounded-xl shadow-xl text-white">
                   <div className="flex items-center gap-2">
                     <CheckCircle size={20} className="text-[var(--color-earth-gold-bright)]" />
-                    <span className="font-semibold">Fully Licensed</span>
+                    <span className="font-semibold">18 Licenses</span>
                   </div>
                 </div>
               </div>
@@ -387,6 +406,97 @@ export default function AboutPage() {
                 </div>
               </AnimatedSection>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Mineral Occurrences Data Section */}
+      <section className="py-20 md:py-28 bg-[var(--color-neutral-100)]">
+        <div className="site-container">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+            {/* Left: Image Gallery */}
+            <AnimatedSection animation="slide-in-left">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="col-span-2 aspect-[16/9] rounded-2xl overflow-hidden shadow-xl">
+                  <Image
+                    src="/mokk-geology.jpg"
+                    alt="Geological samples from Mokk"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="aspect-square rounded-xl overflow-hidden shadow-lg">
+                  <Image
+                    src="/bjonsas-mineral.jpg"
+                    alt="Mineral samples from Bjønsås"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="aspect-square rounded-xl overflow-hidden shadow-lg">
+                  <Image
+                    src="/copper-minerals-2.jpg"
+                    alt="Copper mineral specimens"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+            </AnimatedSection>
+
+            {/* Right: Data Table */}
+            <AnimatedSection animation="slide-in-right" delay={200}>
+              <span className="section-badge section-badge--filled mb-4">
+                Geological Data
+              </span>
+              <h2 className="display-3 text-on-light mb-4">
+                Proven Mineral Occurrences
+              </h2>
+              <p className="lead mb-8">
+                Over 70 elements analyzed across our license areas, with exceptional grades in key minerals.
+              </p>
+
+              {/* Data Table */}
+              <div className="bg-white rounded-2xl border border-[var(--color-neutral-200)] overflow-hidden shadow-lg">
+                <div className="grid grid-cols-4 bg-[var(--color-brand-primary)] text-white text-sm font-bold">
+                  <div className="p-4">Element</div>
+                  <div className="p-4 text-center">Mokk</div>
+                  <div className="p-4 text-center">Skrattås</div>
+                  <div className="p-4 text-center">Unit</div>
+                </div>
+                {mineralData.map((row, index) => (
+                  <div 
+                    key={row.element}
+                    className={`grid grid-cols-4 text-sm border-t border-[var(--color-neutral-200)] ${
+                      row.highlight ? 'bg-[var(--color-earth-copper)]/5' : ''
+                    } ${index % 2 === 0 ? '' : 'bg-[var(--color-neutral-50)]'}`}
+                  >
+                    <div className={`p-4 font-semibold ${row.highlight ? 'text-[var(--color-earth-copper)]' : 'text-[var(--color-brand-primary)]'}`}>
+                      {row.element}
+                    </div>
+                    <div className="p-4 text-center text-[var(--color-neutral-600)]">{row.mokk}</div>
+                    <div className={`p-4 text-center font-semibold ${row.highlight ? 'text-[var(--color-earth-copper)]' : 'text-[var(--color-neutral-600)]'}`}>
+                      {row.skrattas}
+                    </div>
+                    <div className="p-4 text-center text-[var(--color-neutral-500)]">{row.unit}</div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Highlight box */}
+              <div className="mt-6 p-5 rounded-xl bg-[var(--color-earth-copper)]/10 border border-[var(--color-earth-copper)]/20">
+                <div className="flex items-start gap-3">
+                  <Gem size={24} className="text-[var(--color-earth-copper)] mt-0.5 flex-shrink-0" />
+                  <div>
+                    <h4 className="font-bold text-[var(--color-brand-primary)] mb-1">Historic Production</h4>
+                    <p className="text-sm text-[var(--color-neutral-600)]">
+                      Skrattås produced ore grading <strong>34% Zn, 10.4% Pb, 1.9% Cu</strong> during 1979-1981. 
+                      Mineralization continues below 80m depth.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </AnimatedSection>
           </div>
         </div>
       </section>
@@ -555,9 +665,9 @@ export default function AboutPage() {
             <AnimatedSection animation="fade-in-up" delay={0}>
               <ImageCard
                 title="Strategic License Areas"
-                content="We hold 16 licenses covering approximately 138 km² with strong potential for commercial mineralization including copper, zinc, gold, and silver."
-                imageUrl="/map1.png"
-                alt="Exploration map"
+                content="18 licenses covering 110+ km² across Gaulstad-Mokk and Skrattås-Byafossen districts with documented commercial mineralization."
+                imageUrl="/gaulstad-mokk-map.jpg"
+                alt="Gaulstad-Mokk license area map"
                 variant="dark"
               />
             </AnimatedSection>
@@ -565,19 +675,19 @@ export default function AboutPage() {
             <AnimatedSection animation="fade-in-up" delay={100}>
               <ImageCard
                 title="Proven Mineral Wealth"
-                content="Our license areas are rich in valuable minerals. The Skrattås region shows exceptional zinc, lead, and silver, while Mokk contains strong copper deposits."
-                imageUrl="/core1.png"
-                alt="Core samples"
+                content="Exceptional grades: Skrattås shows 28.8% Zn, 539 ppm Ag, 10 ppm Au. Mokk shows 7.95% Cu. Over 50 historic mines documented."
+                imageUrl="/mokk-mineral.jpg"
+                alt="Mokk mineral samples"
                 variant="dark"
               />
             </AnimatedSection>
 
             <AnimatedSection animation="fade-in-up" delay={200}>
               <ImageCard
-                title="Clear Path Forward"
-                content="Following a structured development plan from prospecting to resource confirmation, with the goal of full-scale mining operations."
-                imageUrl="/production1.png"
-                alt="Mining operations"
+                title="Advanced Technology"
+                content="TEM surveys, XRF analysis, and comprehensive geochemical testing. Over 70 elements analyzed with cutting-edge geological methods."
+                imageUrl="/tem-study.jpg"
+                alt="TEM geophysical survey"
                 variant="dark"
               />
             </AnimatedSection>
