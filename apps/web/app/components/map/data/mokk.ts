@@ -1,4 +1,5 @@
 import type { ProjectMapConfig } from "../types";
+import { Mountain, FlaskConical, Search, FileCheck, Rocket, Building } from "lucide-react";
 
 export const mokkConfig: ProjectMapConfig = {
   id: "mokk",
@@ -296,6 +297,98 @@ export const mokkConfig: ProjectMapConfig = {
       alt: "Mokk geological features",
       category: "geology",
       highlights: ["Støren Nappe", "Caledonides", "Røros Analogue", "High Potential"],
+    },
+  ],
+  timeline: [
+    {
+      icon: Mountain,
+      title: "1760",
+      subtitle: "First Discovery",
+      description: "Major copper ore discovered at Gruvfjellet plateau. This marked the beginning of organized mining in the upper Ogndalen area, establishing a tradition that would span over 130 years.",
+      image: "/mokk-gruvfjellet.jpg",
+      items: [
+        "Copper ore discovery at Gruvfjellet",
+        "Mining infrastructure development begins",
+        "First ore extraction documented",
+        "Historic mining tradition established"
+      ],
+    },
+    {
+      icon: Building,
+      title: "1764-1891",
+      subtitle: "Commercial Mining Era",
+      description: "Gaulstad No. 1 mine in full operation from 1764, followed by Mokk No. 1 'Blankstøiten'. Three major mining phases: 1764-1786 (copper), 1830-1850 (expansion), and 1880-1891 (nickel targeting).",
+      image: "/mokk-mine-entrance.jpg",
+      highlight: true,
+      items: [
+        "Gaulstad No. 1 operational 1764",
+        "50+ mines documented",
+        "130+ years of mining",
+        "Copper, zinc, and nickel extracted"
+      ],
+    },
+    {
+      icon: FileCheck,
+      title: "2021-2022",
+      subtitle: "Modern License Acquisition",
+      description: "Pure Minerals acquired 11 mining licenses covering approximately 110 km² in the Gaulstad-Mokk area. Initial exploration of Gaulstad and Mokk mine entrances at Gruvfjellet began.",
+      image: "/gaulstad-mokk-map.jpg",
+      highlight: true,
+      items: [
+        "11 licenses acquired",
+        "110 km² exploration area",
+        "Mine entrance exploration",
+        "Historic data compilation"
+      ],
+    },
+    {
+      icon: Search,
+      title: "2023",
+      subtitle: "Geological Surveys",
+      description: "Sunnfjord Geo Center AS and GeoVista AB executed high-performance geological mapping combined with evaluation of existing geophysical data. Comprehensive XRF analysis conducted.",
+      image: "/tem-study.jpg",
+      items: [
+        "Partnership with SGC AS",
+        "GeoVista AB surveys",
+        "Geophysical data evaluation",
+        "XRF sample analysis"
+      ],
+    },
+    {
+      icon: FlaskConical,
+      title: "2024",
+      subtitle: "Analysis Results",
+      description: "XRF analysis confirmed exceptional grades: 7.95% Cu, 1.24% Zn, 12.45 ppm Ag, 840 ppm Co. Over 70 elements analyzed across the license area.",
+      image: "/mokk-mineral.jpg",
+      highlight: true,
+      items: [
+        "7.95% Copper confirmed",
+        "840 ppm Cobalt detected",
+        "12.45 ppm Silver identified",
+        "70+ elements analyzed"
+      ],
+      button: {
+        url: "/about",
+        text: "View Full Analysis"
+      }
+    },
+    {
+      icon: Rocket,
+      title: "2026",
+      subtitle: "Expansion Program",
+      description: "Further geological and geophysical exploration planned based on 2023 survey results. Focus on deeper mineralization and extension of known ore bodies.",
+      image: "/copper-minerals.jpg",
+      highlight: true,
+      items: [
+        "Extended geological mapping",
+        "Deep exploration targets",
+        "Resource estimation",
+        "Investment program launch"
+      ],
+      button: {
+        url: "/contact",
+        text: "Join the Program"
+      }
     },
   ],
 };

@@ -3,94 +3,98 @@
 import { useEffect, useState, useCallback } from "react";
 import Image from "next/image";
 import Button from "../ui/Button";
-import { ArrowDown, ChevronRight, TrendingUp } from "lucide-react";
+import { ArrowRight, TrendingUp, Users, Award } from "lucide-react";
 
-// Hero slides with dynamic content
-const heroSlides = [
-  {
-    src: "/skrattas-overview.jpg",
-    alt: "Skrattås exploration site overview",
-    location: "Skrattås-Byafossen",
-    badge: "Investment Opportunity",
-    headline: "Exceptional Grades,",
-    headlineAccent: "Exceptional Returns",
-    subtitle: "28.8% Zinc • 539 ppm Silver • 10 ppm Gold — Discover one of Norway's most promising mineral deposits with proven historic production.",
-    stat: "28.8%",
-    statLabel: "Zinc Grade",
-  },
+// About page hero slides with investor-focused content
+const aboutSlides = [
   {
     src: "/mokk-gruvfjellet.jpg",
-    alt: "Gruvfjellet mountain plateau - historic mining district",
-    location: "Gaulstad-Mokk",
-    badge: "Historic Mining District",
-    headline: "265 Years of",
-    headlineAccent: "Proven Potential",
-    subtitle: "Mining heritage since 1760. Over 50 documented mines with confirmed 7.95% copper across 110 km² of strategic license holdings.",
-    stat: "1760",
-    statLabel: "First Discovery",
+    alt: "Gruvfjellet mountain plateau",
+    location: "Gruvfjellet Plateau",
+    badge: "Company Overview",
+    headline: "Pure Minerals AS",
+    headlineAccent: "Your Partner in Discovery",
+    subtitle: "A Norwegian exploration company unlocking mineral wealth in Trøndelag since 2021. Strategic vision, proven methodology, exceptional potential.",
+    stat: "2021",
+    statLabel: "Founded",
+    icon: <Award size={16} />,
   },
   {
-    src: "/skrattas-mine-1.jpg",
-    alt: "Historic mine entrance at Skrattås",
-    location: "Skrattås Mine",
-    badge: "Active Exploration",
-    headline: "Where History Meets",
-    headlineAccent: "Modern Innovation",
-    subtitle: "Historic production of 34% zinc ore. Mineralization continues below 80m depth — the best is yet to come.",
-    stat: "34%",
-    statLabel: "Historic Ore Grade",
+    src: "/gaulstad-mokk-map.jpg",
+    alt: "License area map",
+    location: "License Portfolio",
+    badge: "Strategic Holdings",
+    headline: "18 Mining Licenses",
+    headlineAccent: "110+ km² of Opportunity",
+    subtitle: "Comprehensive coverage across two premier districts: Gaulstad-Mokk and Skrattås-Byafossen. Full ownership and control of all exploration rights.",
+    stat: "18",
+    statLabel: "Active Licenses",
+    icon: <TrendingUp size={16} />,
   },
   {
-    src: "/mokk-mine-entrance.jpg",
-    alt: "Mine entrance at Mokk exploration site",
-    location: "Mokk District",
-    badge: "Resource Definition",
-    headline: "Unlocking Norway's",
-    headlineAccent: "Hidden Wealth",
-    subtitle: "7.95% copper, 840 ppm cobalt, and precious metals. World-class grades in a AAA-rated mining jurisdiction.",
-    stat: "7.95%",
-    statLabel: "Copper Grade",
-  },
-  {
-    src: "/copper-minerals.jpg",
-    alt: "Copper mineral samples from exploration",
-    location: "Mineral Samples",
-    badge: "Critical Minerals",
-    headline: "Powering the",
-    headlineAccent: "Green Transition",
-    subtitle: "Copper, zinc, gold, silver — essential metals for renewable energy, EVs, and infrastructure. 70+ elements analyzed.",
+    src: "/tem-study.jpg",
+    alt: "TEM geophysical survey",
+    location: "Advanced Technology",
+    badge: "Scientific Excellence",
+    headline: "Data-Driven",
+    headlineAccent: "Exploration",
+    subtitle: "Partnered with GeoVista AB and Sunnfjord Geo Center. XRF analysis, TEM surveys, and comprehensive geological mapping across all license areas.",
     stat: "70+",
     statLabel: "Elements Analyzed",
+    icon: <Award size={16} />,
   },
   {
-    src: "/byafossen-geology.jpg",
-    alt: "Geological formations at Byafossen",
-    location: "Byafossen",
-    badge: "Norwegian Excellence",
-    headline: "Science-Driven",
-    headlineAccent: "Discovery",
-    subtitle: "Advanced TEM surveys, XRF analysis, and comprehensive geological mapping. Partnered with leading Nordic geoscience firms.",
-    stat: "18",
-    statLabel: "Mining Licenses",
+    src: "/bjonsas-mineral.jpg",
+    alt: "Mineral samples",
+    location: "Proven Resources",
+    badge: "Exceptional Grades",
+    headline: "World-Class",
+    headlineAccent: "Mineralization",
+    subtitle: "Documented grades of 28.8% Zn, 7.95% Cu, 539 ppm Ag, and 10 ppm Au. Historic production confirms commercial viability.",
+    stat: "28.8%",
+    statLabel: "Peak Zinc Grade",
+    icon: <TrendingUp size={16} />,
+  },
+  {
+    src: "/copper-minerals-2.jpg",
+    alt: "Copper ore samples",
+    location: "Critical Minerals",
+    badge: "Green Transition",
+    headline: "Powering",
+    headlineAccent: "Tomorrow's Economy",
+    subtitle: "Copper, zinc, silver, gold — essential metals for renewable energy, electric vehicles, and sustainable infrastructure development.",
+    stat: "4",
+    statLabel: "Key Minerals",
+    icon: <Award size={16} />,
+  },
+  {
+    src: "/marken-mine.jpg",
+    alt: "Historic mine workings",
+    location: "Mining Heritage",
+    badge: "265 Years of History",
+    headline: "Building on",
+    headlineAccent: "Proven Legacy",
+    subtitle: "50+ documented historic mines dating to 1760. We're not starting from scratch — we're continuing a story of mineral wealth.",
+    stat: "50+",
+    statLabel: "Historic Mines",
+    icon: <Users size={16} />,
   },
 ];
 
-const SLIDE_DURATION = 7000; // 7 seconds per slide
+const SLIDE_DURATION = 7000;
 
-export default function HeroSection() {
-  const [offsetY, setOffsetY] = useState(0);
+export default function AboutHero() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [contentVisible, setContentVisible] = useState(true);
 
-  // Auto-advance slides with content animation
   const nextSlide = useCallback(() => {
     setContentVisible(false);
     setIsTransitioning(true);
     
     setTimeout(() => {
-      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+      setCurrentSlide((prev) => (prev + 1) % aboutSlides.length);
       setIsTransitioning(false);
     }, 500);
     
@@ -101,30 +105,9 @@ export default function HeroSection() {
 
   useEffect(() => {
     setIsLoaded(true);
-
-    const handleScroll = () => {
-      requestAnimationFrame(() => {
-        setOffsetY(window.scrollY);
-      });
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    
-    // Auto-advance timer
     const slideTimer = setInterval(nextSlide, SLIDE_DURATION);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      clearInterval(slideTimer);
-    };
+    return () => clearInterval(slideTimer);
   }, [nextSlide]);
-
-  const scrollToContent = () => {
-    window.scrollTo({
-      top: window.innerHeight - 100,
-      behavior: "smooth",
-    });
-  };
 
   const goToSlide = (index: number) => {
     if (index !== currentSlide) {
@@ -142,20 +125,19 @@ export default function HeroSection() {
     }
   };
 
-  const slide = heroSlides[currentSlide];
+  const slide = aboutSlides[currentSlide];
 
   return (
-    <section className="relative h-screen min-h-[700px] overflow-hidden">
-      {/* Image Slider with Parallax */}
-      {heroSlides.map((image, index) => (
+    <section className="relative min-h-[600px] md:min-h-[700px] overflow-hidden">
+      {/* Image Slider */}
+      {aboutSlides.map((image, index) => (
         <div
           key={image.src}
           className={`
-            absolute inset-0 z-0 will-change-transform
+            absolute inset-0 z-0
             transition-opacity duration-1000 ease-in-out
             ${index === currentSlide ? "opacity-100" : "opacity-0"}
           `}
-          style={{ transform: `translateY(${offsetY * 0.4}px) scale(1.1)` }}
         >
           <Image
             src={image.src}
@@ -169,27 +151,15 @@ export default function HeroSection() {
       ))}
 
       {/* Gradient Overlays */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[var(--obsidian)]/80 via-[var(--obsidian)]/60 to-[var(--obsidian)]/90 z-10" />
-      <div className="absolute inset-0 bg-gradient-to-r from-[var(--primary)]/60 via-transparent to-transparent z-10" />
-
-      {/* Floating Particles Effect */}
-      <div className="absolute inset-0 z-10 overflow-hidden pointer-events-none">
-        {[...Array(8)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-1 h-1 bg-[var(--secondary)]/40 rounded-full animate-float"
-            style={{
-              left: `${10 + i * 12}%`,
-              top: `${15 + (i % 4) * 20}%`,
-              animationDelay: `${i * 0.4}s`,
-              animationDuration: `${4 + i * 0.5}s`,
-            }}
-          />
-        ))}
-      </div>
+      <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-brand-primary)]/85 via-[var(--color-brand-primary)]/70 to-[var(--color-brand-primary)]/95 z-10" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-brand-primary)]/70 via-transparent to-transparent z-10" />
+      
+      {/* Decorative orbs */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[var(--color-earth-copper)]/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 z-10" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[var(--color-earth-patina)]/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/3 z-10" />
 
       {/* Content */}
-      <div className="relative z-20 h-full flex flex-col justify-center site-container -mt-16 md:-mt-20">
+      <div className="relative z-20 h-full flex flex-col justify-center py-20 md:py-24 site-container">
         <div className="max-w-4xl">
           {/* Badge */}
           <div
@@ -199,9 +169,9 @@ export default function HeroSection() {
             `}
             style={{ transitionDelay: "100ms" }}
           >
-            <span className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-white/10 border border-[var(--secondary)]/40 backdrop-blur-sm">
-              <TrendingUp size={14} className="text-[var(--secondary)]" />
-              <span className="text-white/90 text-sm font-medium tracking-wide">
+            <span className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-white/10 border border-[var(--color-earth-gold-bright)]/40 backdrop-blur-sm">
+              {slide.icon}
+              <span className="text-[var(--color-earth-gold-bright)] text-sm font-medium tracking-wide">
                 {slide.badge}
               </span>
             </span>
@@ -264,21 +234,21 @@ export default function HeroSection() {
             style={{ transitionDelay: "500ms" }}
           >
             <Button
-              href="/projects"
+              href="/contact"
               variant="primary"
               size="lg"
-              icon={<ChevronRight size={20} />}
+              icon={<ArrowRight size={18} />}
               className="shadow-lg shadow-[var(--color-earth-copper)]/30"
             >
-              Explore Projects
+              Investor Inquiries
             </Button>
             <Button
-              href="/contact"
+              href="/projects"
               variant="outline"
               size="lg"
               className="border-white/30 text-white hover:bg-white/10 hover:text-white backdrop-blur-sm"
             >
-              Investor Inquiries
+              View Projects
             </Button>
           </div>
         </div>
@@ -287,32 +257,29 @@ export default function HeroSection() {
       {/* Slide Indicators */}
       <div 
         className={`
-          absolute bottom-28 left-1/2 -translate-x-1/2 z-20
+          absolute bottom-8 left-1/2 -translate-x-1/2 z-20
           flex items-center gap-3
           transition-all duration-500
           ${isLoaded ? "opacity-100" : "opacity-0"}
         `}
-        style={{ transitionDelay: "800ms" }}
       >
-        {heroSlides.map((image, index) => (
+        {aboutSlides.map((image, index) => (
           <button
             key={index}
             onClick={() => goToSlide(index)}
             className="group relative flex items-center gap-2 transition-all duration-300"
             aria-label={`Go to slide ${index + 1}: ${image.location}`}
           >
-            {/* Indicator dot/bar */}
             <div
               className={`
                 h-1.5 rounded-full transition-all duration-500
                 ${index === currentSlide 
-                  ? "w-10 bg-[var(--secondary)]" 
+                  ? "w-10 bg-[var(--color-earth-gold-bright)]" 
                   : "w-2.5 bg-white/30 hover:bg-white/50"
                 }
               `}
             />
             
-            {/* Location label on hover */}
             <span
               className={`
                 hidden md:block absolute -top-10 left-1/2 -translate-x-1/2
@@ -331,37 +298,17 @@ export default function HeroSection() {
         ))}
       </div>
 
-      {/* Scroll Indicator */}
-      <button
-        onClick={scrollToContent}
-        className={`
-          absolute bottom-8 left-1/2 -translate-x-1/2 z-20
-          text-on-dark-subtle hover:text-white
-          transition-all duration-500
-          ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}
-        `}
-        style={{ transitionDelay: "1000ms" }}
-        aria-label="Scroll to content"
-      >
-        <div className="flex flex-col items-center gap-2">
-          <span className="text-xs uppercase tracking-widest font-medium">Discover More</span>
-          <ArrowDown size={18} className="animate-bounce" />
-        </div>
-      </button>
-
       {/* Progress Bar */}
       <div className="absolute bottom-0 left-0 right-0 h-1 bg-white/10 z-20">
         <div
           className="h-full bg-gradient-to-r from-[var(--color-earth-copper)] to-[var(--color-earth-gold-bright)]"
           style={{
-            width: `${((currentSlide + 1) / heroSlides.length) * 100}%`,
+            width: `${((currentSlide + 1) / aboutSlides.length) * 100}%`,
             transition: isTransitioning ? "none" : `width ${SLIDE_DURATION}ms linear`,
           }}
         />
       </div>
-
-      {/* Bottom Gradient Fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[var(--background)] to-transparent z-15" />
     </section>
   );
 }
+

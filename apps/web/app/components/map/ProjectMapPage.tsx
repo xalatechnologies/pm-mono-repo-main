@@ -15,9 +15,13 @@ import {
   X,
   Gem,
   Ruler,
-  FileText
+  FileText,
+  ArrowRight,
+  ChevronRight,
 } from "lucide-react";
-import GeologicalCard from "@/app/components/cards/GeologicalCard";
+import ScrollTimeline from "@/app/components/ui/ScrollTimeline";
+import GoldDivider from "@/app/components/ui/GoldDivider";
+import Button from "@/app/components/ui/Button";
 import type { ProjectMapConfig, MineMarker } from "./types";
 
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN;
@@ -27,7 +31,7 @@ interface ProjectMapPageProps {
 }
 
 export default function ProjectMapPage({ config }: ProjectMapPageProps) {
-  const { mapConfig, scannerConfig, geoJsonFeatures, contentCards, id, markers = [], projectInfo } = config;
+  const { mapConfig, scannerConfig, geoJsonFeatures, id, markers = [], projectInfo } = config;
 
   const mapContainer = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<mapboxgl.Map | null>(null);
@@ -587,54 +591,125 @@ export default function ProjectMapPage({ config }: ProjectMapPageProps) {
       {/* Map Container */}
       <div
         className={`map-container transition-all duration-500 ${
-          isMaximized ? "fixed inset-0 maximized z-20" : "relative w-full h-[60vh]"
+          isMaximized ? "fixed inset-0 maximized z-20" : "relative w-full h-[65vh] min-h-[450px]"
         }`}
       >
         <div ref={mapContainer} className="absolute inset-0 w-full h-full" />
-        
-        {/* Map Gradient Overlay */}
-        {!isMaximized && (
-          <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[var(--background)] to-transparent pointer-events-none" />
-        )}
       </div>
 
-      {/* Content Cards */}
+      {/* Content */}
       {!isMaximized && (
-        <div className="relative z-10 bg-[var(--background)]">
-          {/* Section Header */}
-          <div className="container mx-auto px-4 pt-8 pb-6">
-            <div className="flex items-center gap-4 mb-2">
-              <div className="h-px flex-1 bg-gradient-to-r from-transparent via-[var(--secondary)]/30 to-transparent" />
-              <span className="text-xs font-semibold uppercase tracking-widest text-[var(--secondary)]">
-                Exploration Details
-              </span>
-              <div className="h-px flex-1 bg-gradient-to-r from-transparent via-[var(--secondary)]/30 to-transparent" />
+        <div className="relative z-10" style={{ marginTop: "-120px" }}>
+          {/* Project Timeline - Main Content */}
+          {config.timeline && config.timeline.length > 0 && (
+            <section className="bg-[var(--color-neutral-100)]">
+              <ScrollTimeline
+                badge={projectInfo?.status || "Active Exploration"}
+                title={projectInfo?.name || "Project Journey"}
+                description={id === "skrattaasen" 
+                  ? "Exceptional zinc, lead, silver and gold deposits with proven high-grade mineralization dating back to 1886."
+                  : "Historic copper mining district with over 50 documented mines dating back to 1760."
+                }
+                entries={config.timeline}
+              />
+            </section>
+          )}
+
+          <GoldDivider />
+
+          {/* Key Highlights Section */}
+          <section className="py-12 md:py-16 bg-white">
+            <div className="site-container">
+              <div className="text-center mb-8">
+                <span className="section-badge section-badge--filled mb-3">
+                  Key Highlights
+                </span>
+                <h2 className="display-3 text-[var(--color-brand-primary)]">
+                  Project at a Glance
+                </h2>
+              </div>
+
+              {/* Stats Grid */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-8">
+                <div className="bg-[var(--color-neutral-50)] rounded-2xl p-6 text-center border border-[var(--color-neutral-200)]">
+                  <div className="text-3xl md:text-4xl font-display font-bold text-[var(--color-earth-copper)] mb-2">
+                    {projectInfo?.licenses || 0}
+                  </div>
+                  <div className="text-sm text-[var(--color-neutral-600)]">Mining Licenses</div>
+                </div>
+                <div className="bg-[var(--color-neutral-50)] rounded-2xl p-6 text-center border border-[var(--color-neutral-200)]">
+                  <div className="text-3xl md:text-4xl font-display font-bold text-[var(--color-earth-copper)] mb-2">
+                    {projectInfo?.area || "0 km²"}
+                  </div>
+                  <div className="text-sm text-[var(--color-neutral-600)]">Total Area</div>
+                </div>
+                <div className="bg-[var(--color-neutral-50)] rounded-2xl p-6 text-center border border-[var(--color-neutral-200)]">
+                  <div className="text-3xl md:text-4xl font-display font-bold text-[var(--color-earth-copper)] mb-2">
+                    {projectInfo?.established || "2021"}
+                  </div>
+                  <div className="text-sm text-[var(--color-neutral-600)]">Established</div>
+                </div>
+                <div className="bg-[var(--color-neutral-50)] rounded-2xl p-6 text-center border border-[var(--color-neutral-200)]">
+                  <div className="text-3xl md:text-4xl font-display font-bold text-[var(--color-earth-copper)] mb-2">
+                    {projectInfo?.minerals.length || 0}
+                  </div>
+                  <div className="text-sm text-[var(--color-neutral-600)]">Key Minerals</div>
+                </div>
+              </div>
+
+              {/* Minerals */}
+              <div className="text-center">
+                <h3 className="text-lg font-semibold text-[var(--color-brand-primary)] mb-4">
+                  Target Minerals
+                </h3>
+                <div className="flex flex-wrap justify-center gap-3">
+                  {projectInfo?.minerals.map((mineral, i) => (
+                    <span 
+                      key={i}
+                      className="px-5 py-2.5 text-sm font-medium rounded-full bg-[var(--color-brand-primary)] text-white"
+                    >
+                      {mineral}
+                    </span>
+                  ))}
+                </div>
+              </div>
             </div>
-            <h2 className="text-3xl font-serif font-bold text-center text-[var(--primary)]">
-              Project Findings & History
-            </h2>
-          </div>
-          
-          {/* Cards Grid */}
-          <div className="container mx-auto px-4 pb-16">
-            <div className="grid gap-6 lg:gap-8">
-              {contentCards.map((card, index) => (
-                <GeologicalCard
-                  key={index}
-                  title={card.title}
-                  content={card.content}
-                  imageUrl={card.imageUrl}
-                  imagePosition={card.imagePosition === "left" ? "left" : "right"}
-                  alt={card.alt}
-                  category={card.category}
-                  highlights={card.highlights}
-                  year={card.year}
-                  location={card.location}
-                  index={index}
-                />
-              ))}
+          </section>
+
+          <GoldDivider />
+
+          {/* Investor CTA */}
+          <section className="py-12 md:py-16 bg-[var(--color-brand-primary)]">
+            <div className="site-container text-center">
+              <h2 className="display-3 text-white mb-3">
+                Interested in This Project?
+              </h2>
+              <p className="lead text-white/80 max-w-2xl mx-auto mb-8">
+                Learn more about investment opportunities in {projectInfo?.name || "this project"} 
+                and how you can participate in Norway&apos;s mineral future.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button
+                  href="/contact"
+                  variant="primary"
+                  size="lg"
+                  icon={<ArrowRight size={18} />}
+                  className="bg-[var(--color-earth-gold-bright)] hover:bg-[var(--color-earth-gold-warm)] text-[var(--color-brand-primary)]"
+                >
+                  Schedule a Meeting
+                </Button>
+                <Button
+                  href="/projects"
+                  variant="outline"
+                  size="lg"
+                  icon={<ChevronRight size={18} />}
+                  className="border-white/30 text-white hover:bg-white/10 hover:text-white"
+                >
+                  View All Projects
+                </Button>
+              </div>
             </div>
-          </div>
+          </section>
         </div>
       )}
 

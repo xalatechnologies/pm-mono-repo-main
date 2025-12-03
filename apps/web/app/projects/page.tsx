@@ -73,7 +73,7 @@ export default function ProjectsPage() {
               Our Projects
             </span>
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif font-bold text-white mb-6">
-              Exploration in{" "}
+              <span className="text-white">Exploration in{" "}</span>
               <span className="text-[var(--secondary)]">Trøndelag</span>
             </h1>
             <p className="text-white/70 text-lg max-w-2xl mx-auto">

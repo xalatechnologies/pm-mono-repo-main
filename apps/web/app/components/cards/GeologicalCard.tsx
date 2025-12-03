@@ -29,32 +29,32 @@ type GeologicalCardProps = {
 const categoryConfig = {
   history: {
     icon: Pickaxe,
-    color: "var(--secondary)",
-    bgColor: "rgba(184, 115, 51, 0.1)",
+    color: "var(--color-earth-copper)",
+    bgColor: "rgba(184, 115, 51, 0.15)",
     label: "Mining History",
   },
   mineralization: {
     icon: Gem,
-    color: "var(--accent)",
-    bgColor: "rgba(74, 124, 111, 0.1)",
+    color: "var(--color-earth-patina)",
+    bgColor: "rgba(74, 124, 111, 0.15)",
     label: "Mineralization",
   },
   geology: {
     icon: Layers,
-    color: "var(--earth-brown)",
-    bgColor: "rgba(139, 105, 20, 0.1)",
+    color: "var(--color-earth-gold-bright)",
+    bgColor: "rgba(240, 200, 120, 0.15)",
     label: "Geology",
   },
   fieldwork: {
     icon: Microscope,
-    color: "var(--stone-grey)",
-    bgColor: "rgba(107, 114, 128, 0.1)",
+    color: "var(--color-earth-gold-warm)",
+    bgColor: "rgba(232, 184, 109, 0.15)",
     label: "Fieldwork",
   },
   discovery: {
     icon: Mountain,
-    color: "var(--secondary)",
-    bgColor: "rgba(184, 115, 51, 0.1)",
+    color: "var(--color-earth-copper)",
+    bgColor: "rgba(184, 115, 51, 0.15)",
     label: "Discovery",
   },
 };
@@ -87,9 +87,9 @@ export default function GeologicalCard({
     <article
       className={`
         relative overflow-hidden
-        bg-gradient-to-br from-[var(--obsidian)] to-[var(--primary)]
-        border border-white/10 rounded-2xl
-        shadow-lg hover:shadow-2xl
+        bg-gradient-to-br from-[var(--color-brand-primary)] to-[var(--color-earth-slate)]
+        border border-white/15 rounded-2xl
+        shadow-xl hover:shadow-2xl
         transition-all duration-500 ease-out
         group
       `}
@@ -99,7 +99,7 @@ export default function GeologicalCard({
     >
       {/* Top accent line */}
       <div 
-        className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[var(--secondary)] to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-500"
+        className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[var(--color-earth-copper)] to-transparent opacity-60 group-hover:opacity-100 transition-opacity duration-500"
       />
 
       <div className={`flex flex-col ${hasImage ? 'lg:flex-row' : ''} ${isImageRight ? '' : 'lg:flex-row-reverse'}`}>
@@ -117,8 +117,8 @@ export default function GeologicalCard({
               <div className={`
                 absolute inset-0
                 ${isImageRight 
-                  ? 'bg-gradient-to-l from-[var(--obsidian)] via-transparent to-transparent lg:bg-gradient-to-r' 
-                  : 'bg-gradient-to-r from-[var(--obsidian)] via-transparent to-transparent lg:bg-gradient-to-l'
+                  ? 'bg-gradient-to-l from-[var(--color-brand-primary)] via-transparent to-transparent lg:bg-gradient-to-r' 
+                  : 'bg-gradient-to-r from-[var(--color-brand-primary)] via-transparent to-transparent lg:bg-gradient-to-l'
                 }
               `} />
               
@@ -162,20 +162,20 @@ export default function GeologicalCard({
           )}
 
           {/* Title */}
-          <h3 className="text-xl lg:text-2xl font-serif font-bold text-white mb-4 group-hover:text-[var(--secondary)] transition-colors duration-300">
+          <h3 className="text-xl lg:text-2xl font-display font-bold text-white mb-4 group-hover:text-[var(--color-earth-gold-bright)] transition-colors duration-300">
             {title}
           </h3>
 
           {/* Location */}
           {location && (
-            <div className="flex items-center gap-2 mb-3 text-white/60">
-              <MapPin size={14} />
+            <div className="flex items-center gap-2 mb-3 text-white/70">
+              <MapPin size={14} className="text-[var(--color-earth-copper)]" />
               <span className="text-sm">{location}</span>
             </div>
           )}
 
           {/* Content */}
-          <p className="text-white/70 leading-relaxed mb-4">
+          <p className="text-white/85 leading-relaxed mb-4">
             {displayContent}
           </p>
 
@@ -183,7 +183,7 @@ export default function GeologicalCard({
           {needsExpansion && (
             <button
               onClick={() => setIsExpanded(!isExpanded)}
-              className="flex items-center gap-1 text-sm font-medium text-[var(--secondary)] hover:text-[var(--secondary)]/80 transition-colors mb-4"
+              className="flex items-center gap-1 text-sm font-medium text-[var(--color-earth-gold-bright)] hover:text-[var(--color-earth-gold-warm)] transition-colors mb-4"
             >
               <span>{isExpanded ? "Show less" : "Read more"}</span>
               <ChevronDown 
@@ -195,11 +195,11 @@ export default function GeologicalCard({
 
           {/* Highlights/Tags */}
           {highlights.length > 0 && (
-            <div className="flex flex-wrap gap-2 mt-auto pt-4 border-t border-white/10">
+            <div className="flex flex-wrap gap-2 mt-auto pt-4 border-t border-white/15">
               {highlights.map((highlight, i) => (
                 <span
                   key={i}
-                  className="px-3 py-1 text-xs font-medium rounded-full bg-white/5 text-white/70 border border-white/10 hover:border-[var(--secondary)]/50 hover:text-[var(--secondary)] transition-colors cursor-default"
+                  className="px-3 py-1.5 text-xs font-medium rounded-full bg-white/10 text-white/90 border border-white/15 hover:border-[var(--color-earth-copper)]/50 hover:text-[var(--color-earth-gold-bright)] transition-colors cursor-default"
                 >
                   {highlight}
                 </span>
@@ -210,12 +210,12 @@ export default function GeologicalCard({
       </div>
 
       {/* Corner decoration */}
-      <div className="absolute bottom-0 right-0 w-32 h-32 opacity-5 pointer-events-none">
+      <div className="absolute bottom-0 right-0 w-32 h-32 opacity-10 pointer-events-none">
         <svg viewBox="0 0 100 100" className="w-full h-full">
           <path
             d="M100 0 L100 100 L0 100 Z"
             fill="currentColor"
-            className="text-[var(--secondary)]"
+            className="text-[var(--color-earth-copper)]"
           />
         </svg>
       </div>
@@ -223,7 +223,7 @@ export default function GeologicalCard({
       {/* Hover glow effect */}
       <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
         style={{
-          boxShadow: `inset 0 0 60px rgba(184, 115, 51, 0.1)`,
+          boxShadow: `inset 0 0 80px rgba(184, 115, 51, 0.15)`,
         }}
       />
     </article>

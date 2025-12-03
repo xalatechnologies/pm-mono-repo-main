@@ -1,4 +1,5 @@
 import type { Feature, Polygon, FeatureCollection } from "geojson";
+import type { ScrollTimelineEntry } from "@/app/components/ui/ScrollTimeline";
 
 export interface MapConfig {
   center: [number, number];
@@ -54,6 +55,7 @@ export interface ProjectMapConfig {
   contentCards: ContentCard[];
   markers?: MineMarker[];
   projectInfo?: ProjectInfo;
+  timeline?: ScrollTimelineEntry[];
 }
 
 export type { Feature, Polygon, FeatureCollection };

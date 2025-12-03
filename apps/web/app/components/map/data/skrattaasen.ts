@@ -1,4 +1,5 @@
 import type { ProjectMapConfig } from "../types";
+import { Mountain, FlaskConical, Search, FileCheck, Rocket } from "lucide-react";
 
 export const skrattaasenConfig: ProjectMapConfig = {
   id: "skrattaasen",
@@ -167,6 +168,98 @@ export const skrattaasenConfig: ProjectMapConfig = {
       alt: "Bjønsås mine interior",
       category: "discovery",
       highlights: ["High-Grade Copper", "Magnetite Zones", "Active Oxidation"],
+    },
+  ],
+  timeline: [
+    {
+      icon: Mountain,
+      title: "1886",
+      subtitle: "First Mining Operations",
+      description: "Test mining began at Skrattås, marking the start of organized mineral extraction in the area. Multiple owners conducted exploration over the following decades.",
+      image: "/skrattas-mine-1.jpg",
+      items: [
+        "Test mining operations 1886-1914",
+        "Multiple ownership transitions",
+        "Early underground development",
+        "Initial ore body characterization"
+      ],
+    },
+    {
+      icon: Mountain,
+      title: "1925-1927",
+      subtitle: "Commercial Production",
+      description: "Constant production registered during this period, establishing Skrattås as a viable commercial mining operation.",
+      image: "/marken-mine.jpg",
+      items: [
+        "Consistent ore extraction",
+        "Underground workings expanded",
+        "Grade optimization achieved",
+        "Infrastructure development"
+      ],
+    },
+    {
+      icon: FlaskConical,
+      title: "1979-1981",
+      subtitle: "Peak Production Era",
+      description: "High-grade ore extraction reached exceptional levels with 5,000 tons at 34% Zn, 10.4% Pb, and 1.9% Cu. Underground operations terminated at 80m depth.",
+      image: "/bjonsas-mineral.jpg",
+      highlight: true,
+      items: [
+        "5,000 tons extracted",
+        "34% Zinc grade achieved",
+        "10.4% Lead content",
+        "80m depth reached"
+      ],
+    },
+    {
+      icon: FileCheck,
+      title: "2022",
+      subtitle: "License Acquisition",
+      description: "Pure Minerals secured 7 exploration licenses covering ~30 km² in the Skrattås-Byafossen area. Modern exploration program initiated.",
+      image: "/gaulstad-mokk-map.jpg",
+      highlight: true,
+      items: [
+        "7 licenses acquired",
+        "~30 km² exploration area",
+        "Modern survey program launched",
+        "Historic data compilation"
+      ],
+    },
+    {
+      icon: Search,
+      title: "2023-2024",
+      subtitle: "Advanced Exploration",
+      description: "Comprehensive geological mapping with Sunnfjord Geo Center AS and GeoVista AB. XRF analysis confirmed exceptional grades: 28.8% Zn, 9% Pb, 539 ppm Ag, 10 ppm Au.",
+      image: "/tem-study.jpg",
+      highlight: true,
+      items: [
+        "XRF measurements completed",
+        "28.8% Zinc confirmed",
+        "539 ppm Silver detected",
+        "10 ppm Gold identified"
+      ],
+      button: {
+        url: "/about",
+        text: "View Full Analysis"
+      }
+    },
+    {
+      icon: Rocket,
+      title: "2025",
+      subtitle: "Deep Drilling Campaign",
+      description: "Follow-up TEM survey and deep drilling strategy implementation planned. Mineralization continues below 80m depth with significant untapped potential.",
+      image: "/copper-minerals.jpg",
+      highlight: true,
+      items: [
+        "TEM survey Q2 2025",
+        "Deep drilling program",
+        "Below 80m exploration",
+        "Resource estimation"
+      ],
+      button: {
+        url: "/contact",
+        text: "Join the Program"
+      }
     },
   ],
 };
