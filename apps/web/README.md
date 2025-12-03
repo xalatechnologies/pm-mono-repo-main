@@ -1,36 +1,203 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Pure Minerals Website
+
+A modern, professional website for Pure Minerals AS - a Norwegian geological exploration company focused on sustainable mineral development in the Trøndelag region.
+
+## Tech Stack
+
+- **Framework:** Next.js 15.2.4 (App Router)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS 4.1
+- **Animations:** Framer Motion
+- **Maps:** Mapbox GL JS
+- **Icons:** Lucide React
+- **Form Handling:** Web3Forms
+
+## Features
+
+- 🗺️ **Interactive 3D Maps** - Mapbox-powered exploration maps with terrain, satellite views, and animated scanner effects
+- 📊 **Scroll Timeline** - Animated timeline component that expands/collapses based on scroll position
+- 🎨 **Design Token System** - Comprehensive CSS variables for colors, typography, spacing, and more
+- 📱 **Fully Responsive** - Mobile-first design with optimized layouts for all devices
+- ⚡ **Performance Optimized** - Static generation, image optimization, and efficient bundle splitting
+- 📧 **Contact Forms** - Web3Forms integration for email submissions
+
+## Project Structure
+
+```
+apps/web/
+├── app/
+│   ├── components/
+│   │   ├── home/          # Homepage sections
+│   │   ├── about/         # About page components
+│   │   ├── map/           # Map components & configs
+│   │   ├── cards/         # Reusable card components
+│   │   └── ui/            # UI primitives (Button, Timeline, etc.)
+│   ├── about/             # About page
+│   ├── contact/           # Contact page
+│   ├── projects/          # Projects pages
+│   │   ├── skrattaasen/   # Skrattåsen project
+│   │   └── mokk/          # Gaulstad/Mokk project
+│   ├── globals.css        # Global styles & design tokens
+│   ├── theme.ts           # TypeScript theme exports
+│   └── layout.tsx         # Root layout
+├── public/                # Static assets (images, logos, etc.)
+└── next.config.ts         # Next.js configuration
+```
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18+
+- npm or yarn
+
+### Installation
+
+```bash
+# From the monorepo root
+npm install
+
+# Or from the web app directory
+cd apps/web
+npm install
+```
+
+### Environment Variables
+
+Create a `.env.local` file:
+
+```env
+# Mapbox (required for maps)
+NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN=your_mapbox_token
+
+# Web3Forms (optional - already configured with public key)
+NEXT_PUBLIC_WEB3FORMS_KEY=a95eaf84-d632-4091-b34e-fc067083df6d
+```
+
+### Development
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+```
 
-## Learn More
+### Production Start
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run start
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deployment to Hostinger
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Option 1: Node.js Hosting
 
-## Deploy on Vercel
+1. Build the project:
+   ```bash
+   npm run build
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+2. Upload the following to Hostinger:
+   - `.next/standalone/` directory
+   - `.next/static/` → `.next/standalone/.next/static/`
+   - `public/` → `.next/standalone/public/`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+3. Set Node.js version to 18+ in Hostinger panel
+
+4. Set start command: `node server.js`
+
+### Option 2: Static Export (Alternative)
+
+For static hosting, modify `next.config.ts`:
+
+```ts
+const nextConfig: NextConfig = {
+  output: "export",
+  images: {
+    unoptimized: true,
+  },
+};
+```
+
+Then build and upload the `out/` directory.
+
+## Key Components
+
+### ScrollTimeline
+Scroll-based expanding timeline with card animations.
+
+```tsx
+import ScrollTimeline from "@/app/components/ui/ScrollTimeline";
+
+<ScrollTimeline
+  badge="Our Journey"
+  title="Company Timeline"
+  description="Key milestones"
+  entries={[
+    {
+      icon: Mountain,
+      title: "2021",
+      subtitle: "Founded",
+      description: "Company established...",
+      image: "/image.jpg",
+      items: ["Item 1", "Item 2"],
+      highlight: true,
+    },
+  ]}
+/>
+```
+
+### ProjectMapPage
+Interactive 3D map with license areas and markers.
+
+```tsx
+import { ProjectMapPage, skrattaasenConfig } from "@/app/components/map";
+
+<ProjectMapPage config={skrattaasenConfig} />
+```
+
+### Design Tokens
+Access design tokens in CSS or TypeScript:
+
+```css
+/* CSS */
+color: var(--color-earth-copper);
+font-size: var(--text-lg);
+```
+
+```ts
+// TypeScript
+import { tokens } from '@/app/theme';
+tokens.colors.brand.primary
+```
+
+## Pages
+
+| Route | Description |
+|-------|-------------|
+| `/` | Homepage with hero slider, stats, projects showcase |
+| `/about` | Investor pitch page with timeline, values, mineral data |
+| `/projects` | Projects overview with Skrattåsen & Mokk |
+| `/projects/skrattaasen` | Skrattåsen project with 3D map |
+| `/projects/mokk` | Gaulstad/Mokk project with 3D map |
+| `/contact` | Contact page with form and FAQ |
+
+## Contact Form
+
+Forms use Web3Forms API. Submissions are sent to `post@pureminerals.no`.
+
+Access Key: `a95eaf84-d632-4091-b34e-fc067083df6d`
+
+## License
+
+© 2025 Pure Minerals AS. All rights reserved.
+
+---
+
+**Developed by [Xala Technologies](https://xala.no)**
