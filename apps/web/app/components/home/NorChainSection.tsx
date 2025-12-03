@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import AnimatedSection from "../ui/AnimatedSection";
 import Button from "../ui/Button";
 import { Shield, Globe, Lock, ExternalLink } from "lucide-react";
@@ -99,8 +100,14 @@ export default function NorChainSection() {
             {/* NorChain Badge */}
             <div className="mt-8 p-4 bg-[var(--primary)]/5 rounded-xl border border-[var(--primary)]/10">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-[var(--primary)] flex items-center justify-center text-white font-bold font-serif">
-                  N
+                <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0 shadow-md">
+                  <Image
+                    src="/norchain-logo.png"
+                    alt="NorChain"
+                    width={40}
+                    height={40}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <div>
                   <div className="body-small weight-semibold text-on-light">

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Mail, MapPin, ExternalLink, Linkedin, Twitter } from "lucide-react";
 
 const footerLinks = {
@@ -132,30 +133,41 @@ export default function Footer() {
       </div>
 
       {/* NorChain Partnership Banner */}
-      <div className="border-t border-white/10">
-        <div className="site-container py-6">
+      <div className="relative overflow-hidden">
+        {/* Background matching NorChain section */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[var(--sandstone)] via-[var(--background)] to-[var(--sandstone)]" />
+        <div className="absolute top-0 right-0 w-64 h-64 bg-[var(--secondary)]/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-48 h-48 bg-[var(--accent)]/10 rounded-full blur-3xl" />
+        
+        <div className="site-container py-8 relative z-10">
           <a
             href="https://norchain.org"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center sm:justify-between flex-wrap gap-4 group"
           >
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-[var(--secondary)] flex items-center justify-center text-white font-bold text-lg font-serif">
-                N
+            <div className="flex items-center gap-4">
+              <div className="w-24 h-24 rounded-full overflow-hidden flex-shrink-0 shadow-lg">
+                <Image
+                  src="/norchain-logo.png"
+                  alt="NorChain"
+                  width={68}
+                  height={68}
+                  className="w-full h-full object-cover"
+                />
               </div>
               <div>
-                <div className="body-small weight-semibold text-on-dark group-hover:text-[var(--secondary)] transition-colors">
+                <div className="body-large weight-semibold text-[var(--primary)] group-hover:text-[var(--secondary)] transition-colors">
                   Assets Tokenized on NorChain
                 </div>
-                <div className="caption text-on-dark-subtle">
+                <div className="body-small text-[var(--stone-grey)]">
                   The Complete Blockchain Operating System
                 </div>
               </div>
             </div>
-            <div className="flex items-center gap-2 text-on-dark-subtle group-hover:text-[var(--secondary)] transition-colors body-small">
+            <div className="flex items-center gap-2 text-[var(--stone-grey)] group-hover:text-[var(--secondary)] transition-colors body-small font-medium">
               <span>Visit NorChain</span>
-              <ExternalLink size={14} />
+              <ExternalLink size={16} />
             </div>
           </a>
         </div>
