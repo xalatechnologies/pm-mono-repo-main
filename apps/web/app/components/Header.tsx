@@ -29,7 +29,7 @@ export default function Header() {
         }
       `}
     >
-      <div className="max-w-6xl mx-auto flex flex-nowrap justify-between items-center px-4 sm:px-6">
+      <div className="site-container flex flex-nowrap justify-between items-center">
         {/* Logo */}
         <Link
           href="/"
@@ -44,11 +44,11 @@ export default function Header() {
               className="invert transition-transform duration-300 group-hover:scale-110"
             />
           </div>
-          <div className="flex flex-col">
-            <span className="text-white font-serif text-xl sm:text-2xl font-bold tracking-tight">
+          <div className="flex flex-col gap-0.5">
+            <span className="brand-name text-white text-xl sm:text-2xl">
               PURE MINERALS
             </span>
-            <span className="text-[var(--secondary)] text-xs uppercase tracking-widest hidden sm:block">
+            <span className="tagline hidden sm:block">
               Geological Exploration
             </span>
           </div>

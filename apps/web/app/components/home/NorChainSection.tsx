@@ -32,18 +32,18 @@ export default function NorChainSection() {
       <div className="absolute top-0 right-0 w-96 h-96 bg-[var(--secondary)]/5 rounded-full blur-3xl" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-[var(--accent)]/5 rounded-full blur-3xl" />
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
+      <div className="site-container relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Content */}
           <AnimatedSection animation="slide-in-left">
-            <span className="inline-block px-4 py-2 mb-4 text-[var(--secondary)] text-sm uppercase tracking-[0.2em] bg-[var(--secondary)]/10 rounded-full">
+            <span className="section-badge section-badge--filled mb-4">
               Blockchain Integration
             </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-[var(--primary)] mb-6">
+            <h2 className="display-2 text-on-light mb-6 text-balance">
               Our Assets are Tokenized on{" "}
-              <span className="text-[var(--secondary)]">NorChain</span>
+              <span className="text-copper">NorChain</span>
             </h2>
-            <p className="text-[var(--stone-grey)] text-lg mb-8 leading-relaxed">
+            <p className="lead mb-8 text-pretty">
               Pure Minerals has partnered with NorChain to bring transparency and accessibility
               to mineral exploration. Our assets are tokenized, enabling secure, verifiable
               ownership and investment opportunities powered by blockchain technology.
@@ -85,10 +85,10 @@ export default function NorChainSection() {
                     {feature.icon}
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-[var(--primary)] mb-1">
+                    <h3 className="body-large weight-semibold text-on-light mb-1">
                       {feature.title}
                     </h3>
-                    <p className="text-[var(--stone-grey)] text-sm leading-relaxed">
+                    <p className="body-small text-on-light-muted">
                       {feature.description}
                     </p>
                   </div>
@@ -99,14 +99,14 @@ export default function NorChainSection() {
             {/* NorChain Badge */}
             <div className="mt-8 p-4 bg-[var(--primary)]/5 rounded-xl border border-[var(--primary)]/10">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-[var(--primary)] flex items-center justify-center text-white font-bold text-lg">
+                <div className="w-10 h-10 rounded-lg bg-[var(--primary)] flex items-center justify-center text-white font-bold font-serif">
                   N
                 </div>
                 <div>
-                  <div className="text-sm font-semibold text-[var(--primary)]">
+                  <div className="body-small weight-semibold text-on-light">
                     Powered by NorChain
                   </div>
-                  <div className="text-xs text-[var(--stone-grey)]">
+                  <div className="caption">
                     The Complete Blockchain Operating System
                   </div>
                 </div>

@@ -14,10 +14,60 @@ export const skrattaasenConfig: ProjectMapConfig = {
     range: 0.18,
     latRange: [64.035, 64.09],
   },
+  projectInfo: {
+    name: "Skrattåsen Project",
+    licenses: 5,
+    area: "38 km²",
+    minerals: ["Zinc", "Lead", "Silver", "Gold", "Copper"],
+    status: "Active",
+    established: "2023",
+  },
+  markers: [
+    {
+      name: "Skrattåsen Mine",
+      coordinates: [11.54, 64.055],
+      type: "mine",
+      description: "Historic zinc mine active from 1888-1927. Mine corridors reach 75m depth and 170m length.",
+      minerals: ["Zinc", "Lead", "Silver"],
+    },
+    {
+      name: "Bjørnås Mine",
+      coordinates: [11.58, 64.048],
+      type: "mine",
+      description: "Rich in ore minerals with magnetite-rich zones detected via compass interference.",
+      minerals: ["Copper", "Zinc", "Pyrite"],
+    },
+    {
+      name: "Azurite Occurrence",
+      coordinates: [11.52, 64.062],
+      type: "sample",
+      description: "Striking blue azurite coating visible on rock surfaces - classic sign of copper mineralization.",
+      minerals: ["Azurite", "Malachite", "Copper"],
+    },
+    {
+      name: "Galena Sample Site",
+      coordinates: [11.56, 64.042],
+      type: "sample",
+      description: "Lead sulfide observed in stream samples alongside sphalerite and mica.",
+      minerals: ["Galena", "Sphalerite", "Mica"],
+    },
+    {
+      name: "Fieldwork Base 2024",
+      coordinates: [11.50, 64.07],
+      type: "poi",
+      description: "Base camp for June-August 2024 geological survey covering 30+ km².",
+    },
+    {
+      name: "Isoclinal Fold Structure",
+      coordinates: [11.60, 64.065],
+      type: "poi",
+      description: "Well-preserved tectonic fold structures from the Møre-Trøndelag Fault Zone.",
+    },
+  ],
   geoJsonFeatures: [
     {
       type: "Feature",
-      properties: { navn: "Byafossen 1" },
+      properties: { navn: "Byafossen 1", potential: 0.7 },
       geometry: {
         type: "Polygon",
         coordinates: [
@@ -33,7 +83,7 @@ export const skrattaasenConfig: ProjectMapConfig = {
     },
     {
       type: "Feature",
-      properties: { navn: "Byafossen 2" },
+      properties: { navn: "Byafossen 2", potential: 0.85 },
       geometry: {
         type: "Polygon",
         coordinates: [
@@ -49,7 +99,7 @@ export const skrattaasenConfig: ProjectMapConfig = {
     },
     {
       type: "Feature",
-      properties: { navn: "Byafossen 3" },
+      properties: { navn: "Byafossen 3", potential: 0.6 },
       geometry: {
         type: "Polygon",
         coordinates: [
@@ -68,9 +118,14 @@ export const skrattaasenConfig: ProjectMapConfig = {
     {
       title: "Skrattåsen Mines - A Glimpse into the Past",
       content:
-        "Active from 1888 to 1927, Skrattåsen was one of several zinc mines in the area, with up to 30 people working underground. Remains such as sleepers, rails and tools are still present inside the mine corridors, which reach depths of 75 meters and lengths up to 170 meters.",
+        "Active from 1888 to 1927, Skrattåsen was one of several zinc mines in the area, with up to 30 people working underground. Remains such as sleepers, rails and tools are still present inside the mine corridors, which reach depths of 75 meters and lengths up to 170 meters. The historic mining infrastructure provides valuable geological insights for modern exploration.",
       imageUrl: "/mine1.png",
       alt: "Mine at Skrattåsen",
+      imagePosition: "right",
+      category: "history",
+      year: "1888-1927",
+      location: "Skrattåsen, Steinkjer",
+      highlights: ["Zinc Mining", "75m Depth", "170m Length", "Historic Tools"],
     },
     {
       title: "Rich Mineralization - From Azurite to Zinc",
@@ -79,14 +134,18 @@ export const skrattaasenConfig: ProjectMapConfig = {
       imageUrl: "/minerals1.png",
       imagePosition: "left",
       alt: "Rich Mineralization",
+      category: "mineralization",
+      highlights: ["Sphalerite", "Chalcopyrite", "Galena", "Azurite", "Malachite"],
     },
     {
       title: "Tectonic Forces and Folded Rocks",
       content:
-        "The rocks at Skrattåsen are intensely deformed. Foliation is often vertical and folded, aligning with structures of the Møre-Trøndelag Fault Zone. Observations include mylonite, isoclinal folds, and foliation-parallel quartz and limestone lenses. These features indicate multiple tectonic phases, from ductile shearing to brittle faulting.",
+        "The rocks at Skrattåsen are intensely deformed. Foliation is often vertical and folded, aligning with structures of the Møre-Trøndelag Fault Zone. Observations include mylonite, isoclinal folds, and foliation-parallel quartz and limestone lenses. These features indicate multiple tectonic phases, from ductile shearing to brittle faulting, creating favorable conditions for mineral concentration.",
       imageUrl: "/folds1.png",
       imagePosition: "right",
       alt: "Folded Rocks",
+      category: "geology",
+      highlights: ["Møre-Trøndelag Fault Zone", "Mylonite", "Isoclinal Folds", "Tectonic Phases"],
     },
     {
       title: "Fieldwork 2024 - Mapping the Invisible",
@@ -95,6 +154,9 @@ export const skrattaasenConfig: ProjectMapConfig = {
       imageUrl: "/fieldwork1.png",
       imagePosition: "left",
       alt: "Fieldwork",
+      category: "fieldwork",
+      year: "2024",
+      highlights: ["30+ km² Surveyed", "Structural Mapping", "Sample Collection", "Geological Logging"],
     },
     {
       title: "Galena, Malachite and Metallic Colors Underground",
@@ -103,7 +165,8 @@ export const skrattaasenConfig: ProjectMapConfig = {
       imageUrl: "/azurite1.png",
       imagePosition: "right",
       alt: "Azurite",
+      category: "discovery",
+      highlights: ["Galena", "Malachite", "Bornite", "Chalcopyrite", "High Value Potential"],
     },
   ],
 };
-

@@ -59,8 +59,8 @@ export default function Nav() {
                     onClick={() => toggleDropdown(item.label)}
                     className={`
                       flex items-center gap-1 px-4 py-2
-                      text-white/90 hover:text-white
-                      text-sm uppercase tracking-wider font-medium
+                      text-on-dark-muted hover:text-white
+                      nav-link
                       transition-colors duration-300
                       relative group
                     `}
@@ -99,9 +99,9 @@ export default function Nav() {
                         onClick={() => setActiveDropdown(null)}
                         className="
                           block px-4 py-3
-                          text-white/80 hover:text-white
+                          text-on-dark-muted hover:text-white
                           hover:bg-white/10
-                          text-sm transition-colors duration-200
+                          body-small weight-medium transition-colors duration-200
                           border-b border-white/5 last:border-0
                         "
                       >
@@ -115,8 +115,8 @@ export default function Nav() {
                   href={item.href}
                   className="
                     block px-4 py-2
-                    text-white/90 hover:text-white
-                    text-sm uppercase tracking-wider font-medium
+                    text-on-dark-muted hover:text-white
+                    nav-link
                     transition-colors duration-300
                     relative group
                   "
@@ -192,8 +192,8 @@ export default function Nav() {
                       onClick={() => toggleDropdown(item.label)}
                       className="
                         w-full flex items-center justify-between
-                        py-4 text-white text-lg uppercase tracking-wider
-                        transition-colors hover:text-[var(--secondary)]
+                        py-4 text-on-dark overline
+                        transition-colors hover:text-copper
                       "
                     >
                       <span>{item.label}</span>
@@ -217,8 +217,8 @@ export default function Nav() {
                           onClick={() => setIsOpen(false)}
                           className="
                             block py-2 pl-4
-                            text-white/70 hover:text-[var(--secondary)]
-                            text-base transition-colors
+                            text-on-dark-muted hover:text-copper
+                            body-large transition-colors
                           "
                         >
                           {child.label}
@@ -232,8 +232,8 @@ export default function Nav() {
                     onClick={() => setIsOpen(false)}
                     className="
                       block py-4
-                      text-white text-lg uppercase tracking-wider
-                      transition-colors hover:text-[var(--secondary)]
+                      text-on-dark overline
+                      transition-colors hover:text-copper
                     "
                   >
                     {item.label}
@@ -245,7 +245,7 @@ export default function Nav() {
 
           {/* Footer */}
           <div className="absolute bottom-8 left-6 right-6">
-            <div className="text-white/50 text-sm">
+            <div className="caption text-on-dark-subtle">
               © {new Date().getFullYear()} Pure Minerals AS
             </div>
           </div>

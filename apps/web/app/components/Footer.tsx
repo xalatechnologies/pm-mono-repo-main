@@ -28,21 +28,21 @@ export default function Footer() {
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[var(--secondary)] to-transparent" />
       
       {/* Main Footer */}
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 pt-20">
+      <div className="site-container py-16 pt-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
           {/* Brand Column */}
           <div className="lg:col-span-1">
             <Link href="/" className="inline-block mb-6">
-              <div className="flex flex-col">
-                <span className="text-2xl font-serif font-bold tracking-tight">
+              <div className="flex flex-col gap-1">
+                <span className="brand-name text-2xl text-white">
                   PURE MINERALS
                 </span>
-                <span className="text-[var(--secondary)] text-xs uppercase tracking-[0.2em]">
+                <span className="tagline">
                   Geological Exploration
                 </span>
               </div>
             </Link>
-            <p className="text-white/60 text-sm leading-relaxed mb-6">
+            <p className="text-on-dark-muted body-small mb-6">
               Norwegian exploration company focused on sustainable mineral
               development in the Trøndelag region.
             </p>
@@ -68,7 +68,7 @@ export default function Footer() {
 
           {/* Company Links */}
           <div>
-            <h3 className="text-sm uppercase tracking-widest text-white/50 mb-4">
+            <h3 className="label text-on-dark-subtle mb-5">
               Company
             </h3>
             <ul className="space-y-3">
@@ -76,7 +76,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-white/70 hover:text-[var(--secondary)] transition-colors duration-300 text-sm"
+                    className="footer-link text-on-dark-muted hover:text-[var(--secondary)] transition-colors duration-300"
                   >
                     {link.label}
                   </Link>
@@ -87,7 +87,7 @@ export default function Footer() {
 
           {/* Projects Links */}
           <div>
-            <h3 className="text-sm uppercase tracking-widest text-white/50 mb-4">
+            <h3 className="label text-on-dark-subtle mb-5">
               Projects
             </h3>
             <ul className="space-y-3">
@@ -95,7 +95,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-white/70 hover:text-[var(--secondary)] transition-colors duration-300 text-sm"
+                    className="footer-link text-on-dark-muted hover:text-[var(--secondary)] transition-colors duration-300"
                   >
                     {link.label}
                   </Link>
@@ -106,13 +106,13 @@ export default function Footer() {
 
           {/* Contact Info */}
           <div>
-            <h3 className="text-sm uppercase tracking-widest text-white/50 mb-4">
+            <h3 className="label text-on-dark-subtle mb-5">
               Contact
             </h3>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
-                <MapPin size={18} className="text-[var(--secondary)] flex-shrink-0 mt-0.5" />
-                <span className="text-white/70 text-sm">
+                <MapPin size={18} className="text-copper flex-shrink-0 mt-0.5" />
+                <span className="footer-link text-on-dark-muted">
                   Steinkjer, Trøndelag<br />
                   Norway
                 </span>
@@ -120,9 +120,9 @@ export default function Footer() {
               <li>
                 <a
                   href="mailto:contact@pureminerals.no"
-                  className="flex items-center gap-3 text-white/70 hover:text-[var(--secondary)] transition-colors duration-300 text-sm"
+                  className="flex items-center gap-3 footer-link text-on-dark-muted hover:text-[var(--secondary)] transition-colors duration-300"
                 >
-                  <Mail size={18} className="text-[var(--secondary)]" />
+                  <Mail size={18} className="text-copper" />
                   contact@pureminerals.no
                 </a>
               </li>
@@ -133,7 +133,7 @@ export default function Footer() {
 
       {/* NorChain Partnership Banner */}
       <div className="border-t border-white/10">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6">
+        <div className="site-container py-6">
           <a
             href="https://norchain.org"
             target="_blank"
@@ -141,19 +141,19 @@ export default function Footer() {
             className="flex items-center justify-center sm:justify-between flex-wrap gap-4 group"
           >
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-[var(--secondary)] flex items-center justify-center text-white font-bold text-lg">
+              <div className="w-10 h-10 rounded-lg bg-[var(--secondary)] flex items-center justify-center text-white font-bold text-lg font-serif">
                 N
               </div>
               <div>
-                <div className="text-sm font-semibold text-white group-hover:text-[var(--secondary)] transition-colors">
+                <div className="body-small weight-semibold text-on-dark group-hover:text-[var(--secondary)] transition-colors">
                   Assets Tokenized on NorChain
                 </div>
-                <div className="text-xs text-white/50">
+                <div className="caption text-on-dark-subtle">
                   The Complete Blockchain Operating System
                 </div>
               </div>
             </div>
-            <div className="flex items-center gap-2 text-white/50 group-hover:text-[var(--secondary)] transition-colors text-sm">
+            <div className="flex items-center gap-2 text-on-dark-subtle group-hover:text-[var(--secondary)] transition-colors body-small">
               <span>Visit NorChain</span>
               <ExternalLink size={14} />
             </div>
@@ -163,8 +163,8 @@ export default function Footer() {
 
       {/* Bottom Bar */}
       <div className="border-t border-white/10">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6">
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-white/50">
+        <div className="site-container py-6">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 body-small text-on-dark-subtle">
             <p>© {currentYear} Pure Minerals AS. All rights reserved.</p>
             <div className="flex gap-6">
               <Link href="/privacy" className="hover:text-white transition-colors">

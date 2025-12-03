@@ -67,7 +67,7 @@ export default function ProjectsPage() {
           />
         </div>
 
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
+        <div className="site-container relative z-10">
           <AnimatedSection animation="fade-in-up" className="text-center">
             <span className="inline-block px-4 py-2 mb-6 text-[var(--secondary)] text-sm uppercase tracking-[0.2em] border border-[var(--secondary)]/30 rounded-full">
               Our Projects
@@ -106,7 +106,7 @@ export default function ProjectsPage() {
 
       {/* Overview Section */}
       <section className="py-20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="site-container">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <AnimatedSection animation="slide-in-left">
               <span className="inline-block px-4 py-2 mb-4 text-[var(--secondary)] text-sm uppercase tracking-[0.2em] bg-[var(--secondary)]/10 rounded-full">
@@ -150,7 +150,7 @@ export default function ProjectsPage() {
 
       {/* Projects Detail Section */}
       <section className="py-20 bg-[var(--sandstone)]">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="site-container">
           <AnimatedSection animation="fade-in-up" className="text-center mb-16">
             <span className="inline-block px-4 py-2 mb-4 text-[var(--secondary)] text-sm uppercase tracking-[0.2em] bg-[var(--secondary)]/10 rounded-full">
               Exploration Areas
@@ -269,7 +269,7 @@ export default function ProjectsPage() {
 
       {/* CTA Section */}
       <section className="py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+        <div className="site-container-narrow text-center">
           <AnimatedSection animation="fade-in-up">
             <h2 className="text-3xl sm:text-4xl font-serif font-bold text-[var(--primary)] mb-6">
               Want to Learn More About Our Exploration?

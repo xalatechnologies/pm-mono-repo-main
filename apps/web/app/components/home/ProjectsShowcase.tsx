@@ -38,16 +38,16 @@ const projects = [
 export default function ProjectsShowcase() {
   return (
     <section className="py-20 bg-[var(--primary)]">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+      <div className="site-container">
         {/* Section Header */}
         <AnimatedSection animation="fade-in-up" className="text-center mb-16">
-          <span className="inline-block px-4 py-2 mb-4 text-[var(--secondary)] text-sm uppercase tracking-[0.2em] border border-[var(--secondary)]/30 rounded-full">
+          <span className="section-badge section-badge--bordered mb-4">
             Active Projects
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-white mb-4">
+          <h2 className="display-2 text-on-dark mb-5">
             Exploration Areas
           </h2>
-          <p className="text-white/70 max-w-2xl mx-auto text-lg">
+          <p className="lead text-on-dark-muted mx-auto text-balance">
             Strategic license holdings in the mineral-rich Steinkjer region of Trøndelag County.
           </p>
         </AnimatedSection>
@@ -76,7 +76,7 @@ export default function ProjectsShowcase() {
 
                     {/* Status Badge */}
                     <div className="absolute top-4 left-4">
-                      <span className="inline-flex items-center gap-2 px-3 py-1 bg-[var(--secondary)]/90 text-white text-xs uppercase tracking-wider rounded-full">
+                      <span className="inline-flex items-center gap-2 px-3 py-1.5 bg-[var(--secondary)]/90 text-white label rounded-full">
                         <span className="w-2 h-2 bg-white rounded-full animate-pulse" />
                         {project.status}
                       </span>
@@ -87,20 +87,20 @@ export default function ProjectsShowcase() {
                   <div className="p-6 flex-1 flex flex-col">
                     <div className="flex items-start justify-between mb-3">
                       <div>
-                        <h3 className="text-2xl font-serif font-bold text-white group-hover:text-[var(--secondary)] transition-colors">
+                        <h3 className="headline text-on-dark group-hover:text-copper transition-colors">
                           {project.title}
                         </h3>
-                        <p className="text-[var(--secondary)] text-sm uppercase tracking-wider">
+                        <p className="overline text-copper mt-1">
                           {project.subtitle}
                         </p>
                       </div>
-                      <div className="flex items-center gap-1 text-white/50">
+                      <div className="flex items-center gap-1 text-on-dark-subtle">
                         <MapPin size={16} />
-                        <span className="text-sm">{project.area}</span>
+                        <span className="body-small">{project.area}</span>
                       </div>
                     </div>
 
-                    <p className="text-white/70 mb-4 leading-relaxed">
+                    <p className="text-on-dark-muted mb-4 body-small">
                       {project.description}
                     </p>
 
@@ -109,7 +109,7 @@ export default function ProjectsShowcase() {
                       {project.minerals.map((mineral) => (
                         <span
                           key={mineral}
-                          className="px-3 py-1 text-xs uppercase tracking-wider bg-white/10 text-white/80 rounded-full"
+                          className="px-3 py-1 label bg-white/10 text-on-dark-muted rounded-full"
                         >
                           {mineral}
                         </span>
@@ -119,20 +119,20 @@ export default function ProjectsShowcase() {
                     {/* Stats */}
                     <div className="flex items-center gap-6 pt-4 border-t border-white/10 mt-auto">
                       <div>
-                        <span className="text-2xl font-bold text-[var(--secondary)]">
+                        <span className="stat-value text-2xl text-copper">
                           {project.licenses}
                         </span>
-                        <span className="text-white/50 text-sm ml-1">licenses</span>
+                        <span className="stat-label text-on-dark-subtle ml-1">licenses</span>
                       </div>
                       <div>
-                        <span className="text-2xl font-bold text-[var(--secondary)]">
+                        <span className="stat-value text-2xl text-copper">
                           {project.area}
                         </span>
-                        <span className="text-white/50 text-sm ml-1">coverage</span>
+                        <span className="stat-label text-on-dark-subtle ml-1">coverage</span>
                       </div>
                       <ArrowRight
                         size={20}
-                        className="ml-auto text-white/30 group-hover:text-[var(--secondary)] group-hover:translate-x-1 transition-all"
+                        className="ml-auto text-on-dark-subtle group-hover:text-copper group-hover:translate-x-1 transition-all"
                       />
                     </div>
                   </div>

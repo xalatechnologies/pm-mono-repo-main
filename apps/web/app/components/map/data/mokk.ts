@@ -15,10 +15,60 @@ export const mokkConfig: ProjectMapConfig = {
     range: 0.35,
     latRange: [63.905, 64.095],
   },
+  projectInfo: {
+    name: "Gaulstad/Mokk Project",
+    licenses: 11,
+    area: "100 km²",
+    minerals: ["Copper", "Zinc", "Silver", "Gold", "Nickel", "Cobalt"],
+    status: "Exploration",
+    established: "2021",
+  },
+  markers: [
+    {
+      name: "Gaulstad No. 1 Mine",
+      coordinates: [12.15, 63.97],
+      type: "mine",
+      description: "Historic copper mine operational from 1764-1891. First copper discovery in area at Gruvfjellet in 1760.",
+      minerals: ["Copper", "Nickel"],
+    },
+    {
+      name: "Gruvfjellet Discovery Site",
+      coordinates: [12.12, 63.96],
+      type: "poi",
+      description: "Original copper discovery location from 1760 that initiated mining operations in the region.",
+      minerals: ["Copper"],
+    },
+    {
+      name: "High-Grade Copper Zone",
+      coordinates: [12.22, 63.99],
+      type: "sample",
+      description: "Modern survey site with confirmed high-grade copper and zinc concentrations.",
+      minerals: ["Copper", "Zinc", "Silver"],
+    },
+    {
+      name: "Silver Anomaly",
+      coordinates: [12.18, 64.02],
+      type: "sample",
+      description: "Geochemical sampling indicates elevated silver values in this zone.",
+      minerals: ["Silver", "Gold"],
+    },
+    {
+      name: "XRF Survey Base",
+      coordinates: [12.08, 63.95],
+      type: "poi",
+      description: "Base location for systematic XRF surveys and geochemical sampling since 2021.",
+    },
+    {
+      name: "Proposed Drilling Site",
+      coordinates: [12.25, 63.975],
+      type: "poi",
+      description: "Target location for planned deep drilling program based on geophysical mapping.",
+    },
+  ],
   geoJsonFeatures: [
     {
       type: "Feature",
-      properties: { navn: "Mokk 10B" },
+      properties: { navn: "Mokk 10B", potential: 0.6 },
       geometry: {
         type: "Polygon",
         coordinates: [
@@ -34,7 +84,7 @@ export const mokkConfig: ProjectMapConfig = {
     },
     {
       type: "Feature",
-      properties: { navn: "Mokk 11B" },
+      properties: { navn: "Mokk 11B", potential: 0.7 },
       geometry: {
         type: "Polygon",
         coordinates: [
@@ -50,7 +100,7 @@ export const mokkConfig: ProjectMapConfig = {
     },
     {
       type: "Feature",
-      properties: { navn: "Mokk 18B" },
+      properties: { navn: "Mokk 18B", potential: 0.8 },
       geometry: {
         type: "Polygon",
         coordinates: [
@@ -66,7 +116,7 @@ export const mokkConfig: ProjectMapConfig = {
     },
     {
       type: "Feature",
-      properties: { navn: "Mokk 19" },
+      properties: { navn: "Mokk 19", potential: 0.75 },
       geometry: {
         type: "Polygon",
         coordinates: [
@@ -82,7 +132,7 @@ export const mokkConfig: ProjectMapConfig = {
     },
     {
       type: "Feature",
-      properties: { navn: "Mokk 9B" },
+      properties: { navn: "Mokk 9B", potential: 0.85 },
       geometry: {
         type: "Polygon",
         coordinates: [
@@ -98,7 +148,7 @@ export const mokkConfig: ProjectMapConfig = {
     },
     {
       type: "Feature",
-      properties: { navn: "Mokk" },
+      properties: { navn: "Mokk", potential: 0.9 },
       geometry: {
         type: "Polygon",
         coordinates: [
@@ -114,7 +164,7 @@ export const mokkConfig: ProjectMapConfig = {
     },
     {
       type: "Feature",
-      properties: { navn: "Mokk 22" },
+      properties: { navn: "Mokk 22", potential: 0.7 },
       geometry: {
         type: "Polygon",
         coordinates: [
@@ -130,7 +180,7 @@ export const mokkConfig: ProjectMapConfig = {
     },
     {
       type: "Feature",
-      properties: { navn: "Mokk 23B" },
+      properties: { navn: "Mokk 23B", potential: 0.55 },
       geometry: {
         type: "Polygon",
         coordinates: [
@@ -146,7 +196,7 @@ export const mokkConfig: ProjectMapConfig = {
     },
     {
       type: "Feature",
-      properties: { navn: "Mokk 25B" },
+      properties: { navn: "Mokk 25B", potential: 0.65 },
       geometry: {
         type: "Polygon",
         coordinates: [
@@ -162,7 +212,7 @@ export const mokkConfig: ProjectMapConfig = {
     },
     {
       type: "Feature",
-      properties: { navn: "Mokk 26" },
+      properties: { navn: "Mokk 26", potential: 0.6 },
       geometry: {
         type: "Polygon",
         coordinates: [
@@ -178,7 +228,7 @@ export const mokkConfig: ProjectMapConfig = {
     },
     {
       type: "Feature",
-      properties: { navn: "Mokk 28B" },
+      properties: { navn: "Mokk 28B", potential: 0.5 },
       geometry: {
         type: "Polygon",
         coordinates: [
@@ -197,42 +247,55 @@ export const mokkConfig: ProjectMapConfig = {
     {
       title: "Mining History in the Gaulstad-Mokk Area",
       content:
-        "Copper was first discovered at Gruvfjellet in 1760, and by 1764, the Gaulstad No. 1 mine was in full operation. Mining continued in phases until 1891, shifting focus from copper (Cu) to nickel (Ni). These early activities laid the foundation for today's exploration work.",
+        "Copper was first discovered at Gruvfjellet in 1760, and by 1764, the Gaulstad No. 1 mine was in full operation. Mining continued in phases until 1891, shifting focus from copper (Cu) to nickel (Ni). These early activities laid the foundation for today's exploration work, providing valuable historical data and geological insights.",
       imageUrl: "/mokk1.png",
-      alt: "Mine at Skrattåsen",
+      alt: "Mine at Gaulstad",
+      imagePosition: "right",
+      category: "history",
+      year: "1760-1891",
+      location: "Gaulstad-Mokk, Trøndelag",
+      highlights: ["First Discovery 1760", "Copper & Nickel", "127 Years of Mining"],
     },
     {
       title: "Rich Base and Precious Metals",
       content:
-        "Modern surveys confirm the presence of high-grade copper, zinc and silver across the Mokk and Gaulstad license areas. Smaller but economically interesting concentrations of gold, cobalt and nickel have also been identified.",
+        "Modern surveys confirm the presence of high-grade copper, zinc and silver across the Mokk and Gaulstad license areas. Smaller but economically interesting concentrations of gold, cobalt and nickel have also been identified. The polymetallic nature of the deposits increases the overall economic potential of the project.",
       imageUrl: "/minerals2.png",
       imagePosition: "left",
       alt: "Rich Mineralization",
+      category: "mineralization",
+      highlights: ["High-Grade Copper", "Zinc", "Silver", "Gold", "Cobalt", "Nickel"],
     },
     {
       title: "Untapped Potential in Historic Terrain",
       content:
-        "The Gaulstad-Mokk area covers 11 exploration licenses across 100 square kilometers. With geological conditions comparable to the world-renowned Røros mining district, the region offers significant potential for new mineral discoveries.",
+        "The Gaulstad-Mokk area covers 11 exploration licenses across 100 square kilometers. With geological conditions comparable to the world-renowned Røros mining district, the region offers significant potential for new mineral discoveries. Modern exploration techniques are revealing previously unknown mineralization zones.",
       imageUrl: "/mokk2.png",
       imagePosition: "right",
-      alt: "Folded Rocks",
+      alt: "Exploration Area",
+      category: "discovery",
+      highlights: ["11 Licenses", "100 km²", "Røros District Analogue", "High Potential"],
     },
     {
       title: "Complex Geology of the Caledonides",
       content:
-        "Located within the Støren Nappe of the Scandinavian Caledonides, the area features greenschist to low-amphibolite facies rocks, with metavolcanic and metasedimentary formations. Intrusions prior to tectonic deformation add to the geological complexity and mineralization potential.",
+        "Located within the Støren Nappe of the Scandinavian Caledonides, the area features greenschist to low-amphibolite facies rocks, with metavolcanic and metasedimentary formations. Intrusions prior to tectonic deformation add to the geological complexity and mineralization potential. The structural framework creates favorable conditions for metal concentration.",
       imageUrl: "",
       imagePosition: "left",
-      alt: "Fieldwork",
+      alt: "Geology",
+      category: "geology",
+      highlights: ["Støren Nappe", "Caledonides", "Metavolcanic", "Favorable Structure"],
     },
     {
       title: "Systematic Modern Exploration",
       content:
-        "Since 2021, detailed work has been carried out: XRF surveys, geochemical sampling, geological and geophysical mapping. Partnerships with leading Nordic geoscience firms have positioned Gaulstad-Mokk for a planned deep drilling program.",
+        "Since 2021, detailed work has been carried out: XRF surveys, geochemical sampling, geological and geophysical mapping. Partnerships with leading Nordic geoscience firms have positioned Gaulstad-Mokk for a planned deep drilling program. The systematic approach ensures comprehensive understanding of the mineralization systems.",
       imageUrl: "/mokk.png",
       imagePosition: "right",
-      alt: "Azurite",
+      alt: "Modern Exploration",
+      category: "fieldwork",
+      year: "2021-Present",
+      highlights: ["XRF Surveys", "Geochemical Sampling", "Geophysical Mapping", "Deep Drilling Planned"],
     },
   ],
 };
-

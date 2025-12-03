@@ -67,7 +67,7 @@ export default function HeroSection() {
       </div>
 
       {/* Content */}
-      <div className="relative z-20 h-full flex flex-col justify-center items-center px-4 sm:px-6 text-center">
+      <div className="relative z-20 h-full flex flex-col justify-center items-center text-center site-container">
         {/* Tagline */}
         <div
           className={`
@@ -76,7 +76,7 @@ export default function HeroSection() {
           `}
           style={{ transitionDelay: "200ms" }}
         >
-          <span className="inline-block px-4 py-2 mb-6 text-[var(--secondary)] text-sm uppercase tracking-[0.3em] border border-[var(--secondary)]/30 rounded-full backdrop-blur-sm">
+          <span className="section-badge section-badge--bordered backdrop-blur-sm mb-6">
             Norwegian Mineral Exploration
           </span>
         </div>
@@ -84,23 +84,22 @@ export default function HeroSection() {
         {/* Main Headline */}
         <h1
           className={`
-            text-4xl sm:text-5xl md:text-6xl lg:text-7xl
-            font-serif font-bold text-white
-            leading-tight mb-6 max-w-4xl
+            display-1 text-on-dark
+            mb-6 max-w-4xl text-balance
             transition-all duration-1000 ease-out
             ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}
           `}
           style={{ transitionDelay: "400ms" }}
         >
           What Tomorrow Needs,{" "}
-          <span className="text-[var(--secondary)]">We Find Today</span>
+          <span className="text-copper">We Find Today</span>
         </h1>
 
         {/* Subtitle */}
         <p
           className={`
-            text-lg sm:text-xl text-white/80
-            max-w-2xl mb-10 leading-relaxed
+            body-large text-on-dark-muted
+            max-w-2xl mb-10 text-pretty
             transition-all duration-1000 ease-out
             ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}
           `}
@@ -143,7 +142,7 @@ export default function HeroSection() {
         onClick={scrollToContent}
         className={`
           absolute bottom-8 left-1/2 -translate-x-1/2 z-20
-          text-white/60 hover:text-white
+          text-on-dark-subtle hover:text-white
           transition-all duration-500
           ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}
         `}
@@ -151,7 +150,7 @@ export default function HeroSection() {
         aria-label="Scroll to content"
       >
         <div className="flex flex-col items-center gap-2">
-          <span className="text-xs uppercase tracking-widest">Discover</span>
+          <span className="label">Discover</span>
           <ArrowDown size={20} className="animate-bounce" />
         </div>
       </button>

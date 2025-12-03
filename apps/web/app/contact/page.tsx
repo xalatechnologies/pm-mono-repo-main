@@ -82,7 +82,7 @@ export default function ContactPage() {
           />
         </div>
 
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
+        <div className="site-container relative z-10">
           <AnimatedSection animation="fade-in-up" className="text-center">
             <span className="inline-block px-4 py-2 mb-6 text-[var(--secondary)] text-sm uppercase tracking-[0.2em] border border-[var(--secondary)]/30 rounded-full">
               Get in Touch
@@ -100,7 +100,7 @@ export default function ContactPage() {
 
       {/* Contact Section */}
       <section className="py-20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="site-container">
           <div className="grid lg:grid-cols-5 gap-12">
             {/* Contact Info */}
             <div className="lg:col-span-2">
@@ -333,7 +333,7 @@ export default function ContactPage() {
 
       {/* CTA Section */}
       <section className="py-20 bg-[var(--sandstone)]">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+        <div className="site-container-narrow text-center">
           <AnimatedSection animation="fade-in-up">
             <h2 className="text-2xl sm:text-3xl font-serif font-bold text-[var(--primary)] mb-6">
               Explore Our Projects First?
