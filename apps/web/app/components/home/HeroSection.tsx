@@ -75,7 +75,7 @@ const heroSlides = [
   },
 ];
 
-const SLIDE_DURATION = 7000; // 7 seconds per slide
+const SLIDE_DURATION = 15000; // 15 seconds per slide for comfortable reading
 
 export default function HeroSection() {
   const [offsetY, setOffsetY] = useState(0);
@@ -83,20 +83,23 @@ export default function HeroSection() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [contentVisible, setContentVisible] = useState(true);
+  const [slideProgress, setSlideProgress] = useState(0);
 
   // Auto-advance slides with content animation
   const nextSlide = useCallback(() => {
     setContentVisible(false);
     setIsTransitioning(true);
+    setSlideProgress(0); // Reset progress
     
+    // Longer delay for smoother content transition
     setTimeout(() => {
       setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
       setIsTransitioning(false);
-    }, 500);
+    }, 800);
     
     setTimeout(() => {
       setContentVisible(true);
-    }, 600);
+    }, 1000);
   }, []);
 
   useEffect(() => {
@@ -112,10 +115,19 @@ export default function HeroSection() {
     
     // Auto-advance timer
     const slideTimer = setInterval(nextSlide, SLIDE_DURATION);
+    
+    // Progress bar animation
+    const progressInterval = setInterval(() => {
+      setSlideProgress((prev) => {
+        if (prev >= 100) return 100;
+        return prev + (100 / (SLIDE_DURATION / 100));
+      });
+    }, 100);
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
       clearInterval(slideTimer);
+      clearInterval(progressInterval);
     };
   }, [nextSlide]);
 
@@ -134,11 +146,11 @@ export default function HeroSection() {
       setTimeout(() => {
         setCurrentSlide(index);
         setIsTransitioning(false);
-      }, 500);
+      }, 800);
       
       setTimeout(() => {
         setContentVisible(true);
-      }, 600);
+      }, 1000);
     }
   };
 
@@ -152,7 +164,7 @@ export default function HeroSection() {
           key={image.src}
           className={`
             absolute inset-0 z-0 will-change-transform
-            transition-opacity duration-1000 ease-in-out
+            transition-opacity duration-[1500ms] ease-in-out
             ${index === currentSlide ? "opacity-100" : "opacity-0"}
           `}
           style={{ transform: `translateY(${offsetY * 0.4}px) scale(1.1)` }}
@@ -349,13 +361,13 @@ export default function HeroSection() {
         </div>
       </button>
 
-      {/* Progress Bar */}
-      <div className="absolute bottom-0 left-0 right-0 h-1 bg-white/10 z-20">
+      {/* Progress Bar - Per Slide */}
+      <div className="absolute bottom-0 left-0 right-0 h-1.5 bg-white/10 z-20">
         <div
-          className="h-full bg-gradient-to-r from-[var(--color-earth-copper)] to-[var(--color-earth-gold-bright)]"
+          className="h-full bg-gradient-to-r from-[var(--color-earth-copper)] to-[var(--color-earth-gold-bright)] shadow-[0_0_10px_var(--color-earth-gold-bright)]"
           style={{
-            width: `${((currentSlide + 1) / heroSlides.length) * 100}%`,
-            transition: isTransitioning ? "none" : `width ${SLIDE_DURATION}ms linear`,
+            width: `${slideProgress}%`,
+            transition: isTransitioning ? "width 300ms ease-out" : "width 100ms linear",
           }}
         />
       </div>

@@ -81,32 +81,47 @@ const aboutSlides = [
   },
 ];
 
-const SLIDE_DURATION = 7000;
+const SLIDE_DURATION = 15000; // 15 seconds per slide for comfortable reading
 
 export default function AboutHero() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [contentVisible, setContentVisible] = useState(true);
+  const [slideProgress, setSlideProgress] = useState(0);
 
   const nextSlide = useCallback(() => {
     setContentVisible(false);
     setIsTransitioning(true);
+    setSlideProgress(0); // Reset progress
     
+    // Longer delay for smoother content transition
     setTimeout(() => {
       setCurrentSlide((prev) => (prev + 1) % aboutSlides.length);
       setIsTransitioning(false);
-    }, 500);
+    }, 800);
     
     setTimeout(() => {
       setContentVisible(true);
-    }, 600);
+    }, 1000);
   }, []);
 
   useEffect(() => {
     setIsLoaded(true);
     const slideTimer = setInterval(nextSlide, SLIDE_DURATION);
-    return () => clearInterval(slideTimer);
+    
+    // Progress bar animation
+    const progressInterval = setInterval(() => {
+      setSlideProgress((prev) => {
+        if (prev >= 100) return 100;
+        return prev + (100 / (SLIDE_DURATION / 100));
+      });
+    }, 100);
+    
+    return () => {
+      clearInterval(slideTimer);
+      clearInterval(progressInterval);
+    };
   }, [nextSlide]);
 
   const goToSlide = (index: number) => {
@@ -117,11 +132,11 @@ export default function AboutHero() {
       setTimeout(() => {
         setCurrentSlide(index);
         setIsTransitioning(false);
-      }, 500);
+      }, 800);
       
       setTimeout(() => {
         setContentVisible(true);
-      }, 600);
+      }, 1000);
     }
   };
 
@@ -135,7 +150,7 @@ export default function AboutHero() {
           key={image.src}
           className={`
             absolute inset-0 z-0
-            transition-opacity duration-1000 ease-in-out
+            transition-opacity duration-[1500ms] ease-in-out
             ${index === currentSlide ? "opacity-100" : "opacity-0"}
           `}
         >
@@ -298,13 +313,13 @@ export default function AboutHero() {
         ))}
       </div>
 
-      {/* Progress Bar */}
-      <div className="absolute bottom-0 left-0 right-0 h-1 bg-white/10 z-20">
+      {/* Progress Bar - Per Slide */}
+      <div className="absolute bottom-0 left-0 right-0 h-1.5 bg-white/10 z-20">
         <div
-          className="h-full bg-gradient-to-r from-[var(--color-earth-copper)] to-[var(--color-earth-gold-bright)]"
+          className="h-full bg-gradient-to-r from-[var(--color-earth-copper)] to-[var(--color-earth-gold-bright)] shadow-[0_0_10px_var(--color-earth-gold-bright)]"
           style={{
-            width: `${((currentSlide + 1) / aboutSlides.length) * 100}%`,
-            transition: isTransitioning ? "none" : `width ${SLIDE_DURATION}ms linear`,
+            width: `${slideProgress}%`,
+            transition: isTransitioning ? "width 300ms ease-out" : "width 100ms linear",
           }}
         />
       </div>
