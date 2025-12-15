@@ -451,7 +451,7 @@ export default function ContactPage() {
             {[
               {
                 q: "What types of minerals do you explore?",
-                a: "We focus on copper, zinc, gold, silver, and other base metals in the Trøndelag region of Norway."
+                a: "We focus on copper, zinc, lead, silver, gold, iron, nickel and cobalt. Additionally, our target is traces of REE (Rare Earth Elements)."
               },
               {
                 q: "How can I invest in Pure Minerals?",

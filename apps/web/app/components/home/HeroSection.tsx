@@ -4,6 +4,7 @@ import { useEffect, useState, useCallback } from "react";
 import Image from "next/image";
 import Button from "../ui/Button";
 import { ArrowDown, ChevronRight, TrendingUp } from "lucide-react";
+import { PORTFOLIO } from "@/lib/portfolio";
 
 // Hero slides with dynamic content
 const heroSlides = [
@@ -25,7 +26,7 @@ const heroSlides = [
     badge: "Historic Mining District",
     headline: "265 Years of",
     headlineAccent: "Proven Potential",
-    subtitle: "Mining heritage since 1760. Over 50 documented mines with confirmed 7.95% copper across 110 km² of strategic license holdings.",
+    subtitle: `Mining heritage since 1760. Over 50 documented mines with confirmed 7.95% copper across ${PORTFOLIO.districts.gaulstadMokk.coverageKm2} km² of strategic license holdings.`,
     stat: "1760",
     statLabel: "First Discovery",
   },
@@ -58,9 +59,21 @@ const heroSlides = [
     badge: "Critical Minerals",
     headline: "Powering the",
     headlineAccent: "Green Transition",
-    subtitle: "Copper, zinc, gold, silver — essential metals for renewable energy, EVs, and infrastructure. 70+ elements analyzed.",
+    subtitle: "Copper, zinc, gold, silver, and REE — essential metals for renewable energy, EVs, and high-tech manufacturing. 70+ elements analyzed including Rare Earth Elements.",
     stat: "70+",
     statLabel: "Elements Analyzed",
+  },
+  {
+    src: "/minerals2.png",
+    alt: "Rare Earth Element rich mineral samples",
+    location: "REE Target Zone",
+    badge: "Rare Earth Elements",
+    headline: "Strategic",
+    headlineAccent: "REE Potential",
+    subtitle: "Targeting Rare Earth Elements (REE) — critical for EVs, wind turbines, defense tech, and electronics. Europe's push for mineral independence starts here.",
+    stat: "REE",
+    statLabel: "Strategic Target",
+    accentColor: "patina", // Use patina green instead of default gold
   },
   {
     src: "/byafossen-geology.jpg",
@@ -70,7 +83,7 @@ const heroSlides = [
     headline: "Science-Driven",
     headlineAccent: "Discovery",
     subtitle: "Advanced TEM surveys, XRF analysis, and comprehensive geological mapping. Partnered with leading Nordic geoscience firms.",
-    stat: "18",
+    stat: String(PORTFOLIO.totals.licenses),
     statLabel: "Mining Licenses",
   },
 ];

@@ -4,6 +4,7 @@ import { useEffect, useState, useCallback } from "react";
 import Image from "next/image";
 import Button from "../ui/Button";
 import { ArrowRight, TrendingUp, Users, Award } from "lucide-react";
+import { PORTFOLIO } from "@/lib/portfolio";
 
 // About page hero slides with investor-focused content
 const aboutSlides = [
@@ -25,9 +26,9 @@ const aboutSlides = [
     location: "License Portfolio",
     badge: "Strategic Holdings",
     headline: "18 Mining Licenses",
-    headlineAccent: "110+ km² of Opportunity",
+    headlineAccent: `${PORTFOLIO.totals.coverageKm2} km² of Opportunity`,
     subtitle: "Comprehensive coverage across two premier districts: Gaulstad-Mokk and Skrattås-Byafossen. Full ownership and control of all exploration rights.",
-    stat: "18",
+    stat: String(PORTFOLIO.totals.licenses),
     statLabel: "Active Licenses",
     icon: <TrendingUp size={16} />,
   },
@@ -59,12 +60,12 @@ const aboutSlides = [
     src: "/copper-minerals-2.jpg",
     alt: "Copper ore samples",
     location: "Critical Minerals",
-    badge: "Green Transition",
+    badge: "Green Transition + REE",
     headline: "Powering",
     headlineAccent: "Tomorrow's Economy",
-    subtitle: "Copper, zinc, silver, gold — essential metals for renewable energy, electric vehicles, and sustainable infrastructure development.",
-    stat: "4",
-    statLabel: "Key Minerals",
+    subtitle: "Copper, zinc, silver, gold + REE — essential metals for renewable energy, EVs, and high-tech manufacturing. Europe needs mineral independence.",
+    stat: "8+",
+    statLabel: "Mineral Types incl. REE",
     icon: <Award size={16} />,
   },
   {

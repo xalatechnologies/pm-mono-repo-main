@@ -1,41 +1,109 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import AnimatedSection from "../ui/AnimatedSection";
 import Button from "../ui/Button";
 import { ArrowRight, MapPin } from "lucide-react";
+import { PORTFOLIO } from "@/lib/portfolio";
+
+// Image galleries for each project - rotate through these
+const projectImages = {
+  skrattaasen: [
+    "/skrattas-mine-1.jpg",
+    "/bjonsas-mine-interior.jpg",
+    "/skrattas-overview.jpg",
+    "/byafossen-geology.jpg",
+  ],
+  mokk: [
+    "/mokk-mine-entrance.jpg",
+    "/mokk-gruvfjellet.jpg",
+    "/mokk-geology.jpg",
+    "/mokk-mineral.jpg",
+  ],
+};
+
+const IMAGE_ROTATION_INTERVAL = 4000; // 4 seconds per image
 
 const projects = [
   {
-    id: "skrattaasen",
+    id: "skrattaasen" as const,
     title: "Skrattås-Byafossen",
     subtitle: "Primary Focus Area",
     description:
       "Exceptional grades: 28.8% Zn, 539 ppm Ag, 10 ppm Au. Historic production of 34% Zn ore. Mineralization continues below 80m depth.",
-    image: "/skrattas-mine-1.jpg",
     href: "/projects/skrattaasen",
-    licenses: 7,
-    area: "~30 km²",
-    minerals: ["Zinc", "Lead", "Silver", "Gold"],
+    licenses: PORTFOLIO.districts.skrattasByafossen.licenses,
+    area: `${PORTFOLIO.districts.skrattasByafossen.coverageKm2} km²`,
+    minerals: PORTFOLIO.districts.skrattasByafossen.minerals,
     status: "Active Exploration",
     highlight: "28.8% Zinc",
   },
   {
-    id: "mokk",
+    id: "mokk" as const,
     title: "Gaulstad/Mokk",
     subtitle: "Historic Mining District",
     description:
       "Mining history from 1760. Over 50 documented mines with confirmed 7.95% Cu. Covers the Gruvfjellet mountain plateau with proven mineralization.",
-    image: "/mokk-mine-entrance.jpg",
     href: "/projects/mokk",
-    licenses: 11,
-    area: "~110 km²",
-    minerals: ["Copper", "Zinc", "Silver", "Gold"],
+    licenses: PORTFOLIO.districts.gaulstadMokk.licenses,
+    area: `${PORTFOLIO.districts.gaulstadMokk.coverageKm2} km²`,
+    minerals: PORTFOLIO.districts.gaulstadMokk.minerals,
     status: "Resource Definition",
     highlight: "7.95% Copper",
   },
 ];
+
+// Rotating image component
+function RotatingImage({ 
+  projectId, 
+  projectTitle 
+}: { 
+  projectId: keyof typeof projectImages; 
+  projectTitle: string;
+}) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const images = projectImages[projectId];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+    }, IMAGE_ROTATION_INTERVAL);
+
+    return () => clearInterval(timer);
+  }, [images.length]);
+
+  return (
+    <>
+      {images.map((src, index) => (
+        <Image
+          key={src}
+          src={src}
+          alt={`${projectTitle} - Image ${index + 1}`}
+          fill
+          className={`object-cover transition-all duration-1000 group-hover:scale-110 ${
+            index === currentIndex ? "opacity-100" : "opacity-0"
+          }`}
+          priority={index === 0}
+        />
+      ))}
+      {/* Image indicators */}
+      <div className="absolute bottom-3 right-3 flex gap-1 z-10">
+        {images.map((_, index) => (
+          <div
+            key={index}
+            className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
+              index === currentIndex
+                ? "bg-white w-4"
+                : "bg-white/40"
+            }`}
+          />
+        ))}
+      </div>
+    </>
+  );
+}
 
 export default function ProjectsShowcase() {
   return (
@@ -65,19 +133,17 @@ export default function ProjectsShowcase() {
             >
               <Link href={project.href} className="group block h-full">
                 <article className="relative h-full flex flex-col bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/10 hover:border-[var(--secondary)]/50 transition-all duration-500">
-                  {/* Image Container */}
+                  {/* Image Container - Rotating Gallery */}
                   <div className="relative h-64 overflow-hidden">
-                    <Image
-                      src={project.image}
-                      alt={project.title}
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    <RotatingImage 
+                      projectId={project.id} 
+                      projectTitle={project.title} 
                     />
                     {/* Gradient Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[var(--obsidian)] via-transparent to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[var(--obsidian)] via-transparent to-transparent pointer-events-none" />
 
                     {/* Status Badge */}
-                    <div className="absolute top-4 left-4">
+                    <div className="absolute top-4 left-4 z-10">
                       <span className="inline-flex items-center gap-2 px-3 py-1.5 bg-[var(--secondary)]/90 text-white label rounded-full">
                         <span className="w-2 h-2 bg-white rounded-full animate-pulse" />
                         {project.status}
@@ -111,7 +177,11 @@ export default function ProjectsShowcase() {
                       {project.minerals.map((mineral) => (
                         <span
                           key={mineral}
-                          className="px-3 py-1 label bg-white/10 text-on-dark-muted rounded-full"
+                          className={`px-3 py-1 label rounded-full ${
+                            mineral === "REE"
+                              ? "bg-gradient-to-r from-[var(--color-earth-patina)] to-[var(--color-earth-copper)] text-white font-semibold"
+                              : "bg-white/10 text-on-dark-muted"
+                          }`}
                         >
                           {mineral}
                         </span>

@@ -4,12 +4,14 @@ import React from "react";
 import { motion } from "framer-motion";
 import { LampContainer } from "../ui/Lamp";
 import Button from "../ui/Button";
-import { ArrowRight, Gem, TrendingUp, Shield } from "lucide-react";
+import { ArrowRight, Gem, TrendingUp, Shield, Sparkles } from "lucide-react";
+import { PORTFOLIO } from "@/lib/portfolio";
 
 const highlights = [
-  { icon: <Gem size={20} />, text: "18 Mining Licenses" },
-  { icon: <TrendingUp size={20} />, text: "110+ km² Exploration" },
-  { icon: <Shield size={20} />, text: "NorChain Tokenized" },
+  { icon: <Gem size={20} />, text: `${PORTFOLIO.totals.licenses} Mining Licenses`, special: false },
+  { icon: <TrendingUp size={20} />, text: `${PORTFOLIO.totals.coverageKm2} km² Exploration`, special: false },
+  { icon: <Sparkles size={20} />, text: "REE Target", special: true },
+  { icon: <Shield size={20} />, text: "NorChain Tokenized", special: false },
 ];
 
 export default function InvestorCTA() {
@@ -65,9 +67,15 @@ export default function InvestorCTA() {
           {highlights.map((item, index) => (
             <div
               key={index}
-              className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-white/80 text-sm"
+              className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm ${
+                item.special
+                  ? "bg-gradient-to-r from-[var(--color-earth-patina)]/20 to-[var(--color-earth-copper)]/20 border border-[var(--color-earth-patina)]/40 text-white"
+                  : "bg-white/5 border border-white/10 text-white/80"
+              }`}
             >
-              <span className="text-[var(--color-earth-gold-bright)]">{item.icon}</span>
+              <span className={item.special ? "text-[var(--color-earth-patina)]" : "text-[var(--color-earth-gold-bright)]"}>
+                {item.icon}
+              </span>
               {item.text}
             </div>
           ))}

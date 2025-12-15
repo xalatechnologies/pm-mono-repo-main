@@ -1,23 +1,42 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import AnimatedSection from "../components/ui/AnimatedSection";
 import Button from "../components/ui/Button";
 import { MapPin, FileCheck, Mountain, ArrowRight, Pickaxe, Gem } from "lucide-react";
+import { PORTFOLIO } from "@/lib/portfolio";
+
+// Image galleries for each project - rotate through these
+const projectImages = {
+  skrattaasen: [
+    "/bjonsas-mine-interior.jpg",
+    "/skrattas-mine-1.jpg",
+    "/skrattas-overview.jpg",
+    "/byafossen-geology.jpg",
+    "/bjonsas-mineral.jpg",
+  ],
+  mokk: [
+    "/mokk-gruvfjellet.jpg",
+    "/mokk-mine-entrance.jpg",
+    "/mokk-geology.jpg",
+    "/mokk-mineral.jpg",
+    "/gaulstad-mokk-map.jpg",
+  ],
+};
 
 const projects = [
   {
-    id: "skrattaasen",
+    id: "skrattaasen" as const,
     name: "Skrattåsen",
     subtitle: "Primary Focus Area",
     status: "Active Exploration",
-    description: "High-potential exploration site with exceptional zinc, lead, and silver concentrations. Currently our primary focus for deep drilling strategy.",
-    image: "/fieldwork1.png",
+    description: "High-potential exploration site with exceptional zinc, lead, copper, iron, silver, gold and REE signatures. Currently our primary focus for deep drilling strategy.",
     href: "/projects/skrattaasen",
-    licenses: 5,
-    area: "38 km²",
-    minerals: ["Zinc", "Lead", "Silver", "Gold"],
+    licenses: PORTFOLIO.districts.skrattasByafossen.licenses,
+    area: `${PORTFOLIO.districts.skrattasByafossen.coverageKm2} km²`,
+    minerals: PORTFOLIO.districts.skrattasByafossen.minerals,
     highlights: [
       "Exceptional mineral concentrations",
       "Complex tectonic structures identified",
@@ -26,16 +45,15 @@ const projects = [
     ],
   },
   {
-    id: "mokk",
+    id: "mokk" as const,
     name: "Gaulstad/Mokk",
     subtitle: "Historic Mining District",
     status: "Resource Definition",
-    description: "Covering 100 km² with 11 licenses, this historic area hosts confirmed copper, zinc, silver, and gold mineralization with significant commercial potential.",
-    image: "/mokk1.png",
+    description: "Covering 128 km² with 11 licenses, this historic area hosts confirmed copper, zinc, nickel, iron, silver, gold and REE mineralization with significant commercial potential.",
     href: "/projects/mokk",
-    licenses: 11,
-    area: "100 km²",
-    minerals: ["Copper", "Zinc", "Silver", "Gold", "Cobalt", "Nickel"],
+    licenses: PORTFOLIO.districts.gaulstadMokk.licenses,
+    area: `${PORTFOLIO.districts.gaulstadMokk.coverageKm2} km²`,
+    minerals: PORTFOLIO.districts.gaulstadMokk.minerals,
     highlights: [
       "Mining history dating to 1760",
       "Confirmed base metal mineralization",
@@ -45,12 +63,64 @@ const projects = [
   },
 ];
 
+const IMAGE_ROTATION_INTERVAL = 5000; // 5 seconds per image
+
 const stats = [
-  { value: "16", label: "Total Licenses", icon: <FileCheck size={24} /> },
-  { value: "138 km²", label: "Total Coverage", icon: <MapPin size={24} /> },
-  { value: "6+", label: "Mineral Types", icon: <Gem size={24} /> },
-  { value: "2", label: "Active Projects", icon: <Mountain size={24} /> },
+  { value: String(PORTFOLIO.totals.licenses), label: "Total Licenses", icon: <FileCheck size={24} /> },
+  { value: `${PORTFOLIO.totals.coverageKm2} km²`, label: "Total Coverage", icon: <MapPin size={24} /> },
+  { value: PORTFOLIO.totals.mineralTypesLabel, label: "Mineral Types", icon: <Gem size={24} /> },
+  { value: String(PORTFOLIO.totals.activeProjects), label: "Active Projects", icon: <Mountain size={24} /> },
 ];
+
+// Rotating image component for project cards
+function RotatingProjectImage({ 
+  projectId, 
+  projectName 
+}: { 
+  projectId: keyof typeof projectImages; 
+  projectName: string;
+}) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const images = projectImages[projectId];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+    }, IMAGE_ROTATION_INTERVAL);
+
+    return () => clearInterval(timer);
+  }, [images.length]);
+
+  return (
+    <>
+      {images.map((src, index) => (
+        <Image
+          key={src}
+          src={src}
+          alt={`${projectName} - Image ${index + 1}`}
+          fill
+          className={`object-cover transition-opacity duration-1000 ${
+            index === currentIndex ? "opacity-100" : "opacity-0"
+          }`}
+          priority={index === 0}
+        />
+      ))}
+      {/* Image indicators */}
+      <div className="absolute bottom-4 left-4 flex gap-1.5 z-10">
+        {images.map((_, index) => (
+          <div
+            key={index}
+            className={`w-2 h-2 rounded-full transition-all duration-300 ${
+              index === currentIndex
+                ? "bg-white w-6"
+                : "bg-white/40"
+            }`}
+          />
+        ))}
+      </div>
+    </>
+  );
+}
 
 export default function ProjectsPage() {
   return (
@@ -78,7 +148,7 @@ export default function ProjectsPage() {
             </h1>
             <p className="text-white/70 text-lg max-w-2xl mx-auto">
               Strategic license holdings in Norway&apos;s mineral-rich Steinkjer region,
-              with focus on copper, zinc, gold, and silver deposits.
+              {` ${PORTFOLIO.content.focusMineralsSentence}`}
             </p>
           </AnimatedSection>
 
@@ -176,16 +246,14 @@ export default function ProjectsPage() {
                       ${index % 2 === 0 ? "lg:flex" : "lg:flex lg:flex-row-reverse"}
                     `}
                   >
-                    {/* Image */}
-                    <div className="lg:w-1/2 relative aspect-video lg:aspect-auto overflow-hidden">
-                      <Image
-                        src={project.image}
-                        alt={project.name}
-                        fill
-                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    {/* Image - Rotating Gallery */}
+                    <div className="lg:w-1/2 relative aspect-video lg:aspect-auto overflow-hidden min-h-[300px]">
+                      <RotatingProjectImage 
+                        projectId={project.id} 
+                        projectName={project.name} 
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-                      <div className="absolute top-4 left-4">
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
+                      <div className="absolute top-4 left-4 z-10">
                         <span className="inline-flex items-center gap-2 px-3 py-1 bg-[var(--secondary)] text-white text-xs uppercase tracking-wider rounded-full">
                           <span className="w-2 h-2 bg-white rounded-full animate-pulse" />
                           {project.status}
@@ -219,7 +287,11 @@ export default function ProjectsPage() {
                         {project.minerals.map((mineral) => (
                           <span
                             key={mineral}
-                            className="px-3 py-1 text-xs uppercase tracking-wider bg-[var(--primary)]/5 text-[var(--primary)] rounded-full"
+                            className={`px-3 py-1 text-xs uppercase tracking-wider rounded-full ${
+                              mineral === "REE"
+                                ? "bg-gradient-to-r from-[var(--color-earth-patina)] to-[var(--color-earth-copper)] text-white font-semibold"
+                                : "bg-[var(--primary)]/5 text-[var(--primary)]"
+                            }`}
                           >
                             {mineral}
                           </span>

@@ -55,27 +55,35 @@ echo -e "${YELLOW}Preparing deployment package...${NC}"
 DEPLOY_TMP="/tmp/pureminerals-deploy-$(date +%s)"
 mkdir -p "$DEPLOY_TMP"
 
-# Copy standalone build
-cp -r .next/standalone/* "$DEPLOY_TMP/"
+# Copy standalone build (preserves monorepo structure)
+cp -a .next/standalone/. "$DEPLOY_TMP/"
 
-# Copy static files into the correct location
-mkdir -p "$DEPLOY_TMP/.next"
-cp -r .next/static "$DEPLOY_TMP/.next/"
+# Copy static files to BOTH locations (root and apps/web for monorepo)
+mkdir -p "$DEPLOY_TMP/.next/static"
+cp -r .next/static/* "$DEPLOY_TMP/.next/static/"
+mkdir -p "$DEPLOY_TMP/apps/web/.next/static"
+cp -r .next/static/* "$DEPLOY_TMP/apps/web/.next/static/"
 
-# Copy public folder
+# Copy public folder to BOTH locations
 cp -r public "$DEPLOY_TMP/"
+cp -r public "$DEPLOY_TMP/apps/web/"
 
-# Create ecosystem file for PM2
+# Create ecosystem file for PM2 (handles monorepo structure)
 cat > "$DEPLOY_TMP/ecosystem.config.js" << 'EOF'
 module.exports = {
   apps: [{
     name: 'pureminerals',
-    script: 'server.js',
-    instances: 'max',
-    exec_mode: 'cluster',
+    script: 'apps/web/server.js',
+    cwd: '/var/www/pureminerals',
+    instances: 1,
+    exec_mode: 'fork',
+    max_restarts: 10,
+    restart_delay: 5000,
+    watch: false,
     env: {
       NODE_ENV: 'production',
-      PORT: 3000
+      PORT: 3000,
+      HOSTNAME: '0.0.0.0'
     },
     max_memory_restart: '500M',
     error_file: '/var/log/pm2/pureminerals-error.log',
@@ -88,11 +96,11 @@ EOF
 
 # Upload to VPS
 echo -e "${YELLOW}Uploading to VPS...${NC}"
-rsync -avz --delete --progress "$DEPLOY_TMP/" "${VPS_USER}@${VPS_HOST}:${APP_DIR}/"
+rsync -avz --delete --progress -e "ssh -o StrictHostKeyChecking=no" "$DEPLOY_TMP/" "${VPS_USER}@${VPS_HOST}:${APP_DIR}/"
 
 # Restart the application on VPS
 echo -e "${YELLOW}Restarting application on VPS...${NC}"
-ssh "${VPS_USER}@${VPS_HOST}" << 'ENDSSH'
+ssh -o StrictHostKeyChecking=no "${VPS_USER}@${VPS_HOST}" << 'ENDSSH'
 cd /var/www/pureminerals
 
 # Create log directory
@@ -112,6 +120,7 @@ pm2 save
 pm2 startup systemd -u root --hp /root 2>/dev/null || true
 
 echo "Application restarted successfully!"
+pm2 status
 ENDSSH
 
 # Cleanup
@@ -121,6 +130,4 @@ echo -e "${GREEN}========================================${NC}"
 echo -e "${GREEN}  Deployment complete!${NC}"
 echo -e "${GREEN}========================================${NC}"
 echo ""
-echo -e "Your site should be live at: ${GREEN}http://${VPS_HOST}${NC}"
-echo -e "Or at your domain if DNS is configured."
-
+echo -e "Your site should be live at: ${GREEN}https://pureminerals.no${NC}"

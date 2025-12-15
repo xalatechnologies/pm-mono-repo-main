@@ -1,5 +1,6 @@
 import type { ProjectMapConfig } from "../types";
 import { Mountain, FlaskConical, Search, FileCheck, Rocket } from "lucide-react";
+import { PORTFOLIO } from "@/lib/portfolio";
 
 export const skrattaasenConfig: ProjectMapConfig = {
   id: "skrattaasen",
@@ -17,9 +18,9 @@ export const skrattaasenConfig: ProjectMapConfig = {
   },
   projectInfo: {
     name: "Skrattås-Byafossen Project",
-    licenses: 7,
-    area: "~30 km²",
-    minerals: ["Zinc", "Lead", "Silver", "Gold", "Copper"],
+    licenses: PORTFOLIO.districts.skrattasByafossen.licenses,
+    area: `${PORTFOLIO.districts.skrattasByafossen.coverageKm2} km²`,
+    minerals: [...PORTFOLIO.districts.skrattasByafossen.minerals],
     status: "Active",
     established: "2022",
   },
@@ -215,12 +216,12 @@ export const skrattaasenConfig: ProjectMapConfig = {
       icon: FileCheck,
       title: "2022",
       subtitle: "License Acquisition",
-      description: "Pure Minerals secured 7 exploration licenses covering ~30 km² in the Skrattås-Byafossen area. Modern exploration program initiated.",
+      description: "Pure Minerals secured 7 exploration licenses covering 51 km² in the Skrattås-Byafossen area. Modern exploration program initiated.",
       image: "/gaulstad-mokk-map.jpg",
       highlight: true,
       items: [
         "7 licenses acquired",
-        "~30 km² exploration area",
+        "51 km² exploration area",
         "Modern survey program launched",
         "Historic data compilation"
       ],

@@ -1,5 +1,6 @@
 import type { ProjectMapConfig } from "../types";
 import { Mountain, FlaskConical, Search, FileCheck, Rocket, Building } from "lucide-react";
+import { PORTFOLIO } from "@/lib/portfolio";
 
 export const mokkConfig: ProjectMapConfig = {
   id: "mokk",
@@ -18,9 +19,9 @@ export const mokkConfig: ProjectMapConfig = {
   },
   projectInfo: {
     name: "Gaulstad/Mokk Project",
-    licenses: 11,
-    area: "~110 km²",
-    minerals: ["Copper", "Zinc", "Silver", "Gold", "Nickel", "Cobalt"],
+    licenses: PORTFOLIO.districts.gaulstadMokk.licenses,
+    area: `${PORTFOLIO.districts.gaulstadMokk.coverageKm2} km²`,
+    minerals: [...PORTFOLIO.districts.gaulstadMokk.minerals],
     status: "Exploration",
     established: "2021",
   },
@@ -270,12 +271,12 @@ export const mokkConfig: ProjectMapConfig = {
     {
       title: "Extensive License Holdings",
       content:
-        "Pure Minerals holds 11 mining licenses in the Gaulstad-Mokk area, covering approximately 110 km² surrounding the Gruvfjellet mountain plateau. For the last 130 years, many governmental and private entities have explored the more than 50 identified worded mines and minor test pits throughout the area. Pure Minerals acquired these licenses in 2021-2022.",
+        "Pure Minerals holds 11 mining licenses in the Gaulstad-Mokk area, covering approximately 128 km² surrounding the Gruvfjellet mountain plateau. For the last 130 years, many governmental and private entities have explored the more than 50 identified worded mines and minor test pits throughout the area. Pure Minerals acquired these licenses in 2021-2022.",
       imageUrl: "/gaulstad-mokk-map.jpg",
       alt: "License area map",
       imagePosition: "right",
       category: "discovery",
-      highlights: ["11 Licenses", "110 km²", "50+ Historic Workings", "Full Ownership"],
+      highlights: ["11 Licenses", "128 km²", "50+ Historic Workings", "Full Ownership"],
     },
     {
       title: "Professional Geological Surveys",
@@ -331,12 +332,12 @@ export const mokkConfig: ProjectMapConfig = {
       icon: FileCheck,
       title: "2021-2022",
       subtitle: "Modern License Acquisition",
-      description: "Pure Minerals acquired 11 mining licenses covering approximately 110 km² in the Gaulstad-Mokk area. Initial exploration of Gaulstad and Mokk mine entrances at Gruvfjellet began.",
+      description: "Pure Minerals acquired 11 mining licenses covering approximately 128 km² in the Gaulstad-Mokk area. Initial exploration of Gaulstad and Mokk mine entrances at Gruvfjellet began.",
       image: "/gaulstad-mokk-map.jpg",
       highlight: true,
       items: [
         "11 licenses acquired",
-        "110 km² exploration area",
+        "128 km² exploration area",
         "Mine entrance exploration",
         "Historic data compilation"
       ],

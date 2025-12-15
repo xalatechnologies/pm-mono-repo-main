@@ -16,6 +16,11 @@ const footerLinks = {
     { label: "Gaulstad/Mokk", href: "/projects/mokk" },
   ],
   resources: [
+    { label: "Report Archive", href: "/report-archive" },
+    { label: "Virtual Data Room (VDR)", href: "/vdr" },
+    { label: "Laboratories", href: "/laboratories" },
+    { label: "Exploration Specialists", href: "/exploration-specialists" },
+    { label: "Partners", href: "/partners" },
     { label: "News & Updates", href: "/articles" },
     { label: "Contact", href: "/contact" },
     { label: "NorChain", href: "https://norchain.org", external: true },
@@ -32,9 +37,9 @@ export default function Footer() {
       
       {/* Main Footer */}
       <div className="site-container py-16 pt-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8">
           {/* Brand Column */}
-          <div className="lg:col-span-1">
+          <div className="lg:col-span-2">
             <Link href="/" className="inline-flex items-center gap-3 mb-6 group">
               <div className="w-12 h-12 rounded-xl overflow-hidden shadow-lg shadow-[var(--secondary)]/20 transition-transform duration-300 group-hover:scale-105">
                 <Image
@@ -111,6 +116,37 @@ export default function Footer() {
                   >
                     {link.label}
                   </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Resources Links */}
+          <div>
+            <h3 className="label text-on-dark-subtle mb-5">
+              Resources
+            </h3>
+            <ul className="space-y-3">
+              {footerLinks.resources.map((link) => (
+                <li key={link.href}>
+                  {"external" in link && link.external ? (
+                    <a
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="footer-link text-on-dark-muted hover:text-[var(--secondary)] transition-colors duration-300 inline-flex items-center gap-2"
+                    >
+                      <span>{link.label}</span>
+                      <ExternalLink size={14} className="opacity-70" />
+                    </a>
+                  ) : (
+                    <Link
+                      href={link.href}
+                      className="footer-link text-on-dark-muted hover:text-[var(--secondary)] transition-colors duration-300"
+                    >
+                      {link.label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>

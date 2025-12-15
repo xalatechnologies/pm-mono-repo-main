@@ -29,16 +29,17 @@ import {
   Search,
   Rocket,
 } from "lucide-react";
+import { PORTFOLIO } from "@/lib/portfolio";
 
 const investmentHighlights = [
   {
-    value: "110+",
+    value: String(PORTFOLIO.totals.coverageKm2),
     unit: "km²",
     label: "Exploration Area",
     description: "Strategic license holdings in proven mineral districts",
   },
   {
-    value: "18",
+    value: String(PORTFOLIO.totals.licenses),
     unit: "",
     label: "Mining Licenses",
     description: "11 in Gaulstad-Mokk + 7 in Skrattås-Byafossen",
@@ -191,12 +192,12 @@ const strategicAdvantages = [
 ];
 
 const minerals = [
-  { name: "Copper", symbol: "Cu", color: "bg-[#b87333]", grade: "Up to 7.95%" },
-  { name: "Zinc", symbol: "Zn", color: "bg-[#7c8b99]", grade: "Up to 28.8%" },
-  { name: "Gold", symbol: "Au", color: "bg-[#f0c878]", grade: "Up to 10 ppm" },
-  { name: "Silver", symbol: "Ag", color: "bg-[#c4cdd5]", grade: "Up to 539 ppm" },
-  { name: "Lead", symbol: "Pb", color: "bg-[#5a6169]", grade: "Up to 9%" },
-  { name: "REE", symbol: "La+", color: "bg-[#8b5cf6]", grade: "Trace amounts" },
+  { name: "Copper", symbol: "Cu", color: "bg-[#b87333]", grade: "Up to 7.95%", featured: false },
+  { name: "Zinc", symbol: "Zn", color: "bg-[#7c8b99]", grade: "Up to 28.8%", featured: false },
+  { name: "Gold", symbol: "Au", color: "bg-[#f0c878]", grade: "Up to 10 ppm", featured: false },
+  { name: "Silver", symbol: "Ag", color: "bg-[#c4cdd5]", grade: "Up to 539 ppm", featured: false },
+  { name: "Lead", symbol: "Pb", color: "bg-[#5a6169]", grade: "Up to 9%", featured: false },
+  { name: "REE", symbol: "La+", color: "bg-gradient-to-r from-[var(--color-earth-patina)] to-[var(--color-earth-copper)]", grade: "Strategic Target", featured: true },
 ];
 
 export default function AboutPage() {
@@ -319,7 +320,7 @@ export default function AboutPage() {
                     </div>
                     <div>
                       <div className="text-2xl font-display font-bold text-[var(--color-brand-primary)]">
-                        110+ km²
+                        {PORTFOLIO.totals.coverageKm2} km²
                       </div>
                       <div className="text-xs text-[var(--color-neutral-500)] uppercase tracking-wider">
                         Exploration Area
@@ -331,7 +332,9 @@ export default function AboutPage() {
                 <div className="absolute -top-4 -right-4 bg-[var(--color-earth-gold-bright)] p-4 rounded-xl shadow-xl">
                   <div className="flex items-center gap-2">
                     <CheckCircle size={20} className="text-[var(--color-brand-primary)]" />
-                    <span className="font-semibold text-[var(--color-brand-primary)]">18 Licenses</span>
+                    <span className="font-semibold text-[var(--color-brand-primary)]">
+                      {PORTFOLIO.totals.licenses} Licenses
+                    </span>
                   </div>
                 </div>
               </div>
@@ -678,12 +681,12 @@ export default function AboutPage() {
               icon: FileCheck,
               title: "2022",
               subtitle: "License Acquisition",
-              description: "Secured 18 mining licenses covering over 110 km² in two premier districts: 11 in Gaulstad-Mokk and 7 in Skrattås-Byafossen.",
+              description: "Secured 18 mining licenses covering 179 km² in two premier districts: 11 in Gaulstad-Mokk and 7 in Skrattås-Byafossen.",
               image: "/gaulstad-mokk-map.jpg",
               highlight: true,
               items: [
                 "18 mining licenses acquired",
-                "110+ km² total exploration area",
+                "179 km² total exploration area",
                 "11 licenses in Gaulstad-Mokk district",
                 "7 licenses in Skrattås-Byafossen district"
               ],
@@ -776,7 +779,7 @@ export default function AboutPage() {
             <AnimatedSection animation="fade-in-up" delay={0}>
               <ImageCard
                 title="Strategic License Areas"
-                content="18 licenses covering 110+ km² across Gaulstad-Mokk and Skrattås-Byafossen districts with documented commercial mineralization."
+                content={`18 licenses covering ${PORTFOLIO.totals.coverageKm2} km² across Gaulstad-Mokk and Skrattås-Byafossen districts with documented commercial mineralization.`}
                 imageUrl="/gaulstad-mokk-map.jpg"
                 alt="Gaulstad-Mokk license area map"
                 variant="dark"
