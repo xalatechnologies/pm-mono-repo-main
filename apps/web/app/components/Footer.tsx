@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Mail, MapPin, ExternalLink, Linkedin, Twitter } from "lucide-react";
+import { ExternalLink, Linkedin, Twitter } from "lucide-react";
 import GoldDivider from "./ui/GoldDivider";
 
 const footerLinks = {
@@ -16,14 +16,11 @@ const footerLinks = {
     { label: "Gaulstad/Mokk", href: "/projects/mokk" },
   ],
   resources: [
-    { label: "Report Archive", href: "/report-archive" },
     { label: "Virtual Data Room (VDR)", href: "/vdr" },
     { label: "Laboratories", href: "/laboratories" },
     { label: "Exploration Specialists", href: "/exploration-specialists" },
     { label: "Partners", href: "/partners" },
     { label: "News & Updates", href: "/articles" },
-    { label: "Contact", href: "/contact" },
-    { label: "NorChain", href: "https://norchain.org", external: true },
   ],
 };
 
@@ -32,6 +29,47 @@ export default function Footer() {
 
   return (
     <footer className="bg-[var(--primary)] text-white relative">
+        {/* NorChain Partnership Banner */}
+        <div className="relative overflow-hidden">
+        {/* Background matching NorChain section */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[var(--sandstone)] via-[var(--background)] to-[var(--sandstone)]" />
+        <div className="absolute top-0 right-0 w-64 h-64 bg-[var(--secondary)]/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-48 h-48 bg-[var(--accent)]/10 rounded-full blur-3xl" />
+        
+        <div className="site-container py-8 relative z-10">
+          <a
+            href="https://norchain.org"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center sm:justify-between flex-wrap gap-4 group"
+          >
+            <div className="flex items-center gap-4">
+              <div className="w-18 h-18 rounded-full overflow-hidden flex-shrink-0 shadow-lg">
+                <Image
+                  src="/norchain-logo.png"
+                  alt="NorChain"
+                  width={48}
+                  height={48}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div>
+                <div className="body-large weight-semibold text-[var(--primary)] group-hover:text-[var(--secondary)] transition-colors">
+                  Assets Tokenized on NorChain
+                </div>
+                <div className="body-small text-[var(--stone-grey)]">
+                  The Complete Blockchain Operating System
+                </div>
+              </div>
+            </div>
+            <div className="flex items-center gap-2 text-[var(--stone-grey)] group-hover:text-[var(--secondary)] transition-colors body-small font-medium">
+              <span>Visit NorChain</span>
+              <ExternalLink size={16} />
+            </div>
+          </a>
+        </div>
+      </div>
+      <GoldDivider />
       {/* Top Gold Accent Line */}
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[var(--secondary)] to-transparent" />
       
@@ -152,30 +190,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contact Info */}
-          <div>
-            <h3 className="label text-on-dark-subtle mb-5">
-              Contact
-            </h3>
-            <ul className="space-y-4">
-              <li className="flex items-start gap-3">
-                <MapPin size={18} className="text-copper flex-shrink-0 mt-0.5" />
-                <span className="footer-link text-on-dark-muted">
-                  Steinkjer, Trøndelag<br />
-                  Norway
-                </span>
-              </li>
-              <li>
-                <a
-                  href="mailto:contact@pureminerals.no"
-                  className="flex items-center gap-3 footer-link text-on-dark-muted hover:text-[var(--secondary)] transition-colors duration-300"
-                >
-                  <Mail size={18} className="text-copper" />
-                  contact@pureminerals.no
-                </a>
-              </li>
-            </ul>
-          </div>
         </div>
       </div>
 
@@ -184,46 +198,7 @@ export default function Footer() {
       {/* Thin Gold Divider */}
       <div className="h-[1px] bg-gradient-to-r from-transparent via-[var(--secondary)]/50 to-transparent" />
 
-      {/* NorChain Partnership Banner */}
-      <div className="relative overflow-hidden">
-        {/* Background matching NorChain section */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[var(--sandstone)] via-[var(--background)] to-[var(--sandstone)]" />
-        <div className="absolute top-0 right-0 w-64 h-64 bg-[var(--secondary)]/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-48 h-48 bg-[var(--accent)]/10 rounded-full blur-3xl" />
-        
-        <div className="site-container py-8 relative z-10">
-          <a
-            href="https://norchain.org"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center sm:justify-between flex-wrap gap-4 group"
-          >
-            <div className="flex items-center gap-4">
-              <div className="w-18 h-18 rounded-full overflow-hidden flex-shrink-0 shadow-lg">
-                <Image
-                  src="/norchain-logo.png"
-                  alt="NorChain"
-                  width={48}
-                  height={48}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div>
-                <div className="body-large weight-semibold text-[var(--primary)] group-hover:text-[var(--secondary)] transition-colors">
-                  Assets Tokenized on NorChain
-                </div>
-                <div className="body-small text-[var(--stone-grey)]">
-                  The Complete Blockchain Operating System
-                </div>
-              </div>
-            </div>
-            <div className="flex items-center gap-2 text-[var(--stone-grey)] group-hover:text-[var(--secondary)] transition-colors body-small font-medium">
-              <span>Visit NorChain</span>
-              <ExternalLink size={16} />
-            </div>
-          </a>
-        </div>
-      </div>
+    
 
 
       <GoldDivider />

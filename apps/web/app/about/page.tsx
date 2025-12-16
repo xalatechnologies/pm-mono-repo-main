@@ -962,6 +962,65 @@ export default function AboutPage() {
 
       <GoldDivider />
 
+      {/* Team Section */}
+      <section id="team" className="py-20 md:py-28 bg-white scroll-mt-20">
+        <div className="site-container">
+          <AnimatedSection animation="fade-in-up" className="text-center mb-16">
+            <span className="section-badge section-badge--filled mb-4">
+              Our Team
+            </span>
+            <h2 className="display-3 text-[var(--color-brand-primary)] mb-4">
+              Expert{" "}
+              <span className="text-[var(--color-earth-copper)]">Geological Team</span>
+            </h2>
+            <p className="lead text-[var(--color-neutral-600)] max-w-2xl mx-auto">
+              Our team combines decades of geological expertise with modern exploration technology
+            </p>
+          </AnimatedSection>
+
+          <div className="max-w-4xl mx-auto">
+            <div className="p-8 md:p-10 rounded-2xl bg-gradient-to-br from-[var(--color-neutral-50)] to-white border-2 border-[var(--color-earth-copper)]/20">
+              <div className="flex items-start gap-4 mb-6">
+                <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-[var(--color-earth-copper)]/10 flex items-center justify-center">
+                  <Users size={24} className="text-[var(--color-earth-copper)]" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl font-display font-bold text-[var(--color-brand-primary)] mb-2">
+                    Team Information Coming Soon
+                  </h3>
+                  <p className="text-[var(--color-neutral-700)] leading-relaxed">
+                    We are currently preparing detailed information about our expert geological team, 
+                    including their backgrounds, specializations, and contributions to our exploration 
+                    programs. Our team includes experienced geologists, exploration specialists, and 
+                    technical experts who bring decades of combined expertise to Pure Minerals.
+                  </p>
+                </div>
+              </div>
+              <div className="grid md:grid-cols-2 gap-4 text-sm text-[var(--color-neutral-600)]">
+                <div className="flex items-center gap-2">
+                  <CheckCircle size={16} className="text-[var(--color-earth-copper)] flex-shrink-0" />
+                  <span>Geological mapping and interpretation specialists</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle size={16} className="text-[var(--color-earth-copper)] flex-shrink-0" />
+                  <span>Field exploration and survey experts</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle size={16} className="text-[var(--color-earth-copper)] flex-shrink-0" />
+                  <span>Technical analysis and quality control</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle size={16} className="text-[var(--color-earth-copper)] flex-shrink-0" />
+                  <span>Project management and oversight</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <GoldDivider />
+
       {/* Investor CTA Section */}
       <section className="py-24 bg-gradient-to-br from-[var(--color-brand-primary)] to-[var(--color-earth-obsidian)]">
         <div className="site-container text-center">
