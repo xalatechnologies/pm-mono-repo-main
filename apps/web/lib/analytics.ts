@@ -1,6 +1,6 @@
 // Google Analytics 4 utilities
 
-type GtagCommand = "config" | "event" | "js" | "set";
+type GtagCommand = "config" | "event" | "js" | "set" | "consent";
 type GtagConfig = Record<string, string | number | boolean | undefined>;
 type DataLayerItem = [GtagCommand, string | Date, GtagConfig?];
 

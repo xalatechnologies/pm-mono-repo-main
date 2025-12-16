@@ -140,7 +140,7 @@ export default function VdrPage() {
           <div className="mt-10 p-8 rounded-2xl bg-gradient-to-br from-[var(--color-brand-primary)] to-[var(--color-earth-obsidian)] text-white">
             <div className="max-w-2xl">
               <h2 className="text-2xl font-display font-bold mb-3">
-                Request VDR Access
+               <span className="text-white">Request VDR Access</span>
               </h2>
               <p className="text-white/80 mb-6">
                 Ready to explore our detailed documentation? Contact us to request access to the Virtual Data Room.

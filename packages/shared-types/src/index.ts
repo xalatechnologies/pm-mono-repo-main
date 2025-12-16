@@ -13,6 +13,13 @@ export interface Article {
   paragraphs: Paragraph[];
   createdAt: string;
   updatedAt: string;
+  // Aggregation fields for news articles
+  sourceUrl?: string;
+  sourceName?: string;
+  isAggregated?: boolean;
+  originalPublishedAt?: string;
+  aiGenerated?: boolean;
+  tags?: string[];
 }
 
 // Category Types
@@ -47,4 +54,3 @@ export interface BaseEntity {
 
 // Environment Types
 export type Environment = "development" | "test" | "production";
-

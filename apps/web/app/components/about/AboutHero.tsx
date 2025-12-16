@@ -6,11 +6,11 @@ import Button from "../ui/Button";
 import { ArrowRight, TrendingUp, Users, Award } from "lucide-react";
 import { PORTFOLIO } from "@/lib/portfolio";
 
-// About page hero slides with investor-focused content
+// About page hero slides with investor-focused content - high-quality images
 const aboutSlides = [
   {
-    src: "/mokk-gruvfjellet.jpg",
-    alt: "Gruvfjellet mountain plateau",
+    src: "/hero-mokk-gruvfjellet.jpg",
+    alt: "Gruvfjellet mountain plateau panoramic view",
     location: "Gruvfjellet Plateau",
     badge: "Company Overview",
     headline: "Pure Minerals AS",
@@ -21,8 +21,8 @@ const aboutSlides = [
     icon: <Award size={16} />,
   },
   {
-    src: "/gaulstad-mokk-map.jpg",
-    alt: "License area map",
+    src: "/hero-skrattas-overview.jpg",
+    alt: "Skrattås exploration area overview",
     location: "License Portfolio",
     badge: "Strategic Holdings",
     headline: "18 Mining Licenses",
@@ -33,8 +33,8 @@ const aboutSlides = [
     icon: <TrendingUp size={16} />,
   },
   {
-    src: "/tem-study.jpg",
-    alt: "TEM geophysical survey",
+    src: "/hero-byafossen-geology.jpg",
+    alt: "Spectacular geological formations at Byafossen",
     location: "Advanced Technology",
     badge: "Scientific Excellence",
     headline: "Data-Driven",
@@ -45,8 +45,8 @@ const aboutSlides = [
     icon: <Award size={16} />,
   },
   {
-    src: "/bjonsas-mineral.jpg",
-    alt: "Mineral samples",
+    src: "/project-mokk-mineral.jpg",
+    alt: "High-grade mineral samples",
     location: "Proven Resources",
     badge: "Exceptional Grades",
     headline: "World-Class",
@@ -57,8 +57,8 @@ const aboutSlides = [
     icon: <TrendingUp size={16} />,
   },
   {
-    src: "/copper-minerals-2.jpg",
-    alt: "Copper ore samples",
+    src: "/hero-copper-minerals.jpg",
+    alt: "Copper ore samples from exploration",
     location: "Critical Minerals",
     badge: "Green Transition + REE",
     headline: "Powering",
@@ -69,8 +69,8 @@ const aboutSlides = [
     icon: <Award size={16} />,
   },
   {
-    src: "/marken-mine.jpg",
-    alt: "Historic mine workings",
+    src: "/hero-skrattas-mine.jpg",
+    alt: "Historic mine interior showing mineralization",
     location: "Mining Heritage",
     badge: "265 Years of History",
     headline: "Building on",

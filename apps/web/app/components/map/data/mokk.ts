@@ -257,7 +257,7 @@ export const mokkConfig: ProjectMapConfig = {
       title: "Mining Heritage Since 1760",
       content:
         "The mining history in the upper Ogndalen area started when a major copper ore was discovered at Gruvfjellet plateau in 1760. By 1764, the Gaulstad No. 1 mine was in full operation, followed by the Mokk No. 1 mine 'Blankstøiten'. The first copper mining phase continued for 22 years until 1786, followed by operations during 1830-1850, and finally 1880-1891 targeting nickel.",
-      imageUrl: "/mokk-gruvfjellet.jpg",
+      imageUrl: "/hero-mokk-gruvfjellet.jpg",
       alt: "Gruvfjellet mountain plateau",
       imagePosition: "right",
       category: "history",
@@ -269,7 +269,7 @@ export const mokkConfig: ProjectMapConfig = {
       title: "Exceptional Copper Grades",
       content:
         "Modern XRF analysis and geochemical sampling confirm exceptional mineral grades: 7.95% Copper, 1.24% Zinc, 12.45 ppm Silver, 840 ppm Cobalt, and trace gold. The polymetallic nature of the deposits significantly increases economic potential. Over 70 elements have been analyzed across the license area.",
-      imageUrl: "/mokk-mineral.jpg",
+      imageUrl: "/project-mokk-mineral.jpg",
       alt: "Mokk mineral samples",
       imagePosition: "left",
       category: "mineralization",
@@ -289,7 +289,7 @@ export const mokkConfig: ProjectMapConfig = {
       title: "Professional Geological Surveys",
       content:
         "During late 2021 and throughout 2022, we explored several Gaulstad and Mokk mine entrances at Gruvfjellet. In 2023, Sunnfjord Geo Center AS and GeoVista AB executed high-performance geological mapping combined with evaluation of existing geophysical data. Further exploration planned for 2026.",
-      imageUrl: "/mokk-mine-entrance.jpg",
+      imageUrl: "/hero-mokk-mine.jpg",
       imagePosition: "left",
       alt: "Mine entrance at Mokk",
       category: "fieldwork",
@@ -300,7 +300,7 @@ export const mokkConfig: ProjectMapConfig = {
       title: "Geology of the Mining District",
       content:
         "The area is insufficiently explored with significant upside potential. Located within the Støren Nappe of the Scandinavian Caledonides, featuring greenschist to low-amphibolite facies rocks. Geological conditions are comparable to the world-renowned Røros mining district, suggesting substantial commercial potential.",
-      imageUrl: "/mokk-geology.jpg",
+      imageUrl: "/project-mokk-3.jpg",
       imagePosition: "right",
       alt: "Mokk geological features",
       category: "geology",
@@ -313,7 +313,7 @@ export const mokkConfig: ProjectMapConfig = {
       title: "1760",
       subtitle: "First Discovery",
       description: "Major copper ore discovered at Gruvfjellet plateau. This marked the beginning of organized mining in the upper Ogndalen area, establishing a tradition that would span over 130 years.",
-      image: "/mokk-gruvfjellet.jpg",
+      image: "/hero-mokk-gruvfjellet.jpg",
       items: [
         "Copper ore discovery at Gruvfjellet",
         "Mining infrastructure development begins",
@@ -326,7 +326,7 @@ export const mokkConfig: ProjectMapConfig = {
       title: "1764-1891",
       subtitle: "Commercial Mining Era",
       description: "Gaulstad No. 1 mine in full operation from 1764, followed by Mokk No. 1 'Blankstøiten'. Three major mining phases: 1764-1786 (copper), 1830-1850 (expansion), and 1880-1891 (nickel targeting).",
-      image: "/mokk-mine-entrance.jpg",
+      image: "/hero-mokk-mine.jpg",
       highlight: true,
       items: [
         "Gaulstad No. 1 operational 1764",
@@ -367,7 +367,7 @@ export const mokkConfig: ProjectMapConfig = {
       title: "2024",
       subtitle: "Analysis Results",
       description: "XRF analysis confirmed exceptional grades: 7.95% Cu, 1.24% Zn, 12.45 ppm Ag, 840 ppm Co. Over 70 elements analyzed across the license area.",
-      image: "/mokk-mineral.jpg",
+      image: "/project-mokk-mineral.jpg",
       highlight: true,
       items: [
         "7.95% Copper confirmed",

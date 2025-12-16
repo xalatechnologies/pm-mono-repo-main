@@ -8,19 +8,22 @@ import Button from "../ui/Button";
 import { ArrowRight, MapPin } from "lucide-react";
 import { PORTFOLIO } from "@/lib/portfolio";
 
-// Image galleries for each project - rotate through these
+// Image galleries for each project - high-quality images from InvestorPitch
 const projectImages = {
   skrattaasen: [
-    "/skrattas-mine-1.jpg",
-    "/bjonsas-mine-interior.jpg",
-    "/skrattas-overview.jpg",
-    "/byafossen-geology.jpg",
+    "/hero-skrattas-overview.jpg",
+    "/project-skrattas-1.jpg",
+    "/project-skrattas-2.jpg",
+    "/project-skrattas-3.jpg",
+    "/project-byafossen-1.jpg",
+    "/project-bjonsas-1.jpg",
   ],
   mokk: [
-    "/mokk-mine-entrance.jpg",
-    "/mokk-gruvfjellet.jpg",
-    "/mokk-geology.jpg",
-    "/mokk-mineral.jpg",
+    "/hero-mokk-gruvfjellet.jpg",
+    "/project-mokk-1.jpg",
+    "/project-mokk-2.jpg",
+    "/project-mokk-3.jpg",
+    "/project-mokk-mineral.jpg",
   ],
 };
 

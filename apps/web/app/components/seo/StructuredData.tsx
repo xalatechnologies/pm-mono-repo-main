@@ -22,8 +22,13 @@ interface BreadcrumbItem {
   url: string;
 }
 
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
 interface StructuredDataProps {
-  type?: "Organization" | "WebSite" | "BreadcrumbList" | "Article" | "LocalBusiness" | "FinancialProduct" | "MiningProject" | "GeoPlace";
+  type?: "Organization" | "WebSite" | "BreadcrumbList" | "Article" | "LocalBusiness" | "FinancialProduct" | "MiningProject" | "GeoPlace" | "FAQPage";
   url?: string;
   data?: Record<string, unknown> & Partial<{
     items: BreadcrumbItem[];
@@ -37,6 +42,7 @@ interface StructuredDataProps {
     geoShape: number[][];
     minerals: string[];
     name: string;
+    faqs: FAQItem[];
   }>;
 }
 
@@ -271,6 +277,21 @@ export default function StructuredData({ type = "Organization", url, data }: Str
             })),
           }),
           ...data,
+        };
+
+      case "FAQPage":
+        const faqs = data?.faqs || [];
+        return {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: faqs.map((faq: FAQItem) => ({
+            "@type": "Question",
+            name: faq.question,
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: faq.answer,
+            },
+          })),
         };
 
       default:

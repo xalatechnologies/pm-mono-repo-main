@@ -7,6 +7,7 @@ import Footer from "./components/Footer";
 import { generateMetadata as generateSEOMetadata } from "@/lib/seo";
 import StructuredData from "./components/seo/StructuredData";
 import GoogleAnalytics from "./components/analytics/GoogleAnalytics";
+import CookieConsent from "./components/CookieConsent";
 
 const defaultMetadata = generateSEOMetadata({
   title: "Pure Minerals | Geological Exploration & Mining",
@@ -86,6 +87,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Header />
           <main className="flex-grow">{children}</main>
           <Footer />
+          <CookieConsent />
         </ClientThemeProvider>
       </body>
     </html>

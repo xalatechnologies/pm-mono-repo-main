@@ -16,6 +16,7 @@ const navItems = [
       { label: "Gaulstad/Mokk", href: "/projects/mokk" },
     ],
   },
+  { label: "News", href: "/articles" },
   { label: "Contact", href: "/contact" },
 ];
 

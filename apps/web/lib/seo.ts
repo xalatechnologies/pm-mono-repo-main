@@ -5,6 +5,11 @@ const SITE_NAME = "Pure Minerals";
 const DEFAULT_DESCRIPTION =
   "Norwegian exploration company focused on sustainable mineral development in Trøndelag. Specializing in copper, zinc, gold, silver, and rare earth elements (REE).";
 
+// Language configuration for future multi-language support
+export const SUPPORTED_LOCALES = ["en", "no"] as const;
+export type SupportedLocale = (typeof SUPPORTED_LOCALES)[number];
+export const DEFAULT_LOCALE: SupportedLocale = "en";
+
 export interface SEOConfig {
   title?: string;
   description?: string;
@@ -16,6 +21,8 @@ export interface SEOConfig {
   author?: string;
   noindex?: boolean;
   canonical?: string;
+  locale?: SupportedLocale;
+  alternateLocales?: { locale: SupportedLocale; url: string }[];
 }
 
 export function generateMetadata(config: SEOConfig = {}): Metadata {
@@ -23,39 +30,68 @@ export function generateMetadata(config: SEOConfig = {}): Metadata {
     title,
     description = DEFAULT_DESCRIPTION,
     keywords = [],
-    image = "/logo.svg",
+    image = "/opengraph-image",
     type = "website",
     publishedTime,
     modifiedTime,
     author,
     noindex = false,
     canonical,
+    locale = DEFAULT_LOCALE,
+    alternateLocales,
   } = config;
 
   const fullTitle = title ? `${title} | ${SITE_NAME}` : `${SITE_NAME} | Geological Exploration & Mining`;
+  
+  // Comprehensive keyword list for mining/exploration SEO
   const defaultKeywords = [
+    // Primary keywords
     "mining exploration",
     "Norway",
     "Trøndelag",
+    // Minerals
     "copper",
     "zinc",
     "gold",
     "silver",
     "rare earth elements",
     "REE",
+    "cobalt",
+    "nickel",
+    "lead",
+    // Industry terms
     "mineral exploration",
     "Norwegian mining",
     "geological exploration",
     "mining licenses",
+    "mining investment",
+    "exploration company",
+    // Technology
     "blockchain mining",
     "tokenized assets",
     "NorChain",
+    // Locations
     "Steinkjer",
     "Gaulstad",
     "Mokk",
     "Skrattåsen",
+    "Byafossen",
+    // Long-tail keywords
+    "Norwegian mining company",
+    "Trøndelag mineral exploration",
+    "Norway copper mining",
+    "critical minerals Norway",
+    "green transition minerals",
   ];
-  const allKeywords = [...defaultKeywords, ...keywords].join(", ");
+  const allKeywords = [...new Set([...defaultKeywords, ...keywords])].join(", ");
+
+  // Build language alternates for hreflang
+  const languages: Record<string, string> = {};
+  if (alternateLocales) {
+    alternateLocales.forEach(({ locale: altLocale, url }) => {
+      languages[altLocale] = url;
+    });
+  }
 
   const metadata: Metadata = {
     title: fullTitle,
@@ -64,6 +100,7 @@ export function generateMetadata(config: SEOConfig = {}): Metadata {
     metadataBase: new URL(SITE_URL),
     alternates: {
       canonical: canonical || undefined,
+      languages: Object.keys(languages).length > 0 ? languages : undefined,
     },
     robots: {
       index: !noindex,
@@ -90,7 +127,7 @@ export function generateMetadata(config: SEOConfig = {}): Metadata {
           alt: title || SITE_NAME,
         },
       ],
-      locale: "en_US",
+      locale: locale === "no" ? "nb_NO" : "en_US",
       ...(publishedTime && { publishedTime }),
       ...(modifiedTime && { modifiedTime }),
       ...(author && { authors: [author] }),
@@ -101,7 +138,11 @@ export function generateMetadata(config: SEOConfig = {}): Metadata {
       description,
       images: [image.startsWith("http") ? image : `${SITE_URL}${image}`],
       creator: "@pureminerals",
+      site: "@pureminerals",
     },
+    // Additional metadata for better SEO
+    category: "Mining & Exploration",
+    classification: "Business",
     ...(publishedTime && { publicationTime: publishedTime }),
     ...(modifiedTime && { modificationTime: modifiedTime }),
   };

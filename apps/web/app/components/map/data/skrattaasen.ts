@@ -128,7 +128,7 @@ export const skrattaasenConfig: ProjectMapConfig = {
       title: "Exceptional Mineral Grades",
       content:
         "The Skrattås deposit contains some of the highest grades in our portfolio. Laboratory analysis shows up to 28.8% Zinc, 9% Lead, 539 ppm Silver, and 10 ppm Gold. The estimated historic reserve was 80,000 tons at 1.5% Cu, 7% Zn, and 2.5% Pb. During 1979-1981, extracted ore averaged an exceptional 34% Zn, 10.4% Pb, and 1.9% Cu.",
-      imageUrl: "/bjonsas-mineral.jpg",
+      imageUrl: "/project-mokk-mineral.jpg",
       alt: "Mineral samples from Skrattås",
       imagePosition: "right",
       category: "mineralization",
@@ -138,7 +138,7 @@ export const skrattaasenConfig: ProjectMapConfig = {
       title: "Historic Mining Operations",
       content:
         "Test mining was conducted during 1886-1914 by several owners. Constant production registered 1925-1927. The underground work terminated at 80m depth, however, the mineralization continues downward. The mineral body is tabular, including both massive sulphides and disseminations alternating on a thickness between 0.4 and 2.6 meters.",
-      imageUrl: "/skrattas-mine-1.jpg",
+      imageUrl: "/project-skrattas-1.jpg",
       alt: "Skrattås mine entrance",
       imagePosition: "left",
       category: "history",
@@ -171,7 +171,7 @@ export const skrattaasenConfig: ProjectMapConfig = {
       title: "Bjønsås Mine - Copper Potential",
       content:
         "Drilling in the adjacent Bjønsås mining area has proved significant high grades of copper. The mine shows magnetite-rich zones detected via compass interference. Green and rust-red colorations inside the mines testify to ongoing oxidation of copper and iron-bearing minerals. The area shows exceptional potential for copper, while Skrattås excels in zinc, silver and gold.",
-      imageUrl: "/bjonsas-mine-interior.jpg",
+      imageUrl: "/project-bjonsas-1.jpg",
       imagePosition: "right",
       alt: "Bjønsås mine interior",
       category: "discovery",
@@ -184,7 +184,7 @@ export const skrattaasenConfig: ProjectMapConfig = {
       title: "1886",
       subtitle: "First Mining Operations",
       description: "Test mining began at Skrattås, marking the start of organized mineral extraction in the area. Multiple owners conducted exploration over the following decades.",
-      image: "/skrattas-mine-1.jpg",
+      image: "/project-skrattas-1.jpg",
       items: [
         "Test mining operations 1886-1914",
         "Multiple ownership transitions",

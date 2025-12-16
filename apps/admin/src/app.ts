@@ -11,6 +11,8 @@ import uploadRouter from './routes/upload.js';
 import provider from './admin/auth-provider.js';
 import options from './admin/options.js';
 import articleRoutes from './routes/articles.js';
+import newsRoutes from './routes/news.js';
+import { scheduleNewsJob, getConfig } from './jobs/fetch-news.js';
 
 const port = process.env.PORT || 3000;
 
@@ -24,7 +26,9 @@ const start = async () => {
 
   await connectToDatabase();
 
+  // API Routes
   app.use('/api/articles', articleRoutes);
+  app.use('/api/news', newsRoutes);
   app.use('/api', uploadRouter);
 
   const admin = new AdminJS(options);
@@ -61,6 +65,16 @@ const start = async () => {
   }
 
   app.use(admin.options.rootPath, router);
+
+  // Start news aggregation scheduler if enabled
+  const newsConfig = getConfig();
+  if (newsConfig.enabled) {
+    // Schedule news fetching every 24 hours
+    scheduleNewsJob(24);
+    console.log('News aggregation scheduler started');
+  } else {
+    console.log('News aggregation is disabled. Set NEWS_FETCH_ENABLED=true to enable.');
+  }
 
   app.listen(port, () => {
     // eslint-disable-next-line no-console

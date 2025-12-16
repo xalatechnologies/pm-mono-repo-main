@@ -1,8 +1,8 @@
 import React from "react";
-import ArticleCard from "../components/ArticleCard";
+import ArticleFilters from "../components/ArticleFilters";
 import { Article } from "@/types/articles";
 import Button from "../components/ui/Button";
-import { Newspaper, Clock, Mail, ArrowRight } from "lucide-react";
+import { Newspaper, Clock, Mail, ArrowRight, Pickaxe } from "lucide-react";
 import Link from "next/link";
 
 // Merk: ikke bruk betinget export her – det er ikke støttet av Next.js
@@ -15,9 +15,9 @@ function EmptyState() {
         <div className="site-container">
           <div className="max-w-3xl mx-auto">
             <span className="section-badge section-badge--filled mb-6">Resources</span>
-            <h1 className="display-2 text-on-light mb-4">News & Updates</h1>
+            <h1 className="display-2 text-on-light mb-4">News & Insights</h1>
             <p className="lead text-[var(--color-neutral-600)] mb-8">
-              Stay informed about our latest exploration activities, project updates, and company news.
+              Industry news, mineral exploration updates, and insights from the mining sector.
             </p>
 
             {/* Coming Soon Notice */}
@@ -33,16 +33,16 @@ function EmptyState() {
                     </span>
                   </div>
                   <h2 className="text-2xl font-display font-bold text-[var(--color-brand-primary)] mb-3">
-                    News Section Under Development
+                    News Section Coming Soon
                   </h2>
                   <p className="text-[var(--color-neutral-700)] mb-4 leading-relaxed">
-                    We are currently setting up our news and updates section to keep you informed about 
-                    our exploration progress, project milestones, and company developments. Check back 
-                    soon for the latest updates from Pure Minerals.
+                    We are setting up our news section featuring curated industry news about mining, 
+                    mineral exploration, and geological discoveries—plus updates directly from Pure Minerals 
+                    about our projects and company developments.
                   </p>
                   <p className="text-[var(--color-neutral-600)] text-sm mb-6">
-                    In the meantime, you can stay connected with us through our contact page or request 
-                    access to our Virtual Data Room for detailed project information.
+                    In the meantime, explore our projects or request access to the Virtual Data Room 
+                    for detailed technical information.
                   </p>
                 </div>
               </div>
@@ -61,19 +61,19 @@ function EmptyState() {
               <ul className="space-y-3 text-[var(--color-neutral-700)]">
                 <li className="flex items-start gap-3">
                   <span className="text-[var(--color-earth-copper)] mt-1">•</span>
-                  <span>Exploration program updates and field reports</span>
+                  <span><strong>Industry News:</strong> Mining and mineral exploration headlines</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-[var(--color-earth-copper)] mt-1">•</span>
-                  <span>Project milestones and achievements</span>
+                  <span><strong>Geological Insights:</strong> Critical minerals and discoveries</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-[var(--color-earth-copper)] mt-1">•</span>
-                  <span>Company news and announcements</span>
+                  <span><strong>Pure Minerals Updates:</strong> Our project progress and milestones</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-[var(--color-earth-copper)] mt-1">•</span>
-                  <span>Industry insights and market updates</span>
+                  <span><strong>Company News:</strong> Announcements and developments</span>
                 </li>
               </ul>
             </div>
@@ -130,24 +130,81 @@ export default async function ArticlesPage() {
       return <EmptyState />;
     }
 
+    // Sort articles by date (newest first)
+    const sortedArticles = [...articles].sort(
+      (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    );
+
     // Show articles if available
     return (
       <main className="bg-[var(--background)]">
-        <section className="py-16 md:py-20">
-          <div className="site-container">
-            <div className="max-w-3xl mb-12">
-              <span className="section-badge section-badge--filled mb-6">Resources</span>
-              <h1 className="display-2 text-on-light mb-4">News & Updates</h1>
-              <p className="lead text-[var(--color-neutral-600)]">
-                Stay informed about our latest exploration activities, project updates, and company news.
+        {/* Hero Header with Background Image */}
+        <section className="relative py-16 md:py-24 overflow-hidden">
+          {/* Background Image */}
+          <div 
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{ backgroundImage: "url('/mine1.png')" }}
+          />
+          {/* Dark Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-brand-primary)]/95 via-[var(--color-brand-primary)]/90 to-[var(--color-brand-primary)]/80" />
+          {/* Pattern Overlay */}
+          <div className="absolute inset-0 opacity-5">
+            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <pattern id="hero-grid" width="60" height="60" patternUnits="userSpaceOnUse">
+                  <path d="M 60 0 L 0 0 0 60" fill="none" stroke="white" strokeWidth="1"/>
+                </pattern>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#hero-grid)" />
+            </svg>
+          </div>
+          
+          {/* Content */}
+          <div className="site-container relative z-10">
+            <div className="max-w-3xl">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-14 h-14 rounded-2xl bg-[var(--color-earth-copper)] flex items-center justify-center shadow-lg">
+                  <Pickaxe size={28} className="text-white" />
+                </div>
+                <div>
+                  <span className="text-sm font-bold text-[var(--color-earth-copper)] uppercase tracking-wider">
+                    Mining & Geology
+                  </span>
+                  <p className="text-white/60 text-sm">Industry News Hub</p>
+                </div>
+              </div>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white mb-6 leading-tight">
+               <span className="text-white">News & Insights</span>
+              </h1>
+              <p className="text-xl text-white/90 max-w-2xl leading-relaxed">
+                Stay current with the latest developments in mining, mineral exploration, 
+                geology, and critical minerals from around the world.
               </p>
+              {/* Stats */}
+              <div className="flex items-center gap-6 mt-8 pt-8 border-t border-white/20">
+                <div>
+                  <p className="text-3xl font-bold text-[var(--color-earth-copper)]">{articles.length}</p>
+                  <p className="text-sm text-white/70">Articles</p>
+                </div>
+                <div className="w-px h-12 bg-white/20" />
+                <div>
+                  <p className="text-3xl font-bold text-[var(--color-earth-copper)]">10+</p>
+                  <p className="text-sm text-white/70">Sources</p>
+                </div>
+                <div className="w-px h-12 bg-white/20" />
+                <div>
+                  <p className="text-3xl font-bold text-[var(--color-earth-copper)]">Daily</p>
+                  <p className="text-sm text-white/70">Updates</p>
+                </div>
+              </div>
             </div>
+          </div>
+        </section>
 
-            <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-              {articles.map((article) => (
-                <ArticleCard key={String(article.id)} article={article} />
-              ))}
-            </div>
+        {/* Articles with Filters */}
+        <section className="py-12 md:py-16 bg-gradient-to-b from-[var(--color-neutral-100)] to-[var(--background)]">
+          <div className="site-container">
+            <ArticleFilters articles={sortedArticles} />
           </div>
         </section>
       </main>

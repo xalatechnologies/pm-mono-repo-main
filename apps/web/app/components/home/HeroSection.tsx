@@ -6,11 +6,11 @@ import Button from "../ui/Button";
 import { ArrowDown, ChevronRight, TrendingUp } from "lucide-react";
 import { PORTFOLIO } from "@/lib/portfolio";
 
-// Hero slides with dynamic content
+// Hero slides with dynamic content - using high-quality images from InvestorPitch
 const heroSlides = [
   {
-    src: "/skrattas-overview.jpg",
-    alt: "Skrattås exploration site overview",
+    src: "/hero-skrattas-overview.jpg",
+    alt: "Skrattås exploration site panoramic overview",
     location: "Skrattås-Byafossen",
     badge: "Investment Opportunity",
     headline: "Exceptional Grades,",
@@ -20,7 +20,7 @@ const heroSlides = [
     statLabel: "Zinc Grade",
   },
   {
-    src: "/mokk-gruvfjellet.jpg",
+    src: "/hero-mokk-gruvfjellet.jpg",
     alt: "Gruvfjellet mountain plateau - historic mining district",
     location: "Gaulstad-Mokk",
     badge: "Historic Mining District",
@@ -31,8 +31,8 @@ const heroSlides = [
     statLabel: "First Discovery",
   },
   {
-    src: "/skrattas-mine-1.jpg",
-    alt: "Historic mine entrance at Skrattås",
+    src: "/hero-skrattas-mine.jpg",
+    alt: "Historic mine interior at Skrattås showing mineralization",
     location: "Skrattås Mine",
     badge: "Active Exploration",
     headline: "Where History Meets",
@@ -42,7 +42,7 @@ const heroSlides = [
     statLabel: "Historic Ore Grade",
   },
   {
-    src: "/mokk-mine-entrance.jpg",
+    src: "/hero-mokk-mine.jpg",
     alt: "Mine entrance at Mokk exploration site",
     location: "Mokk District",
     badge: "Resource Definition",
@@ -53,8 +53,8 @@ const heroSlides = [
     statLabel: "Copper Grade",
   },
   {
-    src: "/copper-minerals.jpg",
-    alt: "Copper mineral samples from exploration",
+    src: "/hero-copper-minerals.jpg",
+    alt: "High-grade copper mineral samples from exploration",
     location: "Mineral Samples",
     badge: "Critical Minerals",
     headline: "Powering the",
@@ -64,20 +64,8 @@ const heroSlides = [
     statLabel: "Elements Analyzed",
   },
   {
-    src: "/minerals2.png",
-    alt: "Rare Earth Element rich mineral samples",
-    location: "REE Target Zone",
-    badge: "Rare Earth Elements",
-    headline: "Strategic",
-    headlineAccent: "REE Potential",
-    subtitle: "Targeting Rare Earth Elements (REE) — critical for EVs, wind turbines, defense tech, and electronics. Europe's push for mineral independence starts here.",
-    stat: "REE",
-    statLabel: "Strategic Target",
-    accentColor: "patina", // Use patina green instead of default gold
-  },
-  {
-    src: "/byafossen-geology.jpg",
-    alt: "Geological formations at Byafossen",
+    src: "/hero-byafossen-geology.jpg",
+    alt: "Spectacular geological formations at Byafossen",
     location: "Byafossen",
     badge: "Norwegian Excellence",
     headline: "Science-Driven",

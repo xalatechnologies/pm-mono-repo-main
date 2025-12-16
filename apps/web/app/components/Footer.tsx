@@ -2,7 +2,9 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { ExternalLink, Linkedin, Twitter } from "lucide-react";
+import { ExternalLink } from "lucide-react";
+// Uncomment when real social media URLs are added
+// import { Linkedin, Twitter } from "lucide-react";
 import GoldDivider from "./ui/GoldDivider";
 import { trackExternalLinkClick } from "@/lib/analytics";
 
@@ -106,23 +108,31 @@ export default function Footer() {
               development in the Trøndelag region.
             </p>
 
-            {/* Social Links */}
+            {/* Social Links - Hidden until real URLs are provided */}
+            {/* 
             <div className="flex gap-3">
               <a
-                href="#"
+                href="https://linkedin.com/company/pureminerals"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center hover:bg-[var(--secondary)] transition-colors duration-300"
                 aria-label="LinkedIn"
+                onClick={() => trackExternalLinkClick("https://linkedin.com/company/pureminerals", "LinkedIn")}
               >
                 <Linkedin size={18} />
               </a>
               <a
-                href="#"
+                href="https://twitter.com/pureminerals"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center hover:bg-[var(--secondary)] transition-colors duration-300"
                 aria-label="Twitter"
+                onClick={() => trackExternalLinkClick("https://twitter.com/pureminerals", "Twitter")}
               >
                 <Twitter size={18} />
               </a>
             </div>
+            */}
           </div>
 
           {/* Company Links */}
