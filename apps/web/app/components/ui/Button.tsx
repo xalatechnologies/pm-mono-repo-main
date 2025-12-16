@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import { ReactNode } from "react";
+import { trackCTAClick, trackExternalLinkClick } from "@/lib/analytics";
 
 type ButtonVariant = "primary" | "secondary" | "outline" | "ghost";
 type ButtonSize = "sm" | "md" | "lg";
@@ -87,6 +90,15 @@ export default function Button({
     </>
   );
 
+  const handleClick = () => {
+    if (href && external) {
+      trackExternalLinkClick(href, String(children));
+    } else if (href) {
+      trackCTAClick(String(children), window.location.pathname);
+    }
+    onClick?.();
+  };
+
   if (href) {
     if (external) {
       return (
@@ -95,13 +107,14 @@ export default function Button({
           target="_blank"
           rel="noopener noreferrer"
           className={classes}
+          onClick={handleClick}
         >
           {content}
         </a>
       );
     }
     return (
-      <Link href={href} className={classes}>
+      <Link href={href} className={classes} onClick={handleClick}>
         {content}
       </Link>
     );
@@ -110,7 +123,7 @@ export default function Button({
   return (
     <button
       type={type}
-      onClick={onClick}
+      onClick={handleClick}
       disabled={disabled}
       className={classes}
     >

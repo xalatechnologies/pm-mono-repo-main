@@ -23,6 +23,13 @@ export const skrattaasenConfig: ProjectMapConfig = {
     minerals: [...PORTFOLIO.districts.skrattasByafossen.minerals],
     status: "Active",
     established: "2022",
+    seoDescription:
+      "Historic mining district in Steinkjer, Trøndelag with exceptional zinc (28.8%), lead, silver (539 ppm), and gold (10 ppm) mineralization. Proven reserves with mineralization continuing below 80m depth.",
+    location: {
+      region: "Trøndelag",
+      country: "Norway",
+      coordinates: [11.55, 64.0548],
+    },
   },
   markers: [
     {

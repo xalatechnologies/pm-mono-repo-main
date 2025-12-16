@@ -13,6 +13,7 @@ import {
   ArrowRight,
   ExternalLink,
 } from "lucide-react";
+import { trackContactFormSubmit } from "@/lib/analytics";
 
 const contactInfo = [
   {
@@ -94,6 +95,7 @@ export default function ContactPage() {
       if (result.success) {
         setIsSubmitted(true);
         setFormData({ name: "", email: "", company: "", subject: "", message: "" });
+        trackContactFormSubmit();
       } else {
         handleMailtoFallback();
       }

@@ -1,9 +1,19 @@
 import Button from "../components/ui/Button";
+import { generateMetadata as generateSEOMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "Exploration Specialists | Pure Minerals",
-  description: "Specialist partners supporting our exploration programs.",
-};
+export const metadata = generateSEOMetadata({
+  title: "Exploration Specialists",
+  description:
+    "Pure Minerals partners with experienced geological specialists including GeoVista AB, Sunnfjord Geo Center, and Geopark Vest for geological mapping, field surveys, TEM technology, and technical oversight of exploration programs in Trøndelag, Norway.",
+  keywords: [
+    "geological mapping",
+    "exploration specialists",
+    "geological consultants",
+    "field surveys",
+    "TEM technology",
+  ],
+  canonical: "https://pureminerals.no/exploration-specialists",
+});
 
 const specialists = [
   {

@@ -1,9 +1,19 @@
 import Button from "../components/ui/Button";
+import { generateMetadata as generateSEOMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "Partners | Pure Minerals",
-  description: "Partners supporting our operations and ecosystem.",
-};
+export const metadata = generateSEOMetadata({
+  title: "Partners",
+  description:
+    "Pure Minerals collaborates with trusted partners including NorChain for blockchain tokenization, field service providers, professional services, and local community partners to execute exploration programs efficiently in Norway.",
+  keywords: [
+    "mining partners",
+    "blockchain partners",
+    "NorChain",
+    "mining services",
+    "exploration partners",
+  ],
+  canonical: "https://pureminerals.no/partners",
+});
 
 const partnerGroups = [
   {

@@ -1,0 +1,17 @@
+# Pure Minerals - robots.txt
+# https://pureminerals.no/robots.txt
+
+User-agent: *
+Allow: /
+
+# Disallow admin and API routes if they exist
+Disallow: /api/
+Disallow: /admin/
+Disallow: /_next/
+
+# Sitemap location
+Sitemap: https://pureminerals.no/sitemap.xml
+
+# Crawl-delay (optional, adjust if needed)
+# Crawl-delay: 1
+

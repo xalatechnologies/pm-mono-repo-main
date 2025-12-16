@@ -1,9 +1,19 @@
 import Button from "../components/ui/Button";
+import { generateMetadata as generateSEOMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "Laboratories | Pure Minerals",
-  description: "Laboratories used for analysis and verification.",
-};
+export const metadata = generateSEOMetadata({
+  title: "Laboratories",
+  description:
+    "Pure Minerals works with reputable international laboratories including Stratum Reservoir (UK), AGAT (Canada), and ALS (Ireland) for reliable geochemical analysis, mineral sample testing, and exploration program verification.",
+  keywords: [
+    "mining laboratories",
+    "geochemical analysis",
+    "mineral testing",
+    "exploration laboratories",
+    "sample analysis",
+  ],
+  canonical: "https://pureminerals.no/laboratories",
+});
 
 const labs = [
   {

@@ -1,7 +1,10 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { ExternalLink, Linkedin, Twitter } from "lucide-react";
 import GoldDivider from "./ui/GoldDivider";
+import { trackExternalLinkClick } from "@/lib/analytics";
 
 const footerLinks = {
   company: [
@@ -42,6 +45,7 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center sm:justify-between flex-wrap gap-4 group"
+            onClick={() => trackExternalLinkClick("https://norchain.org", "NorChain")}
           >
             <div className="flex items-center gap-4">
               <div className="w-18 h-18 rounded-full overflow-hidden flex-shrink-0 shadow-lg">
@@ -173,6 +177,7 @@ export default function Footer() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="footer-link text-on-dark-muted hover:text-[var(--secondary)] transition-colors duration-300 inline-flex items-center gap-2"
+                      onClick={() => trackExternalLinkClick(link.href, link.label)}
                     >
                       <span>{link.label}</span>
                       <ExternalLink size={14} className="opacity-70" />
@@ -215,6 +220,7 @@ export default function Footer() {
               target="_blank" 
               rel="noopener noreferrer"
               className="flex items-center gap-2 hover:text-[var(--secondary)] transition-colors"
+              onClick={() => trackExternalLinkClick("https://xala.no", "Xala Technologies")}
             >
               <span>Developed by</span>
               <span className="font-semibold text-white">Xala Technologies</span>

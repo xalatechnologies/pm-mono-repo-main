@@ -24,6 +24,13 @@ export const mokkConfig: ProjectMapConfig = {
     minerals: [...PORTFOLIO.districts.gaulstadMokk.minerals],
     status: "Exploration",
     established: "2021",
+    seoDescription:
+      "Historic copper mining district in Trøndelag, Norway dating back to 1760. Over 50 documented mines with proven grades of 7.95% copper, 840 ppm cobalt, and precious metals across 128 km².",
+    location: {
+      region: "Trøndelag",
+      country: "Norway",
+      coordinates: [12.2, 63.98],
+    },
   },
   markers: [
     {

@@ -45,6 +45,13 @@ export interface ProjectInfo {
   minerals: string[];
   status?: "Active" | "Exploration" | "Development";
   established?: string;
+  // SEO/Geo metadata
+  seoDescription?: string;
+  location?: {
+    region: string;
+    country: string;
+    coordinates: [number, number]; // [longitude, latitude]
+  };
 }
 
 export interface ProjectMapConfig {

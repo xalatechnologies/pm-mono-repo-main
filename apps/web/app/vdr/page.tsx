@@ -1,12 +1,17 @@
+"use client";
+
 import Button from "../components/ui/Button";
 import { Shield, FileText, Lock, CheckCircle, Mail, ArrowRight, Clock } from "lucide-react";
-
-export const metadata = {
-  title: "VDR | Pure Minerals",
-  description: "Virtual Data Room access for qualified investors and partners.",
-};
+import { trackVDRRequest } from "@/lib/analytics";
+import { useRouter } from "next/navigation";
 
 export default function VdrPage() {
+  const router = useRouter();
+
+  const handleVDRRequest = () => {
+    trackVDRRequest();
+    router.push("/contact");
+  };
   return (
     <main className="bg-[var(--background)]">
       <section className="py-16 md:py-20">
@@ -147,6 +152,7 @@ export default function VdrPage() {
                   size="md"
                   icon={<Mail size={18} />}
                   className="bg-[var(--color-earth-gold-bright)] hover:bg-[var(--color-earth-gold-warm)] text-[var(--color-brand-primary)]"
+                  onClick={handleVDRRequest}
                 >
                   Request Access
                 </Button>

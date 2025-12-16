@@ -1,11 +1,21 @@
 import Link from "next/link";
 import Button from "../components/ui/Button";
 import { FileText, Clock, Mail } from "lucide-react";
+import { generateMetadata as generateSEOMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "Report Archive | Pure Minerals",
-  description: "Archive of Pure Minerals reports and selected external documents.",
-};
+export const metadata = generateSEOMetadata({
+  title: "Report Archive",
+  description:
+    "Access Pure Minerals reports, exploration summaries, technical memos, and fieldwork highlights. Portfolio updates, geological surveys, and selected external documents related to our license portfolio in Trøndelag, Norway.",
+  keywords: [
+    "mining reports",
+    "exploration reports",
+    "geological reports Norway",
+    "mining documentation",
+    "technical memos",
+  ],
+  canonical: "https://pureminerals.no/report-archive",
+});
 
 export default function ReportArchivePage() {
   return (
