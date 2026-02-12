@@ -5,7 +5,7 @@ import StructuredData from "@/app/components/seo/StructuredData";
 export const metadata: Metadata = generateSEOMetadata({
   title: "Projects",
   description:
-    "Explore Pure Minerals mining projects in Trøndelag, Norway. Skrattåsen-Byafossen (7 licenses, 51 km²) and Gaulstad-Mokk (11 licenses, 128 km²) with proven mineralization of copper, zinc, gold, silver, and rare earth elements.",
+    "Explore Pure Minerals mining projects in Trøndelag, Norway. Skrattåsen-Byafossen (7 licenses, 51 km²) and Gaulstad-Mokk (12 licenses, 138 km²) with proven mineralization of copper, zinc, gold, silver, and rare earth elements.",
   keywords: [
     "mining projects Norway",
     "Skrattåsen mining",

@@ -50,7 +50,7 @@ const projects = [
     name: "Gaulstad/Mokk",
     subtitle: "Historic Mining District",
     status: "Resource Definition",
-    description: "Covering 128 km² with 11 licenses, this historic area hosts confirmed copper, zinc, nickel, iron, silver, gold and REE mineralization with significant commercial potential.",
+    description: "Covering 138 km² with 12 licenses, this historic area hosts confirmed copper, zinc, nickel, iron, silver, gold and REE mineralization with significant commercial potential.",
     href: "/projects/mokk",
     licenses: PORTFOLIO.districts.gaulstadMokk.licenses,
     area: `${PORTFOLIO.districts.gaulstadMokk.coverageKm2} km²`,
