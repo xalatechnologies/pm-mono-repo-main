@@ -681,12 +681,12 @@ export default function AboutPage() {
               icon: FileCheck,
               title: "2022",
               subtitle: "License Acquisition",
-              description: "Secured 18 mining licenses covering 179 km² in two premier districts: 11 in Gaulstad-Mokk and 7 in Skrattås-Byafossen.",
+              description: "Secured 19 mining licenses covering 189 km² in two premier districts: 11 in Gaulstad-Mokk + 7 in Skrattås-Byafossen.",
               image: "/gaulstad-mokk-map.jpg",
               highlight: true,
               items: [
-                "18 mining licenses acquired",
-                "179 km² total exploration area",
+                "19 mining licenses acquired",
+                "189 km² total exploration area",
                 "11 licenses in Gaulstad-Mokk district",
                 "7 licenses in Skrattås-Byafossen district"
               ],

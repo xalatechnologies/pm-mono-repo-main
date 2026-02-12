@@ -5,7 +5,7 @@ import StructuredData from "@/app/components/seo/StructuredData";
 export const metadata: Metadata = generateSEOMetadata({
   title: "About Us",
   description:
-    "Learn about Pure Minerals AS - a Norwegian exploration company with 18 mining licenses covering 179 km² in Trøndelag. Discover our investment thesis, geological expertise, strategic advantages, and partnership with NorChain for blockchain tokenization.",
+    "Learn about Pure Minerals AS - a Norwegian exploration company with 19 mining licenses covering 189 km² in Trøndelag. Discover our investment thesis, geological expertise, strategic advantages, and partnership with NorChain for blockchain tokenization.",
   keywords: [
     "about Pure Minerals",
     "Norwegian mining company",

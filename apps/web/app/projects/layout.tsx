@@ -31,7 +31,7 @@ export default function ProjectsLayout({
         data={{
           name: "Pure Minerals Exploration Area - Trøndelag",
           description:
-            "18 mining licenses covering 179 km² in Trøndelag, Norway. Two strategic mining districts: Skrattåsen-Byafossen and Gaulstad-Mokk with proven copper, zinc, silver, gold, and REE mineralization.",
+            "19 mining licenses covering 189 km² in Trøndelag, Norway. Two strategic mining districts: Skrattåsen-Byafossen and Gaulstad-Mokk with proven copper, zinc, silver, gold, and REE mineralization.",
           coordinates: {
             latitude: 64.0,
             longitude: 11.8,

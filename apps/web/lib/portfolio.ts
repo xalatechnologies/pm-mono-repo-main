@@ -1,7 +1,7 @@
 export const PORTFOLIO = {
   totals: {
-    licenses: 18,
-    coverageKm2: 179,
+    licenses: 19,
+    coverageKm2: 189,
     mineralTypesLabel: "8+",
     activeProjects: 2,
   },

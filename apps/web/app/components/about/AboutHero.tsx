@@ -25,7 +25,7 @@ const aboutSlides = [
     alt: "Skrattås exploration area overview",
     location: "License Portfolio",
     badge: "Strategic Holdings",
-    headline: "18 Mining Licenses",
+    headline: "19 Mining Licenses",
     headlineAccent: `${PORTFOLIO.totals.coverageKm2} km² of Opportunity`,
     subtitle: "Comprehensive coverage across two premier districts: Gaulstad-Mokk and Skrattås-Byafossen. Full ownership and control of all exploration rights.",
     stat: String(PORTFOLIO.totals.licenses),

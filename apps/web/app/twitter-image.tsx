@@ -120,13 +120,13 @@ export default async function Image() {
             }}
           >
             <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-              <span style={{ fontSize: "36px", fontWeight: "bold", color: "#d4a574" }}>18</span>
+              <span style={{ fontSize: "36px", fontWeight: "bold", color: "#d4a574" }}>19</span>
               <span style={{ fontSize: "14px", color: "rgba(255, 255, 255, 0.7)", textTransform: "uppercase" }}>
                 Mining Licenses
               </span>
             </div>
             <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-              <span style={{ fontSize: "36px", fontWeight: "bold", color: "#d4a574" }}>179 km²</span>
+              <span style={{ fontSize: "36px", fontWeight: "bold", color: "#d4a574" }}>189 km²</span>
               <span style={{ fontSize: "14px", color: "rgba(255, 255, 255, 0.7)", textTransform: "uppercase" }}>
                 Exploration Area
               </span>

@@ -12,7 +12,7 @@ import { Article } from "@/types/articles";
 export const metadata: Metadata = generateSEOMetadata({
   title: "Home",
   description:
-    "Pure Minerals - Norwegian exploration company specializing in copper, zinc, gold, silver, and rare earth elements (REE) in Trøndelag. 18 mining licenses covering 179 km². Blockchain tokenized mining assets on NorChain.",
+    "Pure Minerals - Norwegian exploration company specializing in copper, zinc, gold, silver, and rare earth elements (REE) in Trøndelag. 19 mining licenses covering 189 km². Blockchain tokenized mining assets on NorChain.",
   keywords: [
     "Pure Minerals Norway",
     "Norwegian mining investment",
