@@ -25,6 +25,19 @@ VPS_USER="root"
 VPS_HOST="72.62.1.197"
 WEB_DIR="/var/www/pureminerals-web"
 
+# Optional: source deploy.env for VPS_PASSWORD (add deploy.env to .gitignore)
+[ -f "$SCRIPT_DIR/deploy.env" ] && source "$SCRIPT_DIR/deploy.env"
+
+# SSH: use sshpass when VPS_PASSWORD is set (for password auth)
+if [ -n "$VPS_PASSWORD" ]; then
+  export SSHPASS="$VPS_PASSWORD"
+  SSH_CMD="sshpass -e ssh -o StrictHostKeyChecking=no"
+  RSYNC_SSH="sshpass -e ssh -o StrictHostKeyChecking=no"
+else
+  SSH_CMD="ssh -o StrictHostKeyChecking=no"
+  RSYNC_SSH="ssh -o StrictHostKeyChecking=no"
+fi
+
 # Check if VPS_HOST is set
 if [ "$VPS_HOST" = "YOUR_VPS_IP" ]; then
   read -p "Enter your VPS IP or hostname: " VPS_HOST
@@ -92,7 +105,7 @@ echo -e "${GREEN}Package prepared${NC}"
 # ============================================
 echo -e "${BLUE}[3/4] Uploading to VPS...${NC}"
 
-rsync -avz --delete --progress -e "ssh -o StrictHostKeyChecking=no" \
+rsync -avz --delete --progress -e "$RSYNC_SSH" \
   --exclude 'node_modules' \
   --exclude '.env' \
   "$WEB_TMP/" "${VPS_USER}@${VPS_HOST}:${WEB_DIR}/"
@@ -102,7 +115,8 @@ rsync -avz --delete --progress -e "ssh -o StrictHostKeyChecking=no" \
 # ============================================
 echo -e "${BLUE}[4/4] Restarting web service...${NC}"
 
-ssh -o StrictHostKeyChecking=no "${VPS_USER}@${VPS_HOST}" << 'ENDSSH'
+eval "$SSH_CMD" "${VPS_USER}@${VPS_HOST}" << 'ENDSSH'
+export PATH="/usr/local/bin:/usr/bin:$PATH"
 mkdir -p /var/log/pm2
 
 echo "Restarting pm-web..."

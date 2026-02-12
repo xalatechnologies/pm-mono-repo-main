@@ -42,7 +42,7 @@ const investmentHighlights = [
     value: String(PORTFOLIO.totals.licenses),
     unit: "",
     label: "Mining Licenses",
-    description: "11 in Gaulstad-Mokk + 7 in Skrattås-Byafossen",
+    description: "12 in Gaulstad-Mokk + 7 in Skrattås-Byafossen",
   },
   {
     value: "70+",
@@ -681,13 +681,13 @@ export default function AboutPage() {
               icon: FileCheck,
               title: "2022",
               subtitle: "License Acquisition",
-              description: "Secured 19 mining licenses covering 189 km² in two premier districts: 11 in Gaulstad-Mokk + 7 in Skrattås-Byafossen.",
+              description: "Secured 19 mining licenses covering 189 km² in two premier districts: 12 in Gaulstad-Mokk + 7 in Skrattås-Byafossen.",
               image: "/gaulstad-mokk-map.jpg",
               highlight: true,
               items: [
                 "19 mining licenses acquired",
                 "189 km² total exploration area",
-                "11 licenses in Gaulstad-Mokk district",
+                "12 licenses in Gaulstad-Mokk district",
                 "7 licenses in Skrattås-Byafossen district"
               ],
               button: {
@@ -779,7 +779,7 @@ export default function AboutPage() {
             <AnimatedSection animation="fade-in-up" delay={0}>
               <ImageCard
                 title="Strategic License Areas"
-                content={`18 licenses covering ${PORTFOLIO.totals.coverageKm2} km² across Gaulstad-Mokk and Skrattås-Byafossen districts with documented commercial mineralization.`}
+                content={`${PORTFOLIO.totals.licenses} licenses covering ${PORTFOLIO.totals.coverageKm2} km² across Gaulstad-Mokk and Skrattås-Byafossen districts with documented commercial mineralization.`}
                 imageUrl="/gaulstad-mokk-map.jpg"
                 alt="Gaulstad-Mokk license area map"
                 variant="dark"

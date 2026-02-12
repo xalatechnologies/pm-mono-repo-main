@@ -25,7 +25,7 @@ export const mokkConfig: ProjectMapConfig = {
     status: "Exploration",
     established: "2021",
     seoDescription:
-      "Historic copper mining district in Trøndelag, Norway dating back to 1760. Over 50 documented mines with proven grades of 7.95% copper, 840 ppm cobalt, and precious metals across 128 km².",
+      "Historic copper mining district in Trøndelag, Norway dating back to 1760. Over 50 documented mines with proven grades of 7.95% copper, 840 ppm cobalt, and precious metals across 138 km².",
     location: {
       region: "Trøndelag",
       country: "Norway",
@@ -278,12 +278,12 @@ export const mokkConfig: ProjectMapConfig = {
     {
       title: "Extensive License Holdings",
       content:
-        "Pure Minerals holds 11 mining licenses in the Gaulstad-Mokk area, covering approximately 128 km² surrounding the Gruvfjellet mountain plateau. For the last 130 years, many governmental and private entities have explored the more than 50 identified worded mines and minor test pits throughout the area. Pure Minerals acquired these licenses in 2021-2022.",
+        "Pure Minerals holds 12 mining licenses in the Gaulstad-Mokk area, covering approximately 138 km² surrounding the Gruvfjellet mountain plateau. For the last 130 years, many governmental and private entities have explored the more than 50 identified worded mines and minor test pits throughout the area. Pure Minerals acquired these licenses in 2021-2022.",
       imageUrl: "/gaulstad-mokk-map.jpg",
       alt: "License area map",
       imagePosition: "right",
       category: "discovery",
-      highlights: ["11 Licenses", "128 km²", "50+ Historic Workings", "Full Ownership"],
+      highlights: ["12 Licenses", "138 km²", "50+ Historic Workings", "Full Ownership"],
     },
     {
       title: "Professional Geological Surveys",
@@ -339,12 +339,12 @@ export const mokkConfig: ProjectMapConfig = {
       icon: FileCheck,
       title: "2021-2022",
       subtitle: "Modern License Acquisition",
-      description: "Pure Minerals acquired 11 mining licenses covering approximately 128 km² in the Gaulstad-Mokk area. Initial exploration of Gaulstad and Mokk mine entrances at Gruvfjellet began.",
+      description: "Pure Minerals acquired 12 mining licenses covering approximately 138 km² in the Gaulstad-Mokk area. Initial exploration of Gaulstad and Mokk mine entrances at Gruvfjellet began.",
       image: "/gaulstad-mokk-map.jpg",
       highlight: true,
       items: [
-        "11 licenses acquired",
-        "128 km² exploration area",
+        "12 licenses acquired",
+        "138 km² exploration area",
         "Mine entrance exploration",
         "Historic data compilation"
       ],

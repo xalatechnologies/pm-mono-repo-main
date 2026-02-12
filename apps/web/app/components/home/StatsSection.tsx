@@ -37,7 +37,7 @@ const stats = [
     value: PORTFOLIO.totals.licenses,
     suffix: "",
     label: "Mining Licenses",
-    description: "11 in Gaulstad-Mokk + 7 in Skrattås-Byafossen",
+    description: "12 in Gaulstad-Mokk + 7 in Skrattås-Byafossen",
     icon: <FileCheck size={28} strokeWidth={1.5} />,
     variant: "default" as const,
   },

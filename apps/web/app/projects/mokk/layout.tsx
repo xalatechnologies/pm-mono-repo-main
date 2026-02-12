@@ -5,7 +5,7 @@ import StructuredData from "@/app/components/seo/StructuredData";
 export const metadata: Metadata = generateSEOMetadata({
   title: "Gaulstad-Mokk Project",
   description:
-    "Gaulstad-Mokk mining project: 11 licenses covering 128 km² in Trøndelag, Norway. Historic mining district with proven copper (7.95%), zinc, nickel, iron, silver (12.45 ppm), gold (0.05 ppm), and rare earth elements. 50+ historic mines documented dating back to 1760.",
+    "Gaulstad-Mokk mining project: 12 licenses covering 138 km² in Trøndelag, Norway. Historic mining district with proven copper (7.95%), zinc, nickel, iron, silver (12.45 ppm), gold (0.05 ppm), and rare earth elements. 50+ historic mines documented dating back to 1760.",
   keywords: [
     "Gaulstad Mokk mining",
     "copper mining Norway",
@@ -46,10 +46,10 @@ export default function MokkLayout({
           project: {
             name: "Gaulstad-Mokk Mining Project",
             description:
-              "Historic copper mining district in Trøndelag, Norway dating back to 1760. 11 licenses covering 128 km² with over 50 documented historic mines. Proven grades of 7.95% copper, 840 ppm cobalt, and precious metals.",
+              "Historic copper mining district in Trøndelag, Norway dating back to 1760. 12 licenses covering 138 km² with over 50 documented historic mines. Proven grades of 7.95% copper, 840 ppm cobalt, and precious metals.",
             minerals: ["Copper", "Zinc", "Nickel", "Cobalt", "Silver", "Gold", "REE"],
-            area: "128",
-            licenses: 11,
+            area: "138",
+            licenses: 12,
             coordinates: {
               latitude: 63.98,
               longitude: 12.2,

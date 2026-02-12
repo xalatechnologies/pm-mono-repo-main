@@ -16,8 +16,8 @@ export const PORTFOLIO = {
     gaulstadMokk: {
       key: "gaulstad-mokk",
       label: "Gaulstad/Mokk",
-      licenses: 11,
-      coverageKm2: 128,
+      licenses: 12,
+      coverageKm2: 138,
       minerals: ["Copper", "Zinc", "Nickel", "Iron", "Silver", "Gold", "REE"],
     },
   },
